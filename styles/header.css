@@ -46,18 +46,18 @@ header {
 }
 
 #user_logout {
+  /*
   visibility: hidden;
   width: 0;
   height: 0;
-  /*
   */
 }
 
 #restaurant_logout {
   /*
+  */
   visibility: hidden;
   width: 0;
   height: 0;
-  */
 }
 /*# sourceMappingURL=header.css.map */
