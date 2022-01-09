@@ -54,6 +54,27 @@ app.get("/admin/:restaurant_id", (req, res) => {
   res.render("admin", templateVars);
 });
 
+app.get("/1/cart", (req, res) => {
+  const menu1 = {
+    name: "Coffee",
+    price: "245",
+    image: "https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png"
+  };
+
+  const menu2 = {
+    name: "Cookie",
+    price: "150",
+    image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg"
+  };
+  const carttemplateVars = {
+    name: menu1.name,
+    price: menu1.price,
+    image: menu1.image,
+    menu: menu2
+  };
+  res.render("cart", carttemplateVars);
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
