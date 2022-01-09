@@ -20,9 +20,9 @@ body {
 }
 
 #restaurant_orders_box {
-  display: -webkit-box;
-  display: -ms-flexbox;
+  /*
   display: flex;
+  */
 }
 
 #restaurant_tabs {
