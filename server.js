@@ -32,7 +32,7 @@ const getClientOrders = (id) => {
   WHERE user_id = $1 
   `, [id])
   .then(res => {
-    return res.rows;
+    return res.rows; //array 
   })
   .catch(err => err.message);
 }
@@ -80,6 +80,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.get("/", (req, res) => {
   //sql
   const templatevars = {
+    id: null
   };
   res.render("index", templatevars);
 });
@@ -87,21 +88,23 @@ app.get("/", (req, res) => {
 app.get("/login", (req, res) => {
   res.render('login');
 });
+
 //clinet
-app.post("/login", (req, res) => {
-  const username = req.body.username;
+app.post("/1", (req, res) => {
+  const userid = 1;
   //sql query get userObj{id}
-  if (userObj.id === "restaurat_owner_id") {
-    res.redirect("/admin/:restaurantid");
-  } else {
-    res.redirect("/");
-  }
+  res.redirect("/");
 });
 
+app.post("/admin/1", (req, res) => {
+  const restaurantId = 1;
+  //sql query
+  res.redirect("/admin/:restaurantid");
+})
 
 //client orders page
-app.get("/:userid/orders", (req, res) => {
-  const id = req.params.userid;
+app.get("/1/orders", (req, res) => {
+  const id = 1;
   const clinetOrders = getClientOrders(id);
   clinetOrders
   .then(res => {
@@ -114,31 +117,33 @@ app.get("/:userid/orders", (req, res) => {
 });
 
 //check shopping cart
-app.get("/:userid/cart", (req, res) => {
+app.get("/1/cart", (req, res) => {
+  //sql
   res.render("cart");
 });
+
 //submit order
 app.post("/:userid/cart", (req, res) => {
-  //date => insert into table orders, orders_items
-  res.redirect("/:userid/orders");
+  //data => insert into table orders, orders_items
+  res.redirect("/1/orders");
 });
 
 //restaurant admin page
-app.get("/admin/:restaurantid", (req, res) => {
-  const id = req.params.restaurantid;
+app.get("/admin/1", (req, res) => {
+  const id = 1;
   const newOrders = getRestaurantOrders(id);
   newOrders
   .then(res => {
     const newOrdersArray = res;
     const templatevars = {
-      newOrdersArray
+      newOrdersArray : newOrdersArray
     };
     res.render("admin", templatevars);
   })
 });
 
 //when click on Accept/DONE
-app.post("/admin/:restaurantid/:function", (req, res) => {
+app.post("/admin/1/:function", (req, res) => {
   const id = req.params.restaurantid;
   if (req.params.function === 'accpet') {
     //send msm to clinet
@@ -153,8 +158,20 @@ app.post("/admin/:restaurantid/:function", (req, res) => {
   }
 });
 
+//ajax --> add sth into cart; within cart, + or - # of items
+// click on accept / done button  
+
 
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+
+/*
+admin.ejs --> restaurnt own to watch new orders  Kevin
+orders.ejs --> client watches thier orders Simar
+index.ejs --> render rest info menu  Allen
+
+
+*/
