@@ -1,14 +1,18 @@
-$background-color: #748cab;
-$text-color: #0d1321;
+$blue1: #0d1321;
+$blue2: #1d2d44;
+$blue3: #3e5c76;
+$blue4: #748cab;
+$blue5: #f0ebd8;
 
 body {
-  background-color: $background-color;
-  color: $text-color
+  background-color: $blue4;
+  color: $blue1;
+  padding: 10px;
 }
 
 #restaurant_order {
-  border: 5px solid red;
-  background-color: white;
+  border: 5px solid $blue2;
+  background-color: $blue5;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -66,4 +70,13 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
+}
+
+@media all and (max-width: 700px){
+
+  #restaurant_orders_box {
+    display: flex;
+    flex-direction: column;
+
+  }
 }
