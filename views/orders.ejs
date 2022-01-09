@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+ <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+ <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/orders-layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+
+<body>
+
+  <main>
+    <%- include('partials/_header') %>
+    <div id="orders-body-container">
+      <section id="order-status-buttons">
+
+        <button> current</button>
+        <button>past</button>
+      </section>
+      <article id="customer-orders">
+      <div id = "order_boxes">
+            <div id = "single-order-desc">
+              <p class = "b_desc">Timestamp: Orders.created.at</p>
+              <p class = "b_desc">Order Number: Orders.id</p>
+              <p class = "b_desc">Customer Name</p>
+              <p class = "b_desc">Item name: Quantity</p>
+              <p class = "b_desc">Item name: Quantity</p>
+              <p class = "b_desc">Item name: Quantity</p>
+              <p class = "b_desc">Order Total: $10</p>
+              <label id="customer-order-status">Pending</label>
+            </div>
+            <div id = "single-order-desc">
+              <p class = "b_desc">Timestamp: Orders.created.at</p>
+              <p class = "b_desc">Order Number: Orders.id</p>
+              <p class = "b_desc">Customer Name</p>
+              <p class = "b_desc">Item name: Quantity</p>
+              <p class = "b_desc">Item name: Quantity</p>
+              <p class = "b_desc">Item name: Quantity</p>
+              <p class = "b_desc">Order Total: $10</p>
+              <label id="customer-order-status">Pending</label>
+            </div>
+        </div>
+      </article>
+    </div>
+
+    <%- include('partials/_footer') %>
+  </main>
+
+</body>
+
+</html>
