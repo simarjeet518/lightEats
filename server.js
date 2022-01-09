@@ -24,35 +24,6 @@ db.connect(() => {
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
-//helper functions
-const getClientOrders = (id) => {
-  return db.query(`
-  SELECT * 
-  FROM orders
-  JOIN orders_items ON orders.id = orders_items.order_id
-  JOIN menu_items ON menu_items.id = menu_item_id
-  WHERE user_id = $1 
-  `, [id])
-  .then(res => {
-    return res.rows; //array 
-  })
-  .catch(err => err.message);
-}
-
-const getRestaurantOrders = (id) => {
-  return db.query(`
-  SELECT * 
-  FROM orders
-  JOIN orders_items ON orders.id = orders_items.order_id
-  JOIN menu_items ON menu_items.id = menu_item_id
-  WHERE restaurant_id = $1 
-  `, [id])
-  .then(res => {
-    return res.rows;
-  })
-  .catch(err => err.message);
-}
-
 app.use(
   "/styles",
   sassMiddleware({
@@ -65,7 +36,6 @@ app.use(
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
 //const usersRoutes = require("./routes/users");
 //const widgetsRoutes = require("./routes/widgets");
 
@@ -74,7 +44,6 @@ const cartsRoutes = require("./routes/carts");
 const restaurantsRoutes = require("./routes/restaurants");
 
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 // app.use("/api/users", usersRoutes(db));
 // app.use("/api/widgets", widgetsRoutes(db));
 
@@ -103,7 +72,6 @@ app.post("/1", (req, res) => {
   //sql query get userObj{id}
   res.redirect("/");
 });
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

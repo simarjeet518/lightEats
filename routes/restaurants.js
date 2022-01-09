@@ -1,5 +1,4 @@
 const express = require("express");
-const { route } = require("express/lib/application");
 const router = express.Router();
 
 module.exports = (db) => {
@@ -39,7 +38,7 @@ module.exports = (db) => {
       res.json(err.message);
     })
   });
-  
+
   //for owner login
   router.post("/:restaurant_id", (req, res) => {
     const restaurant_id = req.params.restaurant_id;
