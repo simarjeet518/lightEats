@@ -17,7 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  margin: 10px;
+  margin-left: 30%;
   width: 300px;
 }
 
@@ -41,4 +41,15 @@ body {
 #cart_box_footer {
   display: flex;
   justify-content: space-around;
+}
+
+img {
+  width: 100px;
+}
+
+@media all and (max-width: 700px){
+
+  #cart_box {
+    margin: 10px;
+  }
 }

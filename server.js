@@ -66,11 +66,13 @@ app.get("/1/cart", (req, res) => {
     price: "150",
     image: "https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg"
   };
-  const templateVars = {
-    namez: menu1.name
-
+  const carttemplateVars = {
+    name: menu1.name,
+    price: menu1.price,
+    image: menu1.image,
+    menu: menu2
   };
-  res.render("cart", templateVars);
+  res.render("cart", carttemplateVars);
 });
 
 app.listen(PORT, () => {
