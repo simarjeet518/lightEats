@@ -28,7 +28,7 @@ CREATE TABLE orders (
   restaurant_id INTEGER REFERENCES restaurants(id) ON DELETE CASCADE DEFAULT 1, --dealing with one restaurant only no need to insert any value
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   accepted_at TIMESTAMP DEFAULT NULL, --- we can keep this null at the time of order creation
-  prepared_time  TIMESTAMP DEFAULT NULL,
+  prepared_at  TIMESTAMP DEFAULT NULL,
   picked_at TIMESTAMP DEFAULT NULL,
   order_total INTEGER  NOT NULL CONSTRAINT positive_total CHECK (order_total >= 0) DEFAULT 0, -- price storing  in cents
   set_time INTEGER NOT NULL DEFAULT 2  --- default 2 minutes

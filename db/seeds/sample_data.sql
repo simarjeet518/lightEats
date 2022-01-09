@@ -7,7 +7,7 @@ INSERT INTO restaurants (name, phone, street, city, province, country, post_code
 VALUES ('LightEats', '7788334525','7237 137 St', 'Surrey', 'BC', 'Canada', 'V3H 29T');
 
 
-INSERT INTO orders (customer_id,accepted_at,prepared_time,picked_at,order_total, set_time)
+INSERT INTO orders (customer_id,accepted_at,prepared_at,picked_at,order_total, set_time)
 VALUES(1,now() + interval '20 seconds', now() + interval '2 minutes 20 seconds',now() + interval '3 minutes ' ,595, 2),
 (2,now() + interval '40 seconds', now() + interval '5 minutes 40 seconds',now() + interval '6 minutes ' ,400, 5),
 (1,now() + interval '44 seconds', now() + interval '5 minutes 44 seconds',now() + interval '6 minutes ' ,1395, 5),
