@@ -17,11 +17,17 @@ module.exports = (db) => {
 
   router.post("/orders/:restaurant_id", (req, res) => {
     //CART as a form
-    const orderObj = req.body;
+    const orderObj = req.body; //on order from clinet 1
     // db.query(`
-    // INSERT INTO orders (customer_id, restaurant_id, order_total)
-    // VALUES ($1, $2, $3)
+    // INSERT INTO orders (customer_id,order_total)
+    // VALUES ($1, $2)
     // RETURNING *`, [orderObj.customer_id, orderObj.restaurant_id, orderObj.total])
+
+    //order_id: 3
+
+    // 3 coffee 3 
+    // 3 tea    1
+    // 3 muffin 2 
 
     //just a test query
     db.query(`
