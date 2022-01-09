@@ -1,0 +1,24 @@
+footer p, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+footer {
+  margin-top: 10px;
+  color: #3e5c76;
+}
+
+#names {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#name2 {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+/*# sourceMappingURL=footer.css.map */
