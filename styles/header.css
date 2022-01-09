@@ -1,0 +1,63 @@
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 10px;
+  color: #3e5c76;
+}
+
+#logo_light_eats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0px;
+  height: 75px;
+}
+
+#logo_light {
+  color: #f0ebd8;
+}
+
+#logo_eats {
+  color: #1d2d44;
+}
+
+#login_types {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#login_user_login_restaurant {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  /*
+  */
+}
+
+#user_logout {
+  /*
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  */
+}
+
+#restaurant_logout {
+  /*
+  */
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+/*# sourceMappingURL=header.css.map */
