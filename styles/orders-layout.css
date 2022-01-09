@@ -1,0 +1,80 @@
+body {
+  display: block;
+  background-color: #748cab;
+  width: 100%;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+main button {
+  margin-right: 10px;
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 8px;
+}
+
+header {
+  background-color: #0d1321;
+  display: flex;
+  justify-content: space-between;
+  position: Fixed;
+  height: 16%;
+  width: 100%;
+}
+
+#logo_light_eats {
+  padding: 10px;
+}
+
+#logo_light {
+  color: #3e5c76;
+}
+
+#logo_eats {
+  color: #f0ebd8;
+}
+
+#login_types {
+  padding-top: 60px;
+  padding-right: 60px;
+}
+
+#login-types button {
+  margin-right: 40px;
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 8px;
+}
+
+#orders-body-container {
+  margin-top: 150px;
+}
+
+#order-status-button {
+  align-self: center;
+  height: 4%;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#order-status-buttons button {
+  margin-left: 150px;
+  width: 100px;
+  height: 30px;
+  border: none;
+  border-radius: 8px;
+}
+
+#order-boxes {
+  margin-top: 20px;
+}
+
+#order-boxes {
+  border: solid 2px green;
+}/*# sourceMappingURL=orders-layout.css.map */

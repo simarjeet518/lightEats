@@ -1,0 +1,103 @@
+$blue1: #0d1321;
+$blue2: #1d2d44;
+$blue3: #3e5c76;
+$blue4: #748cab;
+$blue5: #f0ebd8;
+
+body {
+display: block;
+background-color: $blue4;
+width:100%;
+}
+main {
+display: flex;
+flex-direction: column;
+}
+main {
+  button {
+    margin-right: 10px;
+    width:100px;
+    height:30px;
+    border:none;
+    border-radius: 8px;
+  }
+}
+header {
+  background-color: $blue1;
+  display:flex;
+  justify-content: space-between;
+  position: Fixed;
+  height:16%;
+  width: 100%;
+
+}
+#logo_light_eats {
+ padding:10px;
+}
+#logo_light{
+ color: $blue3;
+}
+#logo_eats{
+ color: $blue5;
+}
+#login_types{
+ padding-top: 60px;
+ padding-right:60px;
+}
+#login-types {
+  button {
+  margin-right: 40px;
+  width:100px;
+  height:30px;
+  border:none;
+  border-radius: 8px;
+  }
+}
+#orders-body-container{
+  margin-top:150px;
+}
+ #order-status-button {
+
+   align-self: center;
+   height:4%;
+   padding: 5px;
+   display: flex;
+   justify-content: flex-start;
+
+ }
+ #order-status-buttons {
+   button {
+   margin-left: 150px;
+    width:100px;
+    height:30px;
+    border:none;
+    border-radius: 8px;
+   }
+ }
+
+ #order-boxes {
+    margin-top: 20px;
+}
+  #order-boxes {
+  border:solid 2px green;
+
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+@media all and (max-width: 600px){
+
+
+}
+
+
+
