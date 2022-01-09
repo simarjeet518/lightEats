@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/admin.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+
+<body>
+  <h1>this is the restaurant page</h1>
+
+  <div id = "restaurant_order">
+    <div id = "restaurant_tabs">
+      <button>New Orders</button>
+      <button>Waiting to be picked up</button>
+      <button>Order History</button>
+    </div>
+  <div id = "restaurant_single_order_box">
+    <div id = "restaurant_order_box_description">
+      <p class = "b_desc">Timestamp: Orders.date</p>
+      <p class = "b_desc">Order Number: Order_id</p>
+      <p class = "b_desc">Customer Name</p>
+      <p class = "b_desc">Customer's Phone#</p>
+      <div class = "restaurant_item_slots">
+        <p class = "b_desc">Item name: Quantity</p>
+        <p class = "b_desc">Item name: Quantity</p>
+        <p class = "b_desc">Item name: Quantity</p>
+      </div>
+      <p class = "b_desc">Order Total: $10</p>
+      <div id = "restaurant_order_box_footer">
+        <div id = "restaurant_footer_new_order">
+          <p>Set time: <button id = "button_minus">-</button>
+            5 minutes
+            <button id = "button_plus">+</button>
+          </p>
+          <button id = "button_set_order_time"> Accept </button>
+        </div>
+        <div id = "restaurant_order_finished_early">
+          <button id = "button_set_time_done">Ready for Pickup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+</body>
+
+</html>

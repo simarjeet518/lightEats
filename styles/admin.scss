@@ -1,0 +1,54 @@
+$background-color: #748cab;
+$text-color: #0d1321;
+
+body {
+  background-color: $background-color;
+  color: $text-color
+}
+
+#restaurant_order {
+  border: 5px solid red;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  Width: 300px
+}
+
+#restaurant_tabs {
+  visibility: hidden;
+  height: 0;
+}
+
+.b_desc {
+  margin: 0;
+  padding-bottom: 3px;
+}
+
+#restaurant_order_box_footer {
+  height: 50px
+}
+
+#restaurant_footer_new_order {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+
+  /*
+  visibility: hidden;
+  height: 0px;
+  */
+}
+
+#restaurant_order_finished_early {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+
+  visibility: hidden;
+  height: 0px;
+  /*
+  */
+}
