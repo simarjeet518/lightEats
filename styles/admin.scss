@@ -22,7 +22,6 @@ body {
 
 #restaurant_orders_box {
   display: flex;
-
 }
 
 #restaurant_tabs {
@@ -47,7 +46,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
-
 
   /* hide when time is set
   visibility: hidden;
@@ -77,6 +75,5 @@ body {
   #restaurant_orders_box {
     display: flex;
     flex-direction: column;
-
   }
 }

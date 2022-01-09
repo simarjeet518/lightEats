@@ -11,6 +11,21 @@ header {
   color: $blue3;
 }
 
+#logo_light_eats {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  height: 75px
+}
+
+#logo_light {
+  color: $blue5;
+}
+
+#logo_eats {
+  color: $blue2;
+}
+
 #login_types {
   display: flex;
   align-items: center;
