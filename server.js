@@ -48,8 +48,10 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/", (req, res) => {
-  res.render("index");
+app.get("/admin/:restaurant_id", (req, res) => {
+  const restautantId = req.params.restaurant_id;
+  const templateVars = {id: restautantId};
+  res.render("admin", templateVars);
 });
 
 app.listen(PORT, () => {
