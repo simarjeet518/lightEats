@@ -169,9 +169,7 @@ app.listen(PORT, () => {
 
 
 /*
-admin.ejs --> restaurnt own to watch new orders  Kevin
-orders.ejs --> client watches thier orders Simar
-index.ejs --> render rest info menu  Allen
+
 
 
 */
