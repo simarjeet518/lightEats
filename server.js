@@ -2,11 +2,7 @@
 require("dotenv").config();
 
 // Web server config
-<<<<<<< HEAD
-const PORT = process.env.PORT || 8080;
-=======
 const PORT = process.env.PORT || 8080; //anyway I still prefer 8080
->>>>>>> index-page
 const sassMiddleware = require("./lib/sass-middleware");
 const cookieSession = require("cookie-session");
 const express = require("express");
