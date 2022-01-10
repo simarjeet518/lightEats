@@ -11,14 +11,16 @@ body {
 }
 
 #cart-box {
-
+  border-radius: 20px;
+  box-shadow: 0px 5px 55px $blue3;
   border: 5px solid $blue2;
-  background-color: $blue5;
+  background-color: white;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  margin-left: 30%;
-  width: 300px;
+  margin-left: 15%;
+  width: 600px;
+  justify-content: space-between;
 }
 
 #between-head-foot {
@@ -29,6 +31,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 10px;
 }
 
 #img-and-name {
@@ -37,14 +40,70 @@ body {
   flex-direction: column;
 }
 
+#cart-quantity-box {
+  display: flex;
+  align-items: center;
+}
+
+#btn {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#qty-box {
+  width: 20px;
+}
+
+.b-desc {
+  font-weight: bold;
+  font-size: 26px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.p-desc {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+hr {
+  width: 70%;
+  float: right;
+  margin-right: 10px;
+
+}
+
 #cart-order-total {
   display: flex;
   justify-content: end;
+  margin-right: 10px;
 }
 
 #cart-box-footer {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+}
+
+#button-set-add-more {
+  width:100px;
+  height:30px;
+  border-radius: 8px;
+}
+
+#button-set-order-time {
+  width:120px;
+  height:40px;
+  border-radius: 8px;
+}
+
+
+#button-set-order-time:hover {
+  background-color: $blue5;
 }
 
 img {
@@ -55,5 +114,9 @@ img {
 
   #cart-box {
     margin: 10px;
+    width: 400px;
   }
+
+
+
 }

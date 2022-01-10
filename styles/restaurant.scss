@@ -40,6 +40,24 @@ body {
   padding-bottom: 3px;
 }
 
+#btn {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#qty-box {
+  width: 20px;
+}
+
+#set-time {
+  display: flex;
+  align-items: center;
+}
+
 #restaurant-order-box-footer {
   height: 50px;
   display: flex;

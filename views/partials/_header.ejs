@@ -6,10 +6,10 @@
     <div id = "login-types" class ="login-buttons">
     <% if(!id){ %>
     <div id = "login-user-login-restaurant">
-      <button>
-        <a href = "" >Login As User</a>
+      <button onclick="location.href='http://localhost:8080/1'" type="button">
+        Login As User
       </button>
-      <button onclick="location.href='http://localhost:8081/restaurants/1'" type="button">
+      <button onclick="location.href='http://localhost:8080/restaurants/1'" type="button">
         Login As Restaurant</button>
 
 
@@ -21,7 +21,7 @@
         Username
       </button>
     </button>
-    <button onclick="location.href='http://localhost:8081/'" type="button">
+    <button onclick="location.href='http://localhost:8080/'" type="button">
       Logout</button>
     </div>
   <%} %>
@@ -29,7 +29,7 @@
     <div id = "restaurant-logout" class ="login-buttons">
       <button> Userdfgdfg
       </button>
-      <button onclick="location.href='http://localhost:8081/'" type="button">
+      <button onclick="location.href='http://localhost:8080/'" type="button">
         Logout</button>
     </div>
     <%} %>

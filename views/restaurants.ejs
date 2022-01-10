@@ -41,10 +41,13 @@
             <p class = "b-desc">Order Total: $<%= userdata.order_total / 100%></p>
             <div id = "restaurant-order-box-footer">
               <div id = "restaurant-footer-new-order">
-                <p>Set time: <button id = "button-minus">-</button>
-                  5 min
-                  <button id = "button-plus">+</button>
-                </p>
+                <p id ="set-time"> Set time:&nbsp;&nbsp;
+                  <button id = "btn" class="dec">-</button>
+                  &nbsp;
+                  <input type="text" id="qty-box" value=1 >
+                  &nbsp;
+                  <button id = "btn" class = "inc">+</button>
+                  </p>
                 <button id = "button-set-order-time"> Accept </button>
               </div>
               <div id = "restaurant-order-finished-early">

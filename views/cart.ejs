@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Your cart</title>
+  <title>Your Cart</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -19,45 +19,50 @@
   <%- include('partials/_header') %>
   <div id = "between-head-foot" >
 
-    <h1>Your cart: </h1>
 
     <div id = "cart-box">
-      <div id = "cart-box-item">
-        <div id = img-and-name>
-          <img src ="https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png" alt="img" >
-          <p class = "b-desc">Coffee</p>
-        </div>
-        <div id = "cart-quantity-box">
+      <h2>Shopping cart: </h2>
 
-          <p> price: $2.45</p>
-          <p>Quantity:
-            <button id = "button-minus">-</button>
-            2
-            <button id = "button-plus">+</button>
-          </p>
+      <div id = "cart-box-item">
+        <img src ="https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png" alt="img" >
+        <p class = "b-desc">Coffee</p>
+        <div id = "cart-quantity-box">
+            <button id = "btn" class="dec">-</button>
+            &nbsp;
+            <input type="text" id="qty-box" value=1 >
+            <!-- use jquery convery from string to int then increase -->
+            <!-- fxn in jquery to inc, dec,asignemd to btn -->
+            &nbsp;
+            <button id = "btn" class = "inc">+</button>
+        </div>
+        <div id = "price">
+          <p class = "p-desc">$2.45</p>
+
         </div>
       </div>
+      <% for (let i = 0; i < 2; i++) { %>
       <div id = "cart-box-item">
-        <div id = img-and-name>
-          <img src ="https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg" alt="img" >
-          <p class = "b-desc">Cookie</p>
-        </div>
+        <img src ="https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg" alt="img" >
+        <p class = "b-desc">Cookie</p>
         <div id = "cart-quantity-box">
-          <p> price: $1.50</p>
-          <p>Quantity:
-            <button id = "button-minus">-</button>
-            1
-            <button id = "button-plus">+</button>
-            <button > name </button>
-          </p>
+            <button id = "btn">-</button>
+             <p> &nbsp; 1 &nbsp;</p>
+            <button id = "btn">+</button>
+        </div>
+        <div id = "price">
+          <p class = "p-desc">$1.50</p>
         </div>
       </div>
-        <p id = "cart-order-total">Order Total: $10</p>
-        <div id = "cart-box-footer">
-          <button id = "button-set-add-more"> Add more </button>
-          <button id = "button-set-order-time"> Order </button>
-        </div>
+      <% } %>
 
+      <hr>
+      <div id = "cart-order-total">
+        <p class = "b-desc">Sub-Total: $10.00</p>
+      </div>
+      <div id = "cart-box-footer">
+        <button id = "button-set-add-more"> Add more </button>
+        <button id = "button-set-order-time" onclick="location.href='http://localhost:8080/orders/1'" type="button"> Order </button>
+      </div>
     </div>
   </div>
 
