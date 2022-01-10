@@ -9,11 +9,12 @@ module.exports = (db) => {
     JOIN orders_items ON orders.id = order_id
     JOIN menu_items ON orders.restaurant_id = menu_items.restaurant_id
     WHERE orders.restaurant_id = $1`, [req.params.restaurant_id])
-    .then(data => {
-      //res.json(data.rows);
-      res.render('restaurants', {id:1});
-    })
-    .catch(err => res.json(err.message));
+      .then(data => {
+        const userdata = data.rows[0];
+        const templateVars = { userdata, id:1 };
+        res.render('restaurants', templateVars);
+      })
+      .catch(err => res.json(err.message));
   });
 
   router.post("/orders/:restaurant_id", (req, res) => {

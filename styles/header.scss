@@ -8,31 +8,44 @@ $blue5: #f0ebd8;
 header {
   display: flex;
   justify-content: space-between;
-  margin: 10px;
-  color: #3e5c76;
+  color: $blue3;
+  background-color: $blue2;
+  position: Fixed;
+  width: 100%;
+  padding: 10px;
+  top: 0px;
+  left: 0px;
 }
 
-#logo_light_eats {
+header button {
+  margin-right: 10px;
+  width:100px;
+  height:30px;
+  border:none;
+  border-radius: 8px;
+}
+
+#logo-light-eats {
   display: flex;
   align-items: center;
   margin: 0px;
   height: 75px;
 }
 
-#logo_light {
-  color: #f0ebd8;
+#logo-light {
+  color: $blue5;
 }
 
-#logo_eats {
-  color: #1d2d44;
+#logo-eats {
+  color: $blue1;
 }
 
-#login_types {
+#login-types {
   display: flex;
   align-items: center;
 }
 
-#login_user_login_restaurant {
+#login-user-login-restaurant {
   /*
   visibility: hidden;
   width: 0;
@@ -40,7 +53,7 @@ header {
   */
 }
 
-#user_logout {
+#user-logout {
   /*
   visibility: hidden;
   width: 0;
@@ -48,10 +61,14 @@ header {
   */
 }
 
-#restaurant_logout {
+#restaurant-logout {
   /*
   visibility: hidden;
-  */
   width: 0;
   height: 0;
+  */
+}
+
+header button:hover {
+  background-color: $blue5;
 }

@@ -10,7 +10,11 @@ body {
   padding: 10px;
 }
 
-#restaurant_order {
+#between-head-foot {
+  margin-top: 100px;
+}
+
+#restaurant-order {
   border: 5px solid $blue2;
   background-color: $blue5;
   display: flex;
@@ -20,23 +24,41 @@ body {
   width: 300px;
 }
 
-#restaurant_orders_box {
+#restaurant-orders-box {
 
   display: flex;
 
 }
 
-#restaurant_tabs {
+#restaurant-tabs {
   visibility: hidden;
   height: 0;
 }
 
-.b_desc {
+.b-desc {
   margin: 0;
   padding-bottom: 3px;
 }
 
-#restaurant_order_box_footer {
+#btn {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#qty-box {
+  width: 20px;
+}
+
+#set-time {
+  display: flex;
+  align-items: center;
+}
+
+#restaurant-order-box-footer {
   height: 50px;
   display: flex;
   flex-direction: column;
@@ -44,7 +66,7 @@ body {
   justify-content: space-around;
 }
 
-#restaurant_footer_new_order {
+#restaurant-footer-new-order {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,7 +77,7 @@ body {
   */
 }
 
-#restaurant_order_finished_early {
+#restaurant-order-finished-early {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
@@ -66,7 +88,7 @@ body {
   */
 }
 
-#restaurant_order_finished_early_on {
+#restaurant-order-finished-early-on {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
@@ -74,7 +96,7 @@ body {
 
 @media all and (max-width: 700px){
 
-  #restaurant_orders_box {
+  #restaurant-orders-box {
     display: flex;
     flex-direction: column;
   }

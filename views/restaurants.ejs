@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/admin.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/restaurant.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
   <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
 
@@ -16,76 +16,86 @@
 
 <body>
   <%- include('partials/_header') %>
-  <h1>This is the restaurant page </h1>
+  <div id = "between-head-foot" >
 
-  <div id = "restaurant_orders_box">
-    <div id = "restaurant_order">
-      <div id = "restaurant_tabs">
-        <button>New Orders</button>
-        <button>Waiting to be picked up</button>
-        <button>Order History</button>
-      </div>
-      <div id = "restaurant_single_order_box">
-        <div id = "restaurant_order_box_description">
-          <p class = "b_desc">Timestamp: Orders.date</p>
-          <p class = "b_desc">Order Number: Order_id</p>
-          <p class = "b_desc">Customer Name</p>
-          <p class = "b_desc">Customer's Phone#</p>
-          <div class = "restaurant_item_slots">
-            <p class = "b_desc">Item name: Quantity</p>
-            <p class = "b_desc">Item name: Quantity</p>
-            <p class = "b_desc">Item name: Quantity</p>
-          </div>
-          <p class = "b_desc">Order Total: $10</p>
-          <div id = "restaurant_order_box_footer">
-            <div id = "restaurant_footer_new_order">
-              <p>Set time: <button id = "button_minus">-</button>
-                5 min
-                <button id = "button_plus">+</button>
-              </p>
-              <button id = "button_set_order_time"> Accept </button>
-            </div>
-            <div id = "restaurant_order_finished_early">
-              <button id = "button_set_time_done">Ready for Pickup</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1>Current Orders: </h1>
 
-
-    <% for (let i = 0; i < 2; i++) { %>
-      <div id = "restaurant_order">
-        <div id = "restaurant_tabs">
+    <div id = "restaurant-orders-box">
+      <div id = "restaurant-order">
+        <div id = "restaurant-tabs">
           <button>New Orders</button>
           <button>Waiting to be picked up</button>
           <button>Order History</button>
         </div>
-        <div id = "restaurant_single_order_box">
-          <div id = "restaurant_order_box_description">
-            <p class = "b_desc">Timestamp: Orders.date</p>
-            <p class = "b_desc">Order Number: Order_id</p>
-            <p class = "b_desc">Customer Name</p>
-            <p class = "b_desc">Customer's Phone#</p>
-            <div class = "restaurant_item_slots">
-              <p class = "b_desc">Item name: Quantity</p>
-              <p class = "b_desc">Item name: Quantity</p>
-              <p class = "b_desc">Item name: Quantity</p>
+        <div id = "restaurant-single-order-box">
+          <div id = "restaurant-order-box-description">
+            <p class = "b-desc">Timestamp: Orders.date</p>
+            <p class = "b-desc">Order Number: Order-id</p>
+            <p class = "b-desc">Customer Name <%= userdata.name %></p>
+            <p class = "b-desc">Customer's Phone#</p>
+            <div class = "restaurant-item-slots">
+              <p class = "b-desc"><%= userdata.name %>: <%= userdata.quantity %></p>
+              <p class = "b-desc">Item name: Quantity</p>
+              <p class = "b-desc">Item name: Quantity</p>
             </div>
-            <p class = "b_desc">Order Total: $10</p>
-            <div id = "restaurant_order_box_footer">
-              <div id = "restaurant_order_finished_early_on">
-                <button id = "button_set_time_done">Ready for Pickup</button>
+            <p class = "b-desc">Order Total: $<%= userdata.order_total / 100%></p>
+            <div id = "restaurant-order-box-footer">
+              <div id = "restaurant-footer-new-order">
+                <p id ="set-time"> Set time:&nbsp;&nbsp;
+                  <button id = "btn" class="dec">-</button>
+                  &nbsp;
+                  <input type="text" id="qty-box" value=1 >
+                  &nbsp;
+                  <button id = "btn" class = "inc">+</button>
+                  </p>
+                <button id = "button-set-order-time"> Accept </button>
+              </div>
+              <div id = "restaurant-order-finished-early">
+                <button id = "button-set-time-done">Ready for Pickup</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    <% } %>
 
 
+      <% for (let i = 0; i < 1; i++) { %>
+        <div id = "restaurant-order">
+          <div id = "restaurant-tabs">
+            <button>New Orders</button>
+            <button>Waiting to be picked up</button>
+            <button>Order History</button>
+          </div>
+          <div id = "restaurant-single-order-box">
+            <div id = "restaurant-order-box-description">
+              <p class = "b-desc">Timestamp: Orders.date</p>
+              <p class = "b-desc">Order Number: Order-id</p>
+              <p class = "b-desc">Customer Name</p>
+              <p class = "b-desc">Customer's Phone#</p>
+              <div class = "restaurant-item-slots">
+                <p class = "b-desc">Item name: Quantity</p>
+                <p class = "b-desc">Item name: Quantity</p>
+                <p class = "b-desc">Item name: Quantity</p>
+              </div>
+              <p class = "b-desc">Order Total: $10</p>
+              <div id = "restaurant-order-box-footer">
+                <div id = "restaurant-order-finished-early-on">
+                  <button id = "button-set-time-done">Ready for Pickup</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+
+
+    </div>
   </div>
+<<<<<<< HEAD
  
+=======
+  <!-- <%- include('partials/_footer') %> -->
+>>>>>>> rest/head/css
 </body>
 
 </html>

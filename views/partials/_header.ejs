@@ -1,35 +1,36 @@
 <header>
-   <h1 id = "logo_light_eats">
-      <p id = "logo_light">Light <span id="logo_eats">Eats</span></p>
+   <h1 id = "logo-light-eats">
+      <p id = "logo-light">Light <span id="logo-eats">Eats</span></p>
 
     </h1>
-    <div id = "login_types" class ="login-buttons">
+    <div id = "login-types" class ="login-buttons">
     <% if(!id){ %>
-    <div id = "login_user_login_restaurant">
-      <button>
-        Login As User
+    <div id = "login-user-login-restaurant">
+      <button onclick="location.href='http://localhost:8080/1'" type="button">
+        User
       </button>
-      <button>
-        Login As Restaurant
-      </button>
+      <button onclick="location.href='http://localhost:8080/restaurants/1'" type="button">
+        Restaurant</button>
+
+
+
     </div>
    <%} if (id >= 2) {%>
-    <div id = "user_logout" class ="login-buttons">
+    <div id = "user-logout" class ="login-buttons">
       <button>
         Username
       </button>
-      <button>
-        Logout
-      </button>
+    </button>
+    <button onclick="location.href='http://localhost:8080/'" type="button">
+      Logout</button>
     </div>
   <%} %>
   <% if (id === 1) {%> <!-- id for restaurent -->
-    <div id = "restaurant_logout" class ="login-buttons">
+    <div id = "restaurant-logout" class ="login-buttons">
       <button> Userdfgdfg
       </button>
-      <button>
-        Logout
-      </button>
+      <button onclick="location.href='http://localhost:8080/'" type="button">
+        Logout</button>
     </div>
     <%} %>
   </div>
