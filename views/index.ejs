@@ -29,7 +29,7 @@
       <div class="items">
         <img class="items-img" src=<%= menuItem.image_url %> alt=<%=`items-img-${menuItem.name}`%> />
         <p class="items-name"><%= menuItem.item_name %></p>
-        <p class="items-price">CA$<%= menuItem.price / 100 %></p>
+        <p class="items-price">CA$<%= (menuItem.price / 100).toFixed(2) %></p>
         <div class="items-add"><button><i class="fa-solid fa-plus"></i></button></div>
       </div>
     <% } %>
