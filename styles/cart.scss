@@ -10,7 +10,7 @@ body {
   padding: 10px;
 }
 
-#cart_box {
+#cart-box {
 
   border: 5px solid $blue2;
   background-color: $blue5;
@@ -21,24 +21,28 @@ body {
   width: 300px;
 }
 
-#cart_box_item {
+#between-head-foot {
+  margin-top: 100px;
+}
+
+#cart-box-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#img_and_name {
+#img-and-name {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
-#cart_order_total {
+#cart-order-total {
   display: flex;
   justify-content: end;
 }
 
-#cart_box_footer {
+#cart-box-footer {
   display: flex;
   justify-content: space-around;
 }
@@ -49,7 +53,7 @@ img {
 
 @media all and (max-width: 700px){
 
-  #cart_box {
+  #cart-box {
     margin: 10px;
   }
 }

@@ -6,14 +6,16 @@ module.exports = (db) => {
     db.query(`
     SELECT *
     FROM orders
-    JOIN order_items ON orders.id = order_id
+    JOIN orders_items ON orders.id = order_id
     JOIN menu_items ON orders.restaurant_id = menu_items.restaurant_id
     WHERE orders.restaurant_id = $1`, [req.params.restaurant_id])
-    .then(data => {
-      //res.json(data.rows);
-      res.render('restaurants', {id:1});
-    })
-    .catch(err => res.json(err.message));
+      .then(data => {
+        const userdata = data.rows[0];
+        const templateVars = { userdata, id:1 };
+        console.log("userdata", userdata);
+        res.render('restaurants', templateVars);
+      })
+      .catch(err => res.json(err.message));
   });
 
   router.post("/orders/:restaurant_id", (req, res) => {
@@ -36,7 +38,7 @@ module.exports = (db) => {
     FROM restaurants
     WHERE restaurants.id = $1`, [req.params.restaurant_id])
     .then(data => {
-      //get order_id then add items into order_items table
+      //get order_id then add items into orders_items table
       //write sql query to insert
       const user_id = 1;
       res.redirect(`/orders/${user_id}`);

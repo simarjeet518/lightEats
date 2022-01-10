@@ -17,53 +17,51 @@
 
 <body>
   <%- include('partials/_header') %>
-  <h1>This is the cart page </h1>
+  <div id = "between-head-foot" >
 
-  <div id = "cart_box">
-    <div id = "cart_box_item">
-      <div id = img_and_name>
-        <img src ="https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png" alt="img" >
-        <p class = "b_desc">Coffee</p>
-      </div>
-      <div id = "cart_quantity_box">
+    <h1>Your cart: </h1>
 
-        <p> price: $2.45</p>
-        <p>Quantity:
-          <button id = "button_minus">-</button>
-          2
-          <button id = "button_plus">+</button>
-        </p>
+    <div id = "cart-box">
+      <div id = "cart-box-item">
+        <div id = img-and-name>
+          <img src ="https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png" alt="img" >
+          <p class = "b-desc">Coffee</p>
+        </div>
+        <div id = "cart-quantity-box">
+
+          <p> price: $2.45</p>
+          <p>Quantity:
+            <button id = "button-minus">-</button>
+            2
+            <button id = "button-plus">+</button>
+          </p>
+        </div>
       </div>
+      <div id = "cart-box-item">
+        <div id = img-and-name>
+          <img src ="https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg" alt="img" >
+          <p class = "b-desc">Cookie</p>
+        </div>
+        <div id = "cart-quantity-box">
+          <p> price: $1.50</p>
+          <p>Quantity:
+            <button id = "button-minus">-</button>
+            1
+            <button id = "button-plus">+</button>
+            <button > name </button>
+          </p>
+        </div>
+      </div>
+        <p id = "cart-order-total">Order Total: $10</p>
+        <div id = "cart-box-footer">
+          <button id = "button-set-add-more"> Add more </button>
+          <button id = "button-set-order-time"> Order </button>
+        </div>
+
     </div>
-    <div id = "cart_box_item">
-      <div id = img_and_name>
-        <img src ="https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg" alt="img" >
-        <p class = "b_desc">Cookie</p>
-      </div>
-      <div id = "cart_quantity_box">
-        <p> price: $1.50</p>
-        <p>Quantity:
-          <button id = "button_minus">-</button>
-          1
-          <button id = "button_plus">+</button>
-          <button > <%= userdata.name %>  </button>
-        </p>
-      </div>
-    </div>
-
-
-
-      <p id = "cart_order_total">Order Total: $10</p>
-
-      <div id = "cart_box_footer">
-        <button id = "button_set_add_more"> Add more </button>
-        <button id = "button_set_order_time"> Order </button>
-      </div>
-
   </div>
 
-
-  <%- include('partials/_footer') %>
+  <!-- <%- include('partials/_footer') %> -->
 </body>
 
 </html>

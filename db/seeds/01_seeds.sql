@@ -7,7 +7,7 @@ INSERT INTO restaurants (name, phone, street, city, province, country, post_code
 VALUES ('LightEats', '7788334525','7237 137 St', 'Surrey', 'BC', 'Canada', 'V3H 29T');
 
 
-INSERT INTO orders (customer_id,accepted_at,prepared_time,picked_at,order_total, set_time)
+INSERT INTO orders (customer_id,accepted_at,prepared_at,picked_at,order_total, set_time)
 VALUES(1,now() + interval '20 seconds', now() + interval '2 minutes 20 seconds',now() + interval '3 minutes ' ,595, 2),
 (2,now() + interval '40 seconds', now() + interval '5 minutes 40 seconds',now() + interval '6 minutes ' ,400, 5),
 (1,now() + interval '44 seconds', now() + interval '5 minutes 44 seconds',now() + interval '6 minutes ' ,1395, 5),
@@ -25,7 +25,7 @@ VALUES('Coffee',245,'https://www.sevensummitscoffee.com/uploads/1/3/1/2/13129129
 ('Muffin',350,'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimagesvc.meredithcorp.io%2Fv3%2Fmm%2Fimage%3Furl%3Dhttps%253A%252F%252Fstatic.onecms.io%252Fwp-content%252Fuploads%252Fsites%252F19%252F2011%252F04%252F08%252Fchocolate-chip-muffins-ck-2000.jpg&q=85'),
 ('Omelete',450,'https://c.ndtvimg.com/2020-07/3cqv032o_omelette_625x300_23_July_20.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=675');
 
-INSERT INTO order_items (order_id, menu_item_id, quantity)
+INSERT INTO orders_items (order_id, menu_item_id, quantity)
 VALUES (1,1,1),(1,2,1),(1,3,1),
 (2,2,2),
 (3,1,1),(3,4,2),(3,5,1),
