@@ -1,0 +1,29 @@
+$blue1: #0d1321;
+$blue2: #1d2d44;
+$blue3: #3e5c76;
+$blue4: #748cab;
+$blue5: #f0ebd8;
+
+#hero-img img {
+  height: 200px;
+  width: 100%;
+}
+
+#rest-info ul {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.items {
+  border: 2px solid $blue1;
+  clear: left;
+  height: 200px;
+}
+.items-img {
+  float: left;
+  height: 90%;
+  width: 40%;
+}
+.items-add {
+  float: right;
+}

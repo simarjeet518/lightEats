@@ -9,7 +9,9 @@ module.exports = (db) => {
     FROM customers
     WHERE id = $1`, [req.params.user_id])
     .then(data => {
-      res.json(data.rows[0]);
+      const userdata = data.rows[0];
+      const templateVars = { userdata, id: 2 }
+      res.render('cart', templateVars);
     })
     .catch(err => res.json(err.message));
   });

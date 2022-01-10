@@ -1,1 +1,57 @@
+$blue1: #0d1321;
+$blue2: #1d2d44;
+$blue3: #3e5c76;
+$blue4: #748cab;
+$blue5: #f0ebd8;
 
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  color: #3e5c76;
+}
+
+#logo_light_eats {
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  height: 75px;
+}
+
+#logo_light {
+  color: #f0ebd8;
+}
+
+#logo_eats {
+  color: #1d2d44;
+}
+
+#login_types {
+  display: flex;
+  align-items: center;
+}
+
+#login_user_login_restaurant {
+  /*
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  */
+}
+
+#user_logout {
+  /*
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  */
+}
+
+#restaurant_logout {
+  /*
+  visibility: hidden;
+  */
+  width: 0;
+  height: 0;
+}

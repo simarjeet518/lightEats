@@ -1,0 +1,30 @@
+#hero-img img {
+  height: 200px;
+  width: 100%;
+}
+
+#rest-info ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.items {
+  border: 2px solid #0d1321;
+  clear: left;
+  height: 200px;
+}
+
+.items-img {
+  float: left;
+  height: 90%;
+  width: 40%;
+}
+
+.items-add {
+  float: right;
+}
+/*# sourceMappingURL=index.css.map */

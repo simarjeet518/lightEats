@@ -4,13 +4,14 @@ const router = express.Router();
 module.exports = (db) => {
   router.get("/:restaurant_id", (req, res) => {
     db.query(`
-    SELECT * 
+    SELECT *
     FROM orders
     JOIN order_items ON orders.id = order_id
     JOIN menu_items ON orders.restaurant_id = menu_items.restaurant_id
     WHERE orders.restaurant_id = $1`, [req.params.restaurant_id])
     .then(data => {
-      res.json(data.rows);
+      //res.json(data.rows);
+      res.render('restaurants', {id:1});
     })
     .catch(err => res.json(err.message));
   });
@@ -25,9 +26,9 @@ module.exports = (db) => {
 
     //order_id: 3
 
-    // 3 coffee 3 
+    // 3 coffee 3
     // 3 tea    1
-    // 3 muffin 2 
+    // 3 muffin 2
 
     //just a test query
     db.query(`
