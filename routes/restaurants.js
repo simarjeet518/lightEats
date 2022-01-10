@@ -3,18 +3,6 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/:restaurant_id", (req, res) => {
-    db.query(`
-    SELECT *
-    FROM orders
-    JOIN orders_items ON orders.id = order_id
-    JOIN menu_items ON orders.restaurant_id = menu_items.restaurant_id
-    WHERE orders.restaurant_id = $1`, [req.params.restaurant_id])
-      .then(data => {
-        const userdata = data.rows[0];
-        const templateVars = { userdata, id:1 };
-        res.render('restaurants', templateVars);
-      })
-      .catch(err => res.json(err.message));
     const rest_id = req.session.rest_id;
     if (!rest_id) {
       return res.redirect("/");
