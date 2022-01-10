@@ -15,17 +15,7 @@ ORDER BY orders.id ;`;
 
 module.exports = (db) => {
   router.get("/:user_id", (req, res) => {
-<<<<<<< HEAD
      db.query(queryString,[req.params.user_id])
-=======
-    db.query(`
-      SELECT *
-      FROM orders
-      JOIN orders_items ON orders.id = orders_items.order_id
-      JOIN menu_items ON menu_items.id = menu_item_id
-      WHERE customer_id = $1
-      `, [req.params.user_id])
->>>>>>> rest/head/css
     .then(data => {
       const result = data.rows;
      if(result.length !==0){
