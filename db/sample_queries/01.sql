@@ -18,7 +18,7 @@ UPDATE TABLE SET picked_at = now();   ====> if(picked_at is not null) order from
 INSERT INTO orders (customer_id , order_total) value ($1, $2) RETURNING * //returns object then writing next query
 
 .THEN
-INSERT INTO  order_items(order_id,menu_item_id,quantity) VALUES (orders.id,$2,$3) //
+INSERT INTO  orders_items(order_id,menu_item_id,quantity) VALUES (orders.id,$2,$3) //
 */
 
 
@@ -28,7 +28,7 @@ JOIN customers ON orders.customer_id = customers.id
 WHERE accepted_at IS NULL;  -- RETURN  [{TIMESTAMP OERDER ID, NAME , PHONE },{}]  //length can tell how many new orders conatiner needed;
 
 --- for each conatiner fetch items (new orders items)==> can be done in one query
-SELECT order_items.menu_item_id , menu_items.name FROM order_items
+SELECT orders_items.menu_item_id , menu_items.name FROM orders_items
 JOIN menu_items ON  menu_item_id = menu_items.id
 WHERE order_id = 2;
 
