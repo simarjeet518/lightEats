@@ -49,3 +49,18 @@ $blue5: #f0ebd8;
   right: 2rem;
   top: 7vh;
 }
+
+#cart-summary {
+  border: 1px solid $blue3;
+  background-color: $blue4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+#cart-summary p {
+  margin: 0;
+  font-size: larger;
+}
+
