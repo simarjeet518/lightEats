@@ -11,8 +11,11 @@
 
 
   <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
+
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/order-listings.js"></script>
+
 </head>
 
 <body>
@@ -21,8 +24,8 @@
     <%- include('partials/_header') %>
     <div id="orders-body-container">
       <section id="order-status-buttons">
-        <button> current</button>
-        <button>past</button>
+        <button id="current"> current</button>
+        <button id="past">past</button>
       </section>
       <article id="customer-orders">
       <div id = "order-boxes">
@@ -36,8 +39,9 @@
               <div><br />
                 <%for(let value of item.items){ %>
               <p class = "b-desc"><%=value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%=value.price%></span></p>
-                <%} %>
 
+                <%} %>
+              
               </div>
 
               <p class = "b-desc">Total items :<%=` ${item.quantity}`%></p><br />

@@ -1,7 +1,7 @@
 const express = require("express");
 const { idleTimeoutMillis } = require("pg/lib/defaults");
 const router = express.Router();
-//const createtempVars = require("/lightEats/helpers/")
+//const createtempVars = require("./public/scripts/orders-helpers.js")
 
 
 const queryString =` SELECT  orders.created_at , orders.id ,customers.name as customer_name ,orders.order_total,menu_items.name,menu_items.price,orders_items.quantity
@@ -14,13 +14,14 @@ ORDER BY orders.id ;`;
 
 
 module.exports = (db) => {
-  router.get("/:user_id", (req, res) => {
-     db.query(queryString,[req.params.user_id])
+  router.get("/", (req, res) => {
+     db.query(queryString,[1])
     .then(data => {
       const result = data.rows;
      if(result.length !==0){
      console.log("here");
      const tempVars = createtempVars(result);
+     res.send(tempVars);
      res.render('orders', {id:2 ,result:tempVars});
    }
    else {

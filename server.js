@@ -42,6 +42,7 @@ const widgetsRoutes = require("./routes/widgets");
 const ordersRoutes = require("./routes/orders");
 const cartsRoutes = require("./routes/carts");
 const restaurantsRoutes = require("./routes/restaurants");
+const orderStatus = require("./routes/current");
 
 // Mount all resource routes
 // app.use("/api/users", usersRoutes(db));
@@ -50,6 +51,7 @@ const restaurantsRoutes = require("./routes/restaurants");
 app.use("/orders/", ordersRoutes(db));
 app.use("/carts/", cartsRoutes(db));
 app.use("/restaurants/", restaurantsRoutes(db));
+app.use("/current/",orderStatus(db));
 
 
 // Note: mount other resources here, using the same pattern above
@@ -65,6 +67,7 @@ app.get("/", (req, res) => {
   };
   res.render("index", templatevars);
 });
+
 
 //clinet login
 app.post("/1", (req, res) => {
