@@ -1,7 +1,7 @@
 const express = require("express");
 const { idleTimeoutMillis } = require("pg/lib/defaults");
 const router = express.Router();
-
+//const createtempVars = require("./public/scripts/orders-helpers.js")
 module.exports = (db) => {
   router.get("/:user_id", (req, res) => {
 
@@ -11,16 +11,23 @@ module.exports = (db) => {
       FROM orders
       JOIN orders_items ON orders.id = orders_items.order_id
       JOIN customers ON customer_id= customers.id
-      JOIN menu_items ON menu_items.id = orders_items.id
+     JOIN menu_items ON menu_items.id = orders_items.menu_item_id
       WHERE customer_id = $1
       ORDER BY orders.id ;
       `,[req.params.user_id])
     .then(data => {
       const result = data.rows;
 
+
+   if(result.length !==0){
+     console.log("here");
      const tempVars = createtempVars(result);
 
-      res.render('orders', {id:2 ,result:tempVars});
+     res.render('orders', {id:2 ,result:tempVars});
+   }
+   else {
+    res.render('orders', {id:2 ,result:null});
+   }
     })
     .catch(err => res.json(err.message));
   });
@@ -42,11 +49,19 @@ const createtempVars= function(result) {
         newObj.id = result[i].id;
         newObj.created_at= result[i].created_at.toString().substring(0,24);
         newObj.customer_name = result[i].customer_name;
-        newObj.order_total= result[i].order_total;
+        newObj.order_total= (result[i].order_total/100).toFixed(2);
         newObj.quantity = 0;
         orderAlreadyinResult="old";
+        newObj.items =[];
        }
-        newObj[result[i].name] = {quantity :result[i].quantity,price:result[i].price};
+
+        let b ={
+          item_name:result[i].name,
+          quantity :result[i].quantity,
+          price:(result[i].price/100).toFixed(2)
+        }
+        newObj.items.push(b);
+
         newObj.quantity += result[i].quantity;
 
 
@@ -59,7 +74,7 @@ const createtempVars= function(result) {
        orderAlreadyinResult="new";
        i--;
      }
-     if(i ===result.length){
+     if(i ===result.length-1){
        ordersArray.push(newObj);
      }
    }

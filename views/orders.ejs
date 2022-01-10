@@ -21,30 +21,31 @@
     <%- include('partials/_header') %>
     <div id="orders-body-container">
       <section id="order-status-buttons">
-
         <button> current</button>
         <button>past</button>
       </section>
       <article id="customer-orders">
       <div id = "order-boxes">
-        <% for(let item of result) {%>
+        <%if(result){ %>
+          <% for(let item of result) {%>
             <div id = "single-order-desc">
               <label id="customer-order-status">Pending</label>
               <p class = "b-desc">Time:<%=item.created_at%></p>
               <p class = "b-desc">Order Number:<%=` ${item.id}` %></p>
               <p class = "b-desc">Name : <%=item.customer_name %></p>
               <div><br />
+                <%for(let value of item.items){ %>
+              <p class = "b-desc"><%=value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%=value.price%></span></p>
+                <%} %>
 
-              <p class = "b-desc">2&#215; Muffin this big name <span id="left-place">$5.20</span></p>
-              <p class = "b-desc">2&#215; Muffin<span id="left-place">$5.20</span></p>
-              <p class = "b-desc">2&#215; Muffin<span id="left-place">$5.20</span></p>
-              <p class = "b-desc">2&#215; Muffin<span id="left-place">$5.20</span></p>
-            </div>
+              </div>
 
-              <p class = "b-desc">Total items $5.20 </p><br />
-              <p class = "b-desc" id="big-font">Order Total: $<%=item.order_total %></p>
+              <p class = "b-desc">Total items :<%=` ${item.quantity}`%></p><br />
+              <p class = "b-desc" id="very-last-item">Order Total: $<%=item.order_total %></p>
+
             </div>
-        <%}%>
+         <%}%>
+        <%} %>
         </div>
       </article>
     </div>

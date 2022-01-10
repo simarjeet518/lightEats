@@ -93,17 +93,14 @@ header {
   padding-bottom: 5px;
   background-color: $blue5;
   max-width:300px;
-  height:350px;
+  height:300px;
  }
  .b-desc {
    margin: 5px;
    display:flex;
    justify-content: space-between;
  }
-#big-font {
-  font-size: 1.2em;
-  font-weight: bold;
-}
+
   #customer-order-status{
 
     background-color: white;
@@ -121,6 +118,11 @@ header {
  #left-place {
   margin-right: 15px;
 
+ }
+ #very-last-item {
+  font-size: 1.2em;
+  font-weight: bold;
+  
  }
 
 
