@@ -36,8 +36,6 @@ app.use(
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
-//const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
 
 const ordersRoutes = require("./routes/orders");
 const cartsRoutes = require("./routes/carts");
@@ -59,11 +57,19 @@ app.use("/restaurants/", restaurantsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  //sql
-  const templatevars = {
-    id: null
-  };
-  res.render("index", templatevars);
+  db.query(`
+  SELECT restaurants.*, menu_items.name AS item_name, price, image_url
+  FROM menu_items
+  JOIN restaurants ON
+  restaurants.id = restaurant_id`)
+  .then(data => {
+    const menuItems = data.rows;
+    const templatevars = {
+      menuItems,
+      id:1
+    };
+    res.render("index", templatevars);
+  })
 });
 
 //clinet login
@@ -74,5 +80,5 @@ app.post("/1", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`app listening on port ${PORT}`);
 });
