@@ -3,7 +3,6 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/:restaurant_id", (req, res) => {
-<<<<<<< HEAD
     db.query(`
     SELECT *
     FROM orders
@@ -16,7 +15,6 @@ module.exports = (db) => {
         res.render('restaurants', templateVars);
       })
       .catch(err => res.json(err.message));
-=======
     const rest_id = req.session.rest_id;
     if (!rest_id) {
       return res.redirect("/");
@@ -26,7 +24,6 @@ module.exports = (db) => {
       user_id: null
     }
     res.render('restaurants', templatevars);
->>>>>>> index-page
   });
 
   router.post("/orders/:restaurant_id", (req, res) => {
