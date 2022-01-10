@@ -3,6 +3,7 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/:restaurant_id", (req, res) => {
+<<<<<<< HEAD
     db.query(`
     SELECT *
     FROM orders
@@ -15,6 +16,17 @@ module.exports = (db) => {
         res.render('restaurants', templateVars);
       })
       .catch(err => res.json(err.message));
+=======
+    const rest_id = req.session.rest_id;
+    if (!rest_id) {
+      return res.redirect("/");
+    }
+    const templatevars = {
+      rest_id,
+      user_id: null
+    }
+    res.render('restaurants', templatevars);
+>>>>>>> index-page
   });
 
   router.post("/orders/:restaurant_id", (req, res) => {
@@ -48,10 +60,10 @@ module.exports = (db) => {
   });
 
   //for owner login
-  router.post("/:restaurant_id", (req, res) => {
-    const restaurant_id = req.params.restaurant_id;
-    res.redirect(`/restaurant/${restaurant_id}`);
-  });
+  // router.post("/:restaurant_id", (req, res) => {
+  //   const restaurant_id = req.params.restaurant_id;
+  //   res.redirect(`/restaurant/${restaurant_id}`);
+  // });
 
   return router;
 };

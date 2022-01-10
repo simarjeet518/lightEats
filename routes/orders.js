@@ -42,6 +42,7 @@ module.exports = (db) => {
   return router;
 };
 
+<<<<<<< HEAD
 
 
 
@@ -91,3 +92,5 @@ const createtempVars= function(result) {
    }
    return ordersArray;
  }
+=======
+>>>>>>> index-page
