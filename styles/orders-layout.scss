@@ -59,7 +59,7 @@ header {
 }
 
 #orders-body-container {
-  position:relative;
+
   margin-left:50px;
 }
 #order-status-buttons {
@@ -79,24 +79,31 @@ header {
  }
 
  #order-boxes {
-   display:flex;
+   display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
    margin-top: 10px;
  }
  #single-order-desc {
+  padding-top:15px ;
+  overflow: auto;
   margin-right:30px;
   margin-top:15px;
   border:solid 4px $blue1;
   padding-left:10px;
   padding-bottom: 5px;
   background-color: $blue5;
-  width:300px;
-  height:auto;
+  max-width:300px;
+  height:350px;
  }
-
  .b-desc {
    margin: 5px;
+   display:flex;
+   justify-content: space-between;
  }
-
+#big-font {
+  font-size: 1.2em;
+  font-weight: bold;
+}
   #customer-order-status{
 
     background-color: white;
@@ -107,8 +114,13 @@ header {
     margin-left:15px;
     margin-right: 30px;
     border-radius: 3px;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 15px;
+    margin-top: 1px;
+ }
+
+ #left-place {
+  margin-right: 15px;
+
  }
 
 
