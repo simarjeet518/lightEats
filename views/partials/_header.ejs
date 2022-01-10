@@ -1,47 +1,9 @@
 <header>
-<<<<<<< HEAD
-   <h1 id = "logo-light-eats">
-      <p id = "logo-light">Light <span id="logo-eats">Eats</span></p>
-
-    </h1>
-    <div id = "login-types" class ="login-buttons">
-    <% if(!id){ %>
-    <div id = "login-user-login-restaurant">
-      <button onclick="location.href='http://localhost:8080/1'" type="button">
-        User
-      </button>
-      <button onclick="location.href='http://localhost:8080/restaurants/1'" type="button">
-        Restaurant</button>
-
-
-
-    </div>
-   <%} if (id >= 2) {%>
-    <div id = "user-logout" class ="login-buttons">
-      <button>
-        Username
-      </button>
-    </button>
-    <button onclick="location.href='http://localhost:8080/'" type="button">
-      Logout</button>
-    </div>
-  <%} %>
-  <% if (id === 1) {%> <!-- id for restaurent -->
-    <div id = "restaurant-logout" class ="login-buttons">
-      <button> Userdfgdfg
-      </button>
-      <button onclick="location.href='http://localhost:8080/'" type="button">
-        Logout</button>
-    </div>
-    <%} %>
-  </div>
-
-=======
   <nav>
     <div id="logo">
       <a href="/">lightEats</a>
     </div>
-  
+
     <div id="login-buttons-container">
       <% if (user_id) { %>
         <p>Welcome <%= username %></p>
@@ -60,16 +22,15 @@
       <% }  else { %>
       <div class="login-buttons">
         <form action="/login/users" method="POST">
-          <button type="submit">Login AS Client</button>
+          <button type="submit">Client</button>
         </form>
       </div>
       <div class="login-buttons">
         <form action="/login/restaurants" method="POST">
-          <button type="submit">Login AS Owner</button>
+          <button type="submit">Owner</button>
         </form>
       </div>
       <% } %>
     </div>
   </nav>
->>>>>>> index-page
 </header>
