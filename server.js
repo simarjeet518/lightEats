@@ -37,7 +37,7 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 //const usersRoutes = require("./routes/users");
-//const widgetsRoutes = require("./routes/widgets");
+const widgetsRoutes = require("./routes/widgets");
 
 const ordersRoutes = require("./routes/orders");
 const cartsRoutes = require("./routes/carts");
