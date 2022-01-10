@@ -4,8 +4,7 @@ $blue3: #3e5c76;
 $blue4: #748cab;
 $blue5: #f0ebd8;
 
-
-header {
+nav {
   display: flex;
   justify-content: space-between;
   color: $blue3;
@@ -27,9 +26,7 @@ header button {
 
 #logo-light-eats {
   display: flex;
-  align-items: center;
-  margin: 0px;
-  height: 75px;
+  padding-right: 1rem;
 }
 
 #logo-light {
