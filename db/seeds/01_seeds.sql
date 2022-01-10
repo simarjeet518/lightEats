@@ -25,7 +25,7 @@ VALUES('Coffee',245,'https://www.sevensummitscoffee.com/uploads/1/3/1/2/13129129
 ('Muffin',350,'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimagesvc.meredithcorp.io%2Fv3%2Fmm%2Fimage%3Furl%3Dhttps%253A%252F%252Fstatic.onecms.io%252Fwp-content%252Fuploads%252Fsites%252F19%252F2011%252F04%252F08%252Fchocolate-chip-muffins-ck-2000.jpg&q=85'),
 ('Omelete',450,'https://c.ndtvimg.com/2020-07/3cqv032o_omelette_625x300_23_July_20.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=675');
 
-INSERT INTO order_items (order_id, menu_item_id, quantity)
+INSERT INTO orders_items (order_id, menu_item_id, quantity)
 VALUES (1,1,1),(1,2,1),(1,3,1),
 (2,2,2),
 (3,1,1),(3,4,2),(3,5,1),
