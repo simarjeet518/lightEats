@@ -13,7 +13,6 @@ body {
 #cart-box {
   border-radius: 20px;
   box-shadow: 0px 5px 55px $blue3;
-  border: 5px solid $blue2;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -96,8 +95,8 @@ hr {
 }
 
 #button-set-order-time {
-  width:120px;
-  height:40px;
+  width:100px;
+  height:30px;
   border-radius: 8px;
 }
 
