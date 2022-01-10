@@ -3,17 +3,15 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/:restaurant_id", (req, res) => {
-    db.query(`
-    SELECT *
-    FROM orders
-    JOIN orders_items ON orders.id = order_id
-    JOIN menu_items ON orders.restaurant_id = menu_items.restaurant_id
-    WHERE orders.restaurant_id = $1`, [req.params.restaurant_id])
-    .then(data => {
-      //res.json(data.rows);
-      res.render('restaurants', {id:1});
-    })
-    .catch(err => res.json(err.message));
+    const rest_id = req.session.rest_id;
+    if (!rest_id) {
+      return res.redirect("/");
+    }
+    const templatevars = {
+      rest_id,
+      user_id: null
+    }
+    res.render('restaurants', templatevars);
   });
 
   router.post("/orders/:restaurant_id", (req, res) => {
@@ -47,10 +45,10 @@ module.exports = (db) => {
   });
 
   //for owner login
-  router.post("/:restaurant_id", (req, res) => {
-    const restaurant_id = req.params.restaurant_id;
-    res.redirect(`/restaurant/${restaurant_id}`);
-  });
+  // router.post("/:restaurant_id", (req, res) => {
+  //   const restaurant_id = req.params.restaurant_id;
+  //   res.redirect(`/restaurant/${restaurant_id}`);
+  // });
 
   return router;
 };

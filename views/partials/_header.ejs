@@ -1,37 +1,36 @@
 <header>
-   <h1 id = "logo_light_eats">
-      <p id = "logo_light">Light <span id="logo_eats">Eats</span></p>
-
-    </h1>
-    <div id = "login_types" class ="login-buttons">
-    <% if(!id){ %>
-    <div id = "login_user_login_restaurant">
-      <button>
-        Login As User
-      </button>
-      <button>
-        Login As Restaurant
-      </button>
+  <nav>
+    <div id="logo">
+      <a href="/">lightEats</a>
     </div>
-   <%} if (id >= 2) {%>
-    <div id = "user_logout" class ="login-buttons">
-      <button>
-        Username
-      </button>
-      <button>
-        Logout
-      </button>
+  
+    <div id="login-buttons-container">
+      <% if (user_id) { %>
+        <p>Welcome <%= username %></p>
+        <div class="logout-button">
+          <form action="/logout/users" method="POST">
+            <button type="submit">Logout</button>
+          </form>
+        </div>
+      <% } else if (rest_id) { %>
+        <p>Welcome lightEats</p>
+        <div class="logout-button">
+          <form action="/logout/restaurants" method="POST">
+            <button type="submit">Logout</button>
+          </form>
+        </div>
+      <% }  else { %>
+      <div class="login-buttons">
+        <form action="/login/users" method="POST">
+          <button type="submit">Login AS Client</button>
+        </form>
+      </div>
+      <div class="login-buttons">
+        <form action="/login/restaurants" method="POST">
+          <button type="submit">Login AS Owner</button>
+        </form>
+      </div>
+      <% } %>
     </div>
-  <%} %>
-  <% if (id === 1) {%> <!-- id for restaurent -->
-    <div id = "restaurant_logout" class ="login-buttons">
-      <button> Userdfgdfg
-      </button>
-      <button>
-        Logout
-      </button>
-    </div>
-    <%} %>
-  </div>
-
+  </nav>
 </header>

@@ -4,9 +4,10 @@ require("dotenv").config();
 // Web server config
 const PORT = process.env.PORT || 8080; //anyway I still prefer 8080
 const sassMiddleware = require("./lib/sass-middleware");
+const cookieSession = require("cookie-session");
 const express = require("express");
 const app = express();
-//const morgan = require("morgan");
+const morgan = require("morgan");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -19,11 +20,10 @@ db.connect(() => {
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
-//app.use(morgan("dev"));
+app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: true }));
-
+app.use(express.urlencoded({ extended: true }));//based on body-parser
 app.use(
   "/styles",
   sassMiddleware({
@@ -32,11 +32,15 @@ app.use(
     isSass: false, // false => scss, true => sass
   })
 );
-
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ["lightEasts", "allenKevinSimar"]
+}));
 
 // Separated Routes for each Resource
-
+const loginRoutes = require("./routes/login");
+const logoutRoutes = require("./routes/logout");
 const ordersRoutes = require("./routes/orders");
 const cartsRoutes = require("./routes/carts");
 const restaurantsRoutes = require("./routes/restaurants");
@@ -45,7 +49,8 @@ const restaurantsRoutes = require("./routes/restaurants");
 app.use("/orders/", ordersRoutes(db));
 app.use("/carts/", cartsRoutes(db));
 app.use("/restaurants/", restaurantsRoutes(db));
-
+app.use("/login/", loginRoutes());
+app.use("/logout/", logoutRoutes());
 
 // Note: mount other resources here, using the same pattern above
 
@@ -54,6 +59,7 @@ app.use("/restaurants/", restaurantsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
+  const user_id = req.session.user_id;
   db.query(`
   SELECT restaurants.*, menu_items.name AS item_name, price, image_url
   FROM menu_items
@@ -62,19 +68,32 @@ app.get("/", (req, res) => {
   .then(data => {
     const menuItems = data.rows;
     const templatevars = {
-      menuItems,
-      id:1
+      user_id,
+      rest_id: null,
+      menuItems
     };
-    res.render("index", templatevars);
+    return templatevars;
+  })
+  .then(templatevars => {
+    if (!templatevars.user_id) {
+      res.render("index", templatevars);
+    } else {
+      db.query(`
+      SELECT name FROM customers WHERE id = $1`, [templatevars.user_id])
+      .then(name => {
+        templatevars.username = name.rows[0].name;
+        res.render("index", templatevars);
+      })
+    }
   })
 });
 
 //clinet login
-app.post("/1", (req, res) => {
-  const user_id = 1;
-  //sql query get userObj{id}
-  res.redirect("/");
-});
+// app.post("/1", (req, res) => {
+//   const user_id = 1;
+//   //sql query get userObj{id}
+//   res.redirect("/");
+// });
 
 app.listen(PORT, () => {
   console.log(`app listening on port ${PORT}`);
