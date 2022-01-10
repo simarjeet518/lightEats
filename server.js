@@ -42,9 +42,6 @@ const cartsRoutes = require("./routes/carts");
 const restaurantsRoutes = require("./routes/restaurants");
 
 // Mount all resource routes
-// app.use("/api/users", usersRoutes(db));
-// app.use("/api/widgets", widgetsRoutes(db));
-
 app.use("/orders/", ordersRoutes(db));
 app.use("/carts/", cartsRoutes(db));
 app.use("/restaurants/", restaurantsRoutes(db));

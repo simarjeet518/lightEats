@@ -6,7 +6,7 @@ module.exports = (db) => {
     db.query(`
     SELECT *
     FROM orders
-    JOIN order_items ON orders.id = order_id
+    JOIN orders_items ON orders.id = order_id
     JOIN menu_items ON orders.restaurant_id = menu_items.restaurant_id
     WHERE orders.restaurant_id = $1`, [req.params.restaurant_id])
     .then(data => {
