@@ -15,6 +15,7 @@ flex-direction: column;
 }
 main {
   button {
+    font-size: 20px;
     margin-right: 10px;
     width:100px;
     height:30px;
@@ -27,8 +28,8 @@ header {
   display:flex;
   justify-content: space-between;
   position: Fixed;
-  height:16%;
-  width: 100%;
+  width:100%;
+  height:15%
 
 }
 #logo_light_eats {
@@ -56,18 +57,19 @@ header {
 #orders-body-container{
   margin-top:150px;
 }
- #order-status-button {
 
-   align-self: center;
-   height:4%;
-   padding: 5px;
-   display: flex;
-   justify-content: flex-start;
+#orders-body-container {
+  position:relative;
+  margin-left:70px;
+}
+#order-status-buttons {
+  display:flex;
+  justify-content:space-evenly;
+}
 
- }
  #order-status-buttons {
    button {
-   margin-left: 150px;
+    margin-right: 0px;
     width:100px;
     height:30px;
     border:none;
@@ -75,17 +77,16 @@ header {
    }
  }
 
- #order-boxes {
-    margin-top: 20px;
-}
-  #order-boxes {
-  border:solid 2px green;
-
- }
 
 
-@media all and (max-width: 600px){
 
+
+@media screen and (max-width: 700px){
+
+  #order-status-buttons {
+   
+    justify-content:flex-start;
+  }
 
 }
 
