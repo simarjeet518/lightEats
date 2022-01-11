@@ -16,11 +16,12 @@ module.exports = (router, db) => {
     db.query(pendingquery, [user_id])
       .then(data => {
         const result = data.rows;
+
         if (result.length !== 0) {
           const tempVars = createtempVars(result);
-          res.render('orders', { user:user, result: tempVars });
+          res.render('orders', { user:user, result: tempVars ,status:"Pending"});
         } else {
-          res.render('orders', { user:user, result: null });
+          res.render('orders', { user:user, result: null ,status:null});
         }
       })
       .catch(err => res.json(err.message));
@@ -35,9 +36,9 @@ module.exports = (router, db) => {
         const result = data.rows;
         if (result.length !== 0) {
           const tempVars = createtempVars(result);
-          res.render('orders', { user:user, result: tempVars });
+          res.render('orders', { user:user, result: tempVars,status:"Completed" });
         } else {
-          res.render('orders', {user:user, result: null });
+          res.render('orders', {user:user, result: null,status:null});
         }
       })
       .catch(err => res.json(err.message));
@@ -58,9 +59,9 @@ module.exports = (router, db) => {
         const result = data.rows;
         if (result.length !== 0) {
           const tempVars = createtempVars(result);
-          res.render('orders', { user:user, result: tempVars });
+          res.render('orders', { user:user, result: tempVars ,status:"Pending"});
         } else {
-          res.render('orders', { user: user, result: null });
+          res.render('orders', { user: user, result: null ,status:null});
         }
       })
       .catch(err => res.json(err.message));
@@ -83,7 +84,7 @@ const createtempVars = function (result) {
 
       if (orderAlreadyinResult === "new") {
         newObj.id = result[i].id;
-        newObj.created_at = result[i].created_at.toString().substring(0, 24);
+        newObj.created_at = result[i].created_at.toString().substring(0, 21);
         newObj.customer_name = result[i].customer_name;
         newObj.order_total = (result[i].order_total / 100).toFixed(2);
         newObj.quantity = 0;

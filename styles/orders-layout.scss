@@ -5,9 +5,7 @@ $blue4: #748cab;
 $blue5: #f0ebd8;
 
 body {
-
 background-color: $blue4;
-
 }
 main {
 display: flex;
@@ -18,13 +16,11 @@ flex-direction: column;
 }
 
 #orders-body-container {
-
   margin-left:50px;
 }
 #order-status-buttons {
   display:flex;
   justify-content:flex-start;
-
 }
 
  #order-status-buttons {
@@ -39,10 +35,13 @@ flex-direction: column;
 
  #order-boxes {
    display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
    margin-top: 10px;
  }
  #single-order-desc {
+   display: flex;
+   flex-direction: column;
+  justify-content: space-between;
   padding-top:15px ;
   overflow: auto;
   margin-right:30px;
@@ -52,7 +51,7 @@ flex-direction: column;
   padding-bottom: 5px;
   background-color: $blue5;
   max-width:300px;
-  height:300px;
+  height:340px;
  }
  .b-desc {
    margin: 5px;
@@ -78,9 +77,15 @@ flex-direction: column;
   margin-right: 15px;
 
  }
+ #order-total {
+   justify-self: flex-end;
+   display:flex;
+   justify-content: flex-end;
+ }
  #very-last-item {
   font-size: 1.2em;
   font-weight: bold;
+
 
  }
 
