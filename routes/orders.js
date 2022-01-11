@@ -21,7 +21,7 @@ module.exports = (db) => {
      if(result.length !==0){
      console.log("here");
      const tempVars = createtempVars(result);
-     res.render('orders', {id:2 ,result:tempVars});
+     res.render('orders', {id:2 ,user_id:2,username:"simar",result:tempVars});
    }
    else {
     res.render('orders', {id:2 ,result:null});
