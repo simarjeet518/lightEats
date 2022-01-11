@@ -6,98 +6,134 @@ $blue5: #f0ebd8;
 
 body {
   background-color: $blue4;
-  color: $blue1;
-  padding: 10px;
-}
-
-#between-head-foot {
-  margin-top: 100px;
-}
-
-#restaurant-order {
-  border: 5px solid $blue2;
-  background-color: $blue5;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  margin: 10px;
-  width: 300px;
-}
-
-#restaurant-orders-box {
-
-  display: flex;
-
-}
-
-#restaurant-tabs {
-  visibility: hidden;
-  height: 0;
-}
-
-.b-desc {
-  margin: 0;
-  padding-bottom: 3px;
-}
-
-#btn {
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#qty-box {
-  width: 20px;
-}
-
-#set-time {
-  display: flex;
-  align-items: center;
-}
-
-#restaurant-order-box-footer {
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: inherit;
-  justify-content: space-around;
-}
-
-#restaurant-footer-new-order {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  /* hide when time is set
-  visibility: hidden;
-  height: 0px;
-  */
-}
-
-#restaurant-order-finished-early {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-
-  visibility: hidden;
-  height: 0px;
-  /* hide before time is set
-  */
-}
-
-#restaurant-order-finished-early-on {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-@media all and (max-width: 700px){
-
-  #restaurant-orders-box {
-    display: flex;
-    flex-direction: column;
   }
-}
+  main {
+  display: flex;
+  flex-direction: column;
+  }
+  #orders-body-container{
+    margin-top:100px;
+  }
+
+  #orders-body-container {
+    margin-left:50px;
+  }
+  #order-status-buttons {
+    display:flex;
+    justify-content:flex-start;
+  }
+
+   #order-status-buttons {
+     button {
+      margin-right: 50px;
+      width:100px;
+      height:30px;
+      border:none;
+      border-radius: 8px;
+     }
+   }
+
+   #order-boxes {
+     display:grid;
+     grid-gap: 0px;
+      grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
+     margin-top: 10px;
+   }
+   #single-order-desc {
+     display: flex;
+     flex-direction: column;
+    justify-content: space-between;
+    padding-top:15px ;
+    overflow: auto;
+    margin-top:15px;
+    border:solid 4px $blue1;
+    padding-left:10px;
+    padding-bottom: 5px;
+    background-color: $blue5;
+    max-width:340px;
+    height:370px;
+   }
+   .b-desc {
+     margin: 5px;
+     display:flex;
+     justify-content: space-between;
+   }
+
+    #customer-order-status{
+
+      background-color: white;
+      display:block;
+      text-align: center;
+      font-size:1.5em;
+      height:30px;
+      margin-left:15px;
+      margin-right: 30px;
+      border-radius: 3px;
+      margin-bottom: 15px;
+      margin-top: 1px;
+   }
+
+   #left-place {
+    margin-right: 15px;
+
+   }
+   #order-total {
+     justify-self: flex-end;
+     display:flex;
+     justify-content: flex-end;
+   }
+   #very-last-item {
+    font-size: 1.2em;
+    font-weight: bold;
+
+
+   }
+   #btn {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: 2px black solid;
+   background-color: rgb(201, 200, 200);
+  }
+  #a {
+    padding:5px;
+    font-size: 1.2em;
+  }
+  #qty-box {
+    width:40px;
+    text-align: center;
+  }
+
+  #set-time {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  #button-set-order-time{
+    border-radius: 7px;
+    margin-left:15px;
+    width:95px;
+    font-size: 1.2em;
+  }
+
+
+
+  @media screen and (max-width: 700px){
+
+    #order-status-buttons {
+
+      justify-content:flex-start;
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+
+
