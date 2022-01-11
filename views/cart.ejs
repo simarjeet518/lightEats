@@ -22,7 +22,7 @@
     <div id = "cart-box">
       <h2>Shopping cart: </h2>
 
-      <div id = "cart-box-item">
+      <!-- <div id = "cart-box-item">
         <img src ="https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png" alt="img" >
         <p class = "b-desc">Coffee</p>
         <div id = "cart-quantity-box">
@@ -35,27 +35,29 @@
         <div id = "price" >
           <p id = "val1" class = "p-desc">245</p>
         </div>
-      </div>
-      <% for (let i = 0; i < 2; i++) { %>
+      </div> -->
+      <% for (let i = 0; i < 4; i++) { %>
         <div id = "cart-box-item">
           <img src ="https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png" alt="img" >
           <p class = "b-desc">Coffee</p>
           <div id = "cart-quantity-box">
               <button id = "btn" class="dec<%= i %>">-</button>
               &nbsp;
-              <input type="text" id="qty-box" value=1 >
+              <input type="text" id="qty-box<%= i %>" value=1 >
               &nbsp;
-              <button id = "btn" class = "inc">+</button>
+              <button id = "btn" class = "inc<%= i %>">+</button>
           </div>
           <div id = "price" >
-            <p id = "val1" class = "p-desc">245</p>
+            <p class = "p-desc">$</p>
+            <p id = "val<%= i %>" class = "p-desc">245</p>
           </div>
         </div>
       <% } %>
 
       <hr>
       <div id = "cart-order-total">
-        <p class = "b-desc">Sub-Total: $10.00</p>
+        <p class = "b-desc">Sub-Total: $</p>
+        <p id ="subtotal" class = "b-desc"> 10</p>
       </div>
       <div id = "cart-box-footer">
         <button id = "button-set-add-more"> Add more </button>

@@ -7,6 +7,7 @@ $blue5: #f0ebd8;
 nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: $blue3;
   background-color: $blue2;
   position: Fixed;
@@ -15,6 +16,7 @@ nav {
   top: 0px;
   left: 0px;
   z-index: 2;
+  height: 100px;
 }
 
 header button {
@@ -27,6 +29,10 @@ header button {
 
 #login-buttons-container {
   display: flex;
+}
+
+a {
+  text-decoration: none
 }
 
 #logo-light-eats {

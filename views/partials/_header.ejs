@@ -1,12 +1,15 @@
 <header>
   <nav>
     <div id="logo">
-      <a href="/">lightEats</a>
+      <a href="/">   <h1 id = "logo-light-eats">
+        <p id = "logo-light">Light &nbsp;</p>
+        <p id = "logo-eats">Eats</p>
+      </h1>  </a>
     </div>
 
     <div id="login-buttons-container">
       <% if (user) { %>
-        <p>Welcome <%= user.name %></p>
+        <button ><%= user.name %></button>
         <div class="logout-button">
           <form action="/logout/users" method="POST">
             <button type="submit">Logout</button>

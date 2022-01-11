@@ -17,7 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  margin-left: 15%;
+  margin-left: 25%;
   width: 600px;
   justify-content: space-between;
 }
@@ -53,8 +53,9 @@ body {
   align-items: center;
 }
 
-#qty-box {
+input{
   width: 25px;
+  text-align: center;
 }
 
 .b-desc {
@@ -80,6 +81,12 @@ hr {
   display: flex;
   justify-content: end;
   margin-right: 10px;
+}
+
+#price {
+  display: flex;
+  justify-content: end;
+  width: 70px;
 }
 
 #cart-box-footer {
@@ -115,7 +122,5 @@ img {
     margin: 10px;
     width: 400px;
   }
-
-
 
 }
