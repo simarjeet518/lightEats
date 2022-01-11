@@ -8,7 +8,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const app = express();
-const morgan = require("morgan");
+// const morgan = require("morgan");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -59,6 +59,11 @@ app.use("/logout/", logoutRoutes());
 app.get("/", (req, res) => {
   //const user = req.session.user;
   let user = req.cookies["user"];
+  const rest_id = req.cookies["rest_id"];
+  //if owner, go to rest page
+  if (rest_id) {
+    return res.redirect(`/restaurants/${rest_id}`);
+  }
   if (user) {
     user = JSON.parse(user);
   }
@@ -71,7 +76,7 @@ app.get("/", (req, res) => {
     const menuItems = data.rows;
     const templatevars = {
       user,
-      rest_id: null,
+      rest_id,
       menuItems
     };
     res.render("index", templatevars);
