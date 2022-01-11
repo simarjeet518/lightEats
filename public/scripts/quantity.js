@@ -37,6 +37,8 @@ $(() => {
 
   };
 
+  $('#button-set-order-time').on('click', confirmCart);
+
   for (let i = 0; i < 7; i++) {
     $(".inc" + i).on('click', {index:i, perPrice: Number($('#ppi' + i).text())}, addition);
     $(".dec" + i).on('click', {index:i, perPrice: Number($('#ppi' + i).text())}, subtract);
@@ -62,4 +64,25 @@ const loadOnCents = () => {
     cents = c * Number($('#val' + k).text()) / 100;
     $('#val' + k).text(cents.toFixed(2));
   }
+};
+
+const confirmCart = () => {
+  // use this for table insert
+  let cart = {};
+  let table = [];
+  const order = {};
+
+  for (let i = 0; i < 7; i++) {
+    if ($('#item-name' + i).text()) { //if, exists insert into table
+      order.name = $('#item-name' + i).text();
+      order.number = $('#qty-box' + i).val();
+
+      table.push(order);
+    }
+
+  }
+  cart.items = table;
+  cart.total = $('#subtotal').text();
+
+  console.log(cart);
 };

@@ -38,13 +38,12 @@
       </div> -->
        <% cart.items.forEach((item, i) => { %>
 
-
         <div id = "cart-box-item">
           <img src = <%= item.img %> alt="img" >
 
           <div id = "name-and-ppi">
-            <p class = "b-desc"><%= item.name %></p>
-            <p id = "ppi<%= i %>"> <%= item.price %></p>
+            <p id = "item-name<%= i %>"class = "b-desc"><%= item.name %></p>
+            <p id = "ppi<%= i %>" class = "ppi"> <%= item.price %></p>
           </div>
 
           <div id = "cart-quantity-box">
@@ -70,7 +69,7 @@
       </div>
       <div id = "cart-box-footer">
         <button id = "button-set-add-more"> Add more </button>
-        <button id = "button-set-order-time" onclick="location.href='http://localhost:8080/orders/1'" type="button"> Order </button>
+        <button id = "button-set-order-time" type="button"> Order </button>
       </div>
     </div>
   </div>
