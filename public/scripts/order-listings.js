@@ -2,19 +2,20 @@
 $(document).ready(function() {
 
 $('#current').click(function(e) {
+  console.log("hello");
     $.ajax({
       type: "GET",
-      url: "/current",
+      url: "/orders/current"
     });
 
   });
-  $('#past').click(function(e) {
+
+$('#past').click(function(e) {
 
     $.ajax({
       type: "GET",
-      url: "/past"
+      url: "/orders/past"
     });
-
-  });
+ });
 
 });
