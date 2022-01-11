@@ -51,6 +51,18 @@ $blue5: #f0ebd8;
   top: 7vh;
 }
 
+#orders-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+#orders-btn-container button {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
 #cart-summary {
   border: 1px solid $blue3;
   background-color: $blue4;
@@ -59,9 +71,19 @@ $blue5: #f0ebd8;
   align-items: center;
   padding: 1rem;
   border-radius: 1rem;
+  width: 60vw
 }
 #cart-summary p {
   margin: 0;
   font-size: larger;
+}
+
+#orders {
+  background-color: $blue5;
+  width: 30vw;
+  border: 1px solid $blue3;
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
 }
 
