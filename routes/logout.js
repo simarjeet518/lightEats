@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = () => {
   router.post("/users", (req, res) => {
-    req.session.user_id = null;
+    req.session.user = null;
     res.redirect("/");
   });
   router.post("/restaurants", (req, res) => {

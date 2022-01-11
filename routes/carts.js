@@ -2,18 +2,16 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
+  //check login status
   router.get("/:user_id", (req, res) => {
-    //gonna use obj to save all items added into cart
-    db.query(`
-    SELECT name
-    FROM customers
-    WHERE id = $1`, [req.params.user_id])
-    .then(data => {
-      const userdata = data.rows[0];
-      const templateVars = { userdata, id: 2 }
-      res.render('cart', templateVars);
-    })
-    .catch(err => res.json(err.message));
+    const user = req.session.user;
+    if ( user.id != req.params.user_id) {
+      return res.redirect("/");
+    }
+    const templateVars = {
+      user
+    };
+    res.render('cart', templateVars);
   });
   return router;
 };

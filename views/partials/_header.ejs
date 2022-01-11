@@ -5,8 +5,8 @@
     </div>
 
     <div id="login-buttons-container">
-      <% if (user_id) { %>
-        <p>Welcome <%= username %></p>
+      <% if (user) { %>
+        <p>Welcome <%= user.name %></p>
         <div class="logout-button">
           <form action="/logout/users" method="POST">
             <button type="submit">Logout</button>
