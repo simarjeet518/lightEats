@@ -8,7 +8,7 @@
  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/orders-layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 
   <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
 
@@ -24,11 +24,14 @@
     <%- include('partials/_header') %>
     <div id="orders-body-container">
       <section id="order-status-buttons">
-        <button id="current"> current</button>
+        <form action="/current" method="get">
+        <button id="current"> current</button></form>
+        <form action="/past" method="get">
         <button id="past">past</button>
+      </form>
       </section>
       <article id="customer-orders">
-      <div id = "order-boxes">
+      <div id ="order-boxes">
         <%if(result){ %>
           <% for(let item of result) {%>
             <div id = "single-order-desc">

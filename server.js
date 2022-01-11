@@ -17,6 +17,8 @@ db.connect(() => {
   console.log("database connected!");
 });
 
+
+const customerOrderRoute = express.Router();
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -45,12 +47,13 @@ const ordersRoutes = require("./routes/orders");
 const cartsRoutes = require("./routes/carts");
 const restaurantsRoutes = require("./routes/restaurants");
 const orderStatus = require("./routes/current");
-
+const pastorderroute = require("./routes/pastorders");
 // Mount all resource routes
 app.use("/orders/", ordersRoutes(db));
 app.use("/carts/", cartsRoutes(db));
 app.use("/restaurants/", restaurantsRoutes(db));
 app.use("/current/",orderStatus(db));
+app.use("/past",pastorderroute(db));
 app.use("/login/", loginRoutes());
 app.use("/logout/", logoutRoutes());
 

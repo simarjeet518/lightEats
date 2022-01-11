@@ -15,7 +15,7 @@ ORDER BY orders.id ;`;
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-     db.query(queryString,[2])
+     db.query(queryString,[1])
     .then(data => {
       const result = data.rows;
      if(result.length !==0){

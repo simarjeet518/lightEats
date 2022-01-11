@@ -19,7 +19,7 @@ module.exports = (db) => {
     .then(data => {
       const result = data.rows;
      if(result.length !==0){
-     console.log("here");
+
      const tempVars = createtempVars(result);
      res.render('orders', {id:2 ,user_id:2,username:"simar",result:tempVars});
    }
@@ -36,14 +36,14 @@ module.exports = (db) => {
 
 
 const createtempVars= function(result) {
-  console.log(result.length);
+
   let ordersArray = [];
   let a= result[0].id;
   let newObj={}
   let orderAlreadyinResult ="new"
   for(let i=0; i<result.length;i++)
    {
-    console.log(i);
+  
      if(a === result[i].id){
 
        if(orderAlreadyinResult==="new"){
