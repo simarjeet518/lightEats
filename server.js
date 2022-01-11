@@ -51,7 +51,6 @@ app.use('/orders/',cutomerOrderRouter);
 
 // Mount all resource routes
 
-//app.use("/orders/", ordersRoutes(db));
 app.use("/carts/", cartsRoutes(db));
 app.use("/restaurants/", restaurantsRoutes(db));
 
