@@ -49,11 +49,13 @@ const cutomerOrderRouter = express.Router();
 ordersRoutes(cutomerOrderRouter, db);
 app.use('/orders/',cutomerOrderRouter);
 
+const restaurantOrderRouter = express.Router();
+restaurantsRoutes(restaurantOrderRouter,db);
+app.use('/restaurants/',restaurantOrderRouter);
+
 // Mount all resource routes
 
 app.use("/carts/", cartsRoutes(db));
-app.use("/restaurants/", restaurantsRoutes(db));
-
 app.use("/login/", loginRoutes(db));
 app.use("/logout/", logoutRoutes());
 

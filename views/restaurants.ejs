@@ -21,10 +21,10 @@
     <%- include('partials/_header') %>
     <div id="orders-body-container">
       <section id="order-status-buttons">
-        <form action="" method="get">
-        <button id="current"> New</button></form>
-        <form action="" method="get">
-        <button id="past">Previous</button>
+        <form action="restaurants/new" method="get">
+        <button id="new"> New</button></form>
+        <form action="restaurants/previous" method="get">
+        <button id="previous">Previous</button>
       </form>
       </section>
       <article id="customer-orders">
@@ -32,7 +32,8 @@
         <%if(result){ %>
           <% for(let item of result) {%>
             <div id = "single-order-desc">
-              <div>
+              <div id="orders">
+
               <p id="set-time">
                 <span id="a">Set time</span>&nbsp;
                 <button id="btn" class="dec">-</button>
@@ -40,7 +41,9 @@
                 <input type="text" id="qty-box" value=1>
                 &nbsp;&nbsp;
                 <button id="btn" class="inc">+</button>
+
                 <button id="button-set-order-time"> Accept </button>
+
               </p>
 
               <p class = "b-desc">Time:<%=item.created_at%></p>
@@ -56,6 +59,7 @@
               </div>
 
               <span id="order-total">
+                <span></span>
               <p class = "b-desc" id="very-last-item">Order Total: $<%=item.order_total %>&nbsp;&nbsp;</p>
               </span>
             </div>

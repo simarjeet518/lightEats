@@ -17,13 +17,37 @@ $(document).ready(function() {
     $('#qty-box').val(value);
   });
 
+  const label =(text,num) =>{
+   let tag =` <button id="customer-order-status${num}" class="customer-order-status">${text}</button>`
+   return tag;
+  }
   //click on accept-button
-$('#button-set-order-time').Click(() =>{
+$('#button-set-order-time').click(() =>{
+  $('#set-time').remove();
+   $('#orders').prepend(label("Preparing",1));
+});
 
-})
+$('.customer-order-status').click(() =>{
+  console.log('click');
+  $('.customer-order-status').remove();
+  $('#orders').prepend(label("Waiting-to-picup",2));
+});
+
+$('#new').click(function(e) {
+    $.ajax({
+      type: "GET",
+      url: "/restaurants/new"
+    });
+ });
+ $('#previous').click(function(e) {
+  $.ajax({
+    type: "GET",
+    url: "/restaurants/previous"
+  });
+});
+
 
 $('#current').click(function(e) {
-  console.log("hello");
     $.ajax({
       type: "GET",
       url: "/orders/current"

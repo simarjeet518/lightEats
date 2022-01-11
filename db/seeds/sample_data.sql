@@ -18,6 +18,11 @@ VALUES(1,now() + interval '20 seconds', now() + interval '2 minutes 20 seconds',
 INSERT INTO orders (customer_id,order_total)
 VALUES (1 ,400) ,(2,400);
 
+INSERT INTO orders (customer_id,order_total , accepted_at)
+VALUES (1 ,400 ,now()) ;
+INSERT INTO orders (customer_id,order_total , accepted_at,prepared_at)
+VALUES (1 ,400 ,now(),now()) ;
+
 INSERT INTO menu_items (name,price,image_url)
 VALUES('Coffee',245,'https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png'),
 ('Tea',200,'https://i0.wp.com/pickuplineninja.com/wp-content/uploads/2020/05/tea-Pick-Up-Lines.jpeg?fit=500%2C344&ssl=1'),
@@ -33,6 +38,7 @@ VALUES (1,1,1),(1,2,1),(1,3,1),
 (4,1,1),(4,3,10),
 (5,1,5),
 (6,4,2),(6,1,2),
-(7,1,2),(8,1,2);
+(7,1,2),(8,1,2),
+(9,1,2),(9,1,2);
 
 --UPDATE orders SET STATUS ='Delivered' where id <=6;

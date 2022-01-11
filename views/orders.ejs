@@ -36,7 +36,7 @@
           <% for(let item of result) {%>
             <div id = "single-order-desc">
               <div>
-              <label id="customer-order-status"><%=status %></label>
+              <label id="customer-order-status"><%=item.status %></label>
               <p class = "b-desc">Time:<%=item.created_at%></p>
               <p class = "b-desc">Order Number:<%=` ${item.id}` %></p>
               <p class = "b-desc">Name : <%=item.customer_name %></p>

@@ -1,24 +1,23 @@
-const express = require("express");
-const router = express.Router();
-
-const queryString = ` SELECT  orders.created_at , orders.id ,customers.name as customer_name , customers.phone ,orders.picked_at,orders.order_total,menu_items.name,menu_items.price,orders_items.quantity
+const queryString = ` SELECT  orders.created_at ,orders.accepted_at,orders.prepared_at, orders.picked_at,orders.set_time, orders.id,customers.name as customer_name ,customers.id as customer_id,orders.order_total,menu_items.name,menu_items.price,orders_items.quantity
 FROM orders
 JOIN orders_items ON orders.id = orders_items.order_id
 JOIN customers ON customer_id= customers.id
 JOIN menu_items ON menu_items.id = orders_items.menu_item_id
-WHERE `;
-const pendingquery = `${queryString}  accepted_at IS  NULL ORDER BY orders.id ;`;
+WHERE  `;
+const pendingquery = `${queryString}  picked_at IS  NULL ORDER BY orders.id ;`;
 
 
-module.exports = (db) => {
-  router.get("/:restaurant_id", (req, res) => {
+module.exports = (router,db) => {
+
+  router.get("/new", (req, res) => {
+
     const rest_id = req.session.rest_id;
     if (!rest_id) {
       return res.redirect("/");
     }
     const templatevars = {
       rest_id,
-      user: null
+      name: null
     }
     db.query(pendingquery)
     .then(data => {
@@ -26,9 +25,37 @@ module.exports = (db) => {
 
       if (result.length !== 0) {
         const tempVars = createtempVars(result);
-        res.render('restaurants', {  result: tempVars,user:null,rest_id:rest_id });
+        res.render('restaurants', {  result: tempVars,user: templatevars});
       } else {
-        res.render('restaurants', {  result: null, user:null,rest_id :rest_id });
+        res.render('restaurants', {  result: null, user:templatevars });
+      }
+    })
+    .catch(err => res.json(err.message));
+});
+
+
+
+
+  router.get("/:restaurant_id", (req, res) => {
+
+    const rest_id = req.session.rest_id;
+    if (!rest_id) {
+      return res.redirect("/");
+    }
+    const templatevars = {
+      rest_id,
+      name: null
+    }
+    db.query(pendingquery)
+    .then(data => {
+      const result = data.rows;
+
+      if (result.length !== 0) {
+        const tempVars = createtempVars(result);
+        res.render('restaurants', {  result: tempVars,user: templatevars});
+      }
+      else {
+        res.render('restaurants', {  result: null, user:templatevars });
       }
     })
     .catch(err => res.json(err.message));
@@ -39,7 +66,7 @@ module.exports = (db) => {
   return router;
 };
 const createtempVars = function (result) {
-
+  let status ="Pending"
   let ordersArray = [];
   let a = result[0].id;
   let newObj = {}
@@ -60,6 +87,18 @@ const createtempVars = function (result) {
         newObj.quantity = 0;
         orderAlreadyinResult = "old";
         newObj.items = [];
+        if(result[i].accepted_at) {
+          status =`Ready in ${result[i].set_time} minutes`;
+
+          if(result[i].prepared_at) {
+            status =`Ready to pick up`;
+
+            if( result[i].picked_at ) {
+              status ="Delivered";
+            }
+          }
+        }
+        newObj.status = status;
       }
 
       let b = {
