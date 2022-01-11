@@ -33,18 +33,6 @@ $('.customer-order-status').click(() =>{
   $('#orders').prepend(label("Waiting-to-picup",2));
 });
 
-$('#new').click(function(e) {
-    $.ajax({
-      type: "GET",
-      url: "/restaurants/new"
-    });
- });
- $('#previous').click(function(e) {
-  $.ajax({
-    type: "GET",
-    url: "/restaurants/previous"
-  });
-});
 
 
 $('#current').click(function(e) {

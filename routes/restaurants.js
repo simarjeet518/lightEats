@@ -5,9 +5,9 @@ JOIN customers ON customer_id= customers.id
 JOIN menu_items ON menu_items.id = orders_items.menu_item_id
 WHERE  `;
 const pendingquery = `${queryString}  picked_at IS  NULL ORDER BY orders.id ;`;
+const previousquery =`${queryString}  picked_at IS NOT NULL ORDER BY orders.id ;`;
 
-
-module.exports = (router,db) => {
+module.exports = (router, db) => {
 
   router.get("/new", (req, res) => {
 
@@ -19,19 +19,46 @@ module.exports = (router,db) => {
       rest_id,
       name: null
     }
-    db.query(pendingquery)
-    .then(data => {
-      const result = data.rows;
 
-      if (result.length !== 0) {
-        const tempVars = createtempVars(result);
-        res.render('restaurants', {  result: tempVars,user: templatevars});
-      } else {
-        res.render('restaurants', {  result: null, user:templatevars });
-      }
-    })
-    .catch(err => res.json(err.message));
-});
+    db.query(pendingquery)
+      .then(data => {
+        const result = data.rows;
+
+        if (result.length !== 0) {
+          const tempVars = createtempVars(result);
+          res.render('restaurants', { result: tempVars, user: templatevars });
+        } else {
+          res.render('restaurants', { result: null, user: templatevars });
+        }
+      })
+      .catch(err => res.json(err.message));
+  });
+
+
+  router.get("/previous", (req, res) => {
+
+    const rest_id = req.session.rest_id;
+    if (!rest_id) {
+      return res.redirect("/");
+    }
+    const templatevars = {
+      rest_id,
+      name: null
+    }
+
+    db.query(previousquery)
+      .then(data => {
+        const result = data.rows;
+
+        if (result.length !== 0) {
+          const tempVars = createtempVars(result);
+          res.render('restaurants', { result: tempVars, user: templatevars });
+        } else {
+          res.render('restaurants', { result: null, user: templatevars });
+        }
+      })
+      .catch(err => res.json(err.message));
+  });
 
 
 
@@ -47,26 +74,26 @@ module.exports = (router,db) => {
       name: null
     }
     db.query(pendingquery)
-    .then(data => {
-      const result = data.rows;
+      .then(data => {
+        const result = data.rows;
 
-      if (result.length !== 0) {
-        const tempVars = createtempVars(result);
-        res.render('restaurants', {  result: tempVars,user: templatevars});
-      }
-      else {
-        res.render('restaurants', {  result: null, user:templatevars });
-      }
-    })
-    .catch(err => res.json(err.message));
-});
+        if (result.length !== 0) {
+          const tempVars = createtempVars(result);
+          res.render('restaurants', { result: tempVars, user: templatevars });
+        }
+        else {
+          res.render('restaurants', { result: null, user: templatevars });
+        }
+      })
+      .catch(err => res.json(err.message));
+  });
 
 
 
   return router;
 };
 const createtempVars = function (result) {
-  let status ="Pending"
+  let status = "Pending"
   let ordersArray = [];
   let a = result[0].id;
   let newObj = {}
@@ -78,8 +105,8 @@ const createtempVars = function (result) {
       if (orderAlreadyinResult === "new") {
         newObj.id = result[i].id;
         newObj.created_at = result[i].created_at.toString().substring(0, 21);
-        if(result[i].picked_at !== null){
-        newObj.picked_at = result[i].picked_at.toString().substring(0, 21);
+        if (result[i].picked_at) {
+          newObj.picked_at = result[i].picked_at.toString().substring(0, 21);
         }
         newObj.phone = result[i].phone;
         newObj.customer_name = result[i].customer_name;
@@ -87,18 +114,19 @@ const createtempVars = function (result) {
         newObj.quantity = 0;
         orderAlreadyinResult = "old";
         newObj.items = [];
-        if(result[i].accepted_at) {
-          status =`Ready in ${result[i].set_time} minutes`;
+        if (result[i].accepted_at) {
+          status = `Ready in ${result[i].set_time} minutes`;
 
-          if(result[i].prepared_at) {
-            status =`Ready to pick up`;
+          if (result[i].prepared_at) {
+            status = `Ready to pick up`;
 
-            if( result[i].picked_at ) {
-              status ="Delivered";
+            if (result[i].picked_at) {
+              status = "Delivered";
             }
           }
         }
         newObj.status = status;
+        newObj.set_time =result[i].set_time;
       }
 
       let b = {

@@ -4,14 +4,16 @@
 <head>
   <title>Home Page</title>
   <%- include('partials/_scripts') %>
- <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
 
-  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 
-  <link rel="stylesheet" href="/styles/restaurant.css" type="text/css" />
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
-  <script type="text/javascript" src="/scripts/order-listings.js"></script>
+    <link rel="stylesheet" href="/styles/restaurant.css" type="text/css" />
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+
+    <script type="text/javascript" src="/scripts/allOrders.js"></script>
+    <script type="text/javascript" src="/scripts/order-listings.js"></script>
 
 </head>
 
@@ -19,55 +21,74 @@
 
   <main>
     <%- include('partials/_header') %>
-    <div id="orders-body-container">
-      <section id="order-status-buttons">
-        <form action="restaurants/new" method="get">
-        <button id="new"> New</button></form>
-        <form action="restaurants/previous" method="get">
-        <button id="previous">Previous</button>
-      </form>
-      </section>
-      <article id="customer-orders">
-      <div id ="order-boxes">
-        <%if(result){ %>
-          <% for(let item of result) {%>
-            <div id = "single-order-desc">
-              <div id="orders">
+      <div id="orders-body-container">
+        <section id="order-status-buttons">
+          <form action="/restaurants/new" method="get">
+            <button id="new"> New</button>
+          </form>
+          <form action="/restaurants/previous" method="get">
+            <button id="previous">Previous</button>
+          </form>
+        </section>
+        <article id="customer-orders">
+          <div id="order-boxes">
+            <%if(result){ %>
+              <% for(let item of result) {%>
+                <div id="single-order-desc">
+                  <div id="orders">
+                    <% if(item.status==="Pending" ) {%>
+                      <p id="set-time">
+                        <span id="a">Set time</span>&nbsp;
+                        <button id="btn" class="dec">-</button>
+                        &nbsp;&nbsp;
+                        <input type="text" id="qty-box" value=2>
+                        &nbsp;&nbsp;
+                        <button id="btn" class="inc">+</button>
+                        <button id="button-set-order-time"> Accept </button>
+                      </p>
+                      <%} %>
+                        <% if(item.status === `Ready in ${item.set_time} minutes` ) {%>
 
-              <p id="set-time">
-                <span id="a">Set time</span>&nbsp;
-                <button id="btn" class="dec">-</button>
-                &nbsp;&nbsp;
-                <input type="text" id="qty-box" value=1>
-                &nbsp;&nbsp;
-                <button id="btn" class="inc">+</button>
+                        <%} %>
+                        <% if(item.status === "Ready to pick up" ) {%>
 
-                <button id="button-set-order-time"> Accept </button>
+                          <%} %>
+                          <% if(item.status === "Delivered" ) {%>
+                            <label id="customer-order-status-label"><%=item.status %></label>
+                            <%} %>
+                            <p class="b-desc">Time:<%=item.created_at%>
+                            </p>
+                            <%if(item.picked_at){ %>
+                              <p class="b-desc">Delieverd:<%=item.picked_at%>
+                              </p>
+                              <% }%>
+                                <p class="b-desc">Order Number:<%=` ${item.id}` %>
+                                </p>
+                                <p class="b-desc">Name : <%=item.customer_name %>
+                                </p>
+                                <p class="b-desc">Total items :<%=` ${item.quantity}`%>
+                                </p><br />
+                                <div>
 
-              </p>
+                                  <%for(let value of item.items){ %>
+                                    <p class="b-desc">
+                                      <%=value.quantity %>&#215; <%=value.item_name %><span id="left-place">$
+                                            <%=value.price%></span>
+                                    </p>
+                                    <%} %>
+                                </div>
+                  </div>
 
-              <p class = "b-desc">Time:<%=item.created_at%></p>
-              <p class = "b-desc">Order Number:<%=` ${item.id}` %></p>
-              <p class = "b-desc">Name : <%=item.customer_name %></p>
-              <p class = "b-desc">Total items :<%=` ${item.quantity}`%></p><br />
-              <div>
-
-                <%for(let value of item.items){ %>
-                  <p class = "b-desc"><%=value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%=value.price%></span></p>
-              <%} %>
-            </div>
-              </div>
-
-              <span id="order-total">
-                <span></span>
-              <p class = "b-desc" id="very-last-item">Order Total: $<%=item.order_total %>&nbsp;&nbsp;</p>
-              </span>
-            </div>
-         <%}%>
-        <%} %>
-        </div>
-      </article>
-    </div>
+                  <span id="order-total">
+                    <span></span>
+                    <p class="b-desc" id="very-last-item">Order Total: $<%=item.order_total %>&nbsp;&nbsp;</p>
+                  </span>
+                </div>
+                <%}%>
+                  <%} %>
+          </div>
+        </article>
+      </div>
 
 
   </main>
