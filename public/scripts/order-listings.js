@@ -17,21 +17,6 @@ $(document).ready(function() {
     $('#qty-box').val(value);
   });
 
-  const label =(text,num) =>{
-   let tag =` <button id="customer-order-status${num}" class="customer-order-status">${text}</button>`
-   return tag;
-  }
-  //click on accept-button
-$('#button-set-order-time').click(() =>{
-  $('#set-time').remove();
-   $('#orders').prepend(label("Preparing",1));
-});
-
-$('.customer-order-status').click(() =>{
-  console.log('click');
-  $('.customer-order-status').remove();
-  $('#orders').prepend(label("Waiting-to-picup",2));
-});
 
 
 

@@ -88,30 +88,52 @@ body {
 
 
    }
+
+   #customer-order-status-label{
+
+    background-color: white;
+    display:block;
+    text-align: center;
+    font-size:1.5em;
+    height:30px;
+    margin-left:15px;
+    margin-right: 30px;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    margin-top: 1px;
+ }
    #btn {
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    border: 2px black solid;
    background-color: rgb(201, 200, 200);
   }
   #a {
     padding:5px;
     font-size: 1.2em;
   }
+  #order-id{
+  visibility: hidden;
+  width:0;
+  }
   #qty-box {
     width:40px;
+    padding: 2px;
     text-align: center;
+    margin-left: 6px;
+    margin-right: 6px;
   }
-
-  #set-time {
+  form {
     display: flex;
-    justify-content: flex-start;
+  }
+  #set-time {
+    margin-top: 0;
+    display: flex;
   }
 
   #button-set-order-time{
     border-radius: 7px;
-    margin-left:15px;
+    margin-left:10px;
     width:95px;
     font-size: 1.2em;
   }

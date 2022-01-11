@@ -23,7 +23,7 @@
     <%- include('partials/_header') %>
       <div id="orders-body-container">
         <section id="order-status-buttons">
-          <form action="/restaurants/new" method="get">
+          <form action="/restaurants/new"  method="get">
             <button id="new"> New</button>
           </form>
           <form action="/restaurants/previous" method="get">
@@ -38,20 +38,29 @@
                   <div id="orders">
                     <% if(item.status==="Pending" ) {%>
                       <p id="set-time">
-                        <span id="a">Set time</span>&nbsp;
+                        <form action="/restaurants/new" method="post">
+                        <span id="a">Set Time</span>
+                        <input type="text" id="order-id" name ="order-id" value="<%=item.id %>">
                         <button id="btn" class="dec">-</button>
-                        &nbsp;&nbsp;
-                        <input type="text" id="qty-box" value=2>
-                        &nbsp;&nbsp;
+                        <input type="text" id="qty-box" name ="qty" value=2>
+
                         <button id="btn" class="inc">+</button>
+
                         <button id="button-set-order-time"> Accept </button>
+                        </form>
                       </p>
                       <%} %>
                         <% if(item.status === `Ready in ${item.set_time} minutes` ) {%>
-
+                          <form action="/restaurants/new" method="post">
+                          <input type="text" id="order-id" name ="order-id" value="<%=item.id %>">
+                          <button id="preparing" class="customer-order-status">Preparing</button>
+                          </form>
                         <%} %>
                         <% if(item.status === "Ready to pick up" ) {%>
-
+                          <form action="/restaurants/new" method="post">
+                          <input type="text" id="order-id" name ="order-id" value="<%=item.id %>">
+                          <button id="waiting-to-pick-up" class="customer-order-status">Waiting to pick up</button>
+                        </form>
                           <%} %>
                           <% if(item.status === "Delivered" ) {%>
                             <label id="customer-order-status-label"><%=item.status %></label>
@@ -61,7 +70,7 @@
                             <%if(item.picked_at){ %>
                               <p class="b-desc">Delieverd:<%=item.picked_at%>
                               </p>
-                              <% }%>
+                            <% }%>
                                 <p class="b-desc">Order Number:<%=` ${item.id}` %>
                                 </p>
                                 <p class="b-desc">Name : <%=item.customer_name %>
