@@ -3,7 +3,6 @@ const { idleTimeoutMillis } = require("pg/lib/defaults");
 const router = express.Router();
 //const createtempVars = require("/lightEats/helpers/")
 
-
 const queryString =` SELECT  orders.created_at , orders.id ,customers.name as customer_name ,orders.order_total,menu_items.name,menu_items.price,orders_items.quantity
 FROM orders
 JOIN orders_items ON orders.id = orders_items.order_id
@@ -12,28 +11,29 @@ JOIN menu_items ON menu_items.id = orders_items.menu_item_id
 WHERE customer_id = $1
 ORDER BY orders.id ;`;
 
-
 module.exports = (db) => {
+
   router.get("/:user_id", (req, res) => {
-     db.query(queryString,[req.params.user_id])
+    //checl login
+    const user = req.session.user;
+    const user_id = req.params.user_id;
+    if ( user.id != user_id) {
+      return res.redirect("/");
+    }
+    db.query(queryString, [user_id])
     .then(data => {
       const result = data.rows;
-     if(result.length !==0){
-
-     const tempVars = createtempVars(result);
-     res.render('orders', {id:2 ,user_id:2,username:"simar",result:tempVars});
-   }
-   else {
-    res.render('orders', {id:2 ,result:null});
-   }
+      if (result.length !== 0) {
+      const tempVars = createtempVars(result);
+      res.render('orders', {user, result:tempVars});
+      } else {
+        res.render('orders', {id:2 ,result:null});
+      }
     })
     .catch(err => res.json(err.message));
   });
   return router;
 };
-
-
-
 
 const createtempVars= function(result) {
 
@@ -43,7 +43,7 @@ const createtempVars= function(result) {
   let orderAlreadyinResult ="new"
   for(let i=0; i<result.length;i++)
    {
-  
+
      if(a === result[i].id){
 
        if(orderAlreadyinResult==="new"){

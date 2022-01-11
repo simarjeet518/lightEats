@@ -9,7 +9,7 @@ module.exports = (db) => {
     }
     const templatevars = {
       rest_id,
-      user_id: null
+      user: null
     }
     res.render('restaurants', templatevars);
   });
@@ -43,12 +43,6 @@ module.exports = (db) => {
       res.json(err.message);
     })
   });
-
-  //for owner login
-  // router.post("/:restaurant_id", (req, res) => {
-  //   const restaurant_id = req.params.restaurant_id;
-  //   res.redirect(`/restaurant/${restaurant_id}`);
-  // });
 
   return router;
 };
