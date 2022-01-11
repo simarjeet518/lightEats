@@ -44,6 +44,6 @@ $(() => {
   }
   $("#cart-summary button").on("click", () => {
     Cookies.set("user", JSON.stringify(cart));
-  })
+  });
 });
 

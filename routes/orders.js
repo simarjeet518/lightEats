@@ -19,7 +19,7 @@ module.exports = (db) => {
     if (user) {
       user = JSON.parse(user);
     }
-    const user_id = req.cookies["user_id"];
+    const user_id = req.params.user_id;
     if ( !user || user.id != user_id) {
       return res.redirect("/");
     }
