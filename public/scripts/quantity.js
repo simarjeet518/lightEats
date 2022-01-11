@@ -9,7 +9,6 @@ $(() => {
     let pricePerItem = variables.data.perPrice;
     let a = $('#qty-box' + idx).val();
 
-
     if (a && a >= 0) {
       a++;
       let subTotal = 0;
@@ -38,23 +37,17 @@ $(() => {
 
   };
 
-
-  for (let i = 0; i < 6; i++) {
-
-    $(".inc" + i).on('click', {index:i, perPrice: Number($('#val' + i).text())}, addition);
-    $(".dec" + i).on('click', {index:i, perPrice: Number($('#val' + i).text())}, subtract);
-
+  for (let i = 0; i < 7; i++) {
+    $(".inc" + i).on('click', {index:i, perPrice: Number($('#ppi' + i).text())}, addition);
+    $(".dec" + i).on('click', {index:i, perPrice: Number($('#ppi' + i).text())}, subtract);
   }
 
-
 });
-
 
 const updateSubTotal = () => {
   let addsum = 0;
   let cents = 0;
   for (let k = 0; k < 7; k++) {
-
     addsum += Number($('#val' + k).text());
   }
   $('#subtotal').text(addsum.toFixed(2));
@@ -62,7 +55,11 @@ const updateSubTotal = () => {
 
 const loadOnCents = () => {
   for (let k = 0; k < 7; k++) {
-    cents = Number($('#val' + k).text()) / 100;
-    $('#val' + k).text(cents);
+    let p = Number($('#ppi' + k).text()) / 100;
+    $('#ppi' + k).text(p.toFixed(2));
+
+    let c = Number($('#qty-box' + k).val());
+    cents = c * Number($('#val' + k).text()) / 100;
+    $('#val' + k).text(cents.toFixed(2));
   }
 };
