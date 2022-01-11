@@ -3,11 +3,11 @@ const router = express.Router();
 
 module.exports = () => {
   router.post("/users", (req, res) => {
-    req.session.user = null;
+    res.clearCookie("user");
     res.redirect("/");
   });
   router.post("/restaurants", (req, res) => {
-    req.session.rest_id = null;
+    res.clearCookie("rest_id");
     res.redirect("/");
   });
   return router;

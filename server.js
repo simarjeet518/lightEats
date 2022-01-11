@@ -4,7 +4,8 @@ require("dotenv").config();
 // Web server config
 const PORT = process.env.PORT || 8080; //anyway I still prefer 8080
 const sassMiddleware = require("./lib/sass-middleware");
-const cookieSession = require("cookie-session");
+// const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -18,7 +19,7 @@ db.connect(() => {
 });
 
 app.set("view engine", "ejs");
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));//based on body-parser
 app.use(
   "/styles",
@@ -29,10 +30,12 @@ app.use(
   })
 );
 app.use(express.static("public"));
-app.use(cookieSession({
-  name: 'session',
-  keys: ["lightEasts", "allenKevinSimar"]
-}));
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: ["lightEasts", "allenKevinSimar"],
+//   httpOnly: false
+// }));
+app.use(cookieParser());
 
 // Separated Routes for each Resource
 const loginRoutes = require("./routes/login");
@@ -54,7 +57,11 @@ app.use("/logout/", logoutRoutes());
 
 // Home page
 app.get("/", (req, res) => {
-  const user = req.session.user;
+  //const user = req.session.user;
+  let user = req.cookies["user"];
+  if (user) {
+    user = JSON.parse(user);
+  }
   db.query(`
   SELECT restaurants.*, menu_items.name AS item_name, price, image_url
   FROM menu_items
