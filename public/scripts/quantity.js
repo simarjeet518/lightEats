@@ -2,6 +2,7 @@
 
 $(document).ready(()=> {
   updateSubTotal();
+  // const cart = JSON.parse(Cookies.get("user"));
 
   $('.opt-btn').on('click', function () {
     const type = $(this).attr('data-type');
@@ -15,8 +16,13 @@ $(document).ready(()=> {
       iPrice.text((unitPrice * currentQuantity).toFixed(2));
     }
     updateSubTotal();
-
+    Cookies.set("user", JSON.stringify(cart));
   });
+
+  $("#button-set-add-more").on("click", () => {
+    Cookies.set("user", JSON.stringify(cart));
+  });
+
 });
 
 const updateSubTotal = ()=>{
@@ -27,3 +33,4 @@ const updateSubTotal = ()=>{
 
   $("#subtotal").text(subTotal.toFixed(2));
 };
+
