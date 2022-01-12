@@ -9,24 +9,11 @@ WHERE customer_id = $1`;
 
 module.exports = (router, db) => {
 
-  router.get("/:user_id", (req, res) => {
-    //checl login
-    let user = req.cookies["user"];
-    if (user) {
-      user = JSON.parse(user);
-    }
-    const user_id = req.params.user_id;
-    if ( !user || user.id != user_id) {
-      return res.redirect("/");
-    }
-    db.query(queryString, [user_id])
-    .then(data => {
-      const result = data.rows;
-      if (result.length !== 0) {
-      const tempVars = createtempVars(result);
-      res.render('orders', {user, result:tempVars});
-  router.get("/current", (req, res) => {
-    const user = req.session.user;
+    router.get("/current", (req, res) => {
+      let user = req.cookies["user"];
+      if (user) {
+        user = JSON.parse(user);
+      }
     const user_id = user.id
     console.log(user);
     db.query(pendingquery, [user_id])
@@ -47,7 +34,10 @@ module.exports = (router, db) => {
 
 
   router.get("/past", (req, res) => {
-    const user = req.session.user;
+    let user = req.cookies["user"];
+    if (user) {
+      user = JSON.parse(user);
+    }
     const user_id = user.id
     db.query(completedquery, [user_id])
       .then(data => {
@@ -74,7 +64,10 @@ module.exports = (router, db) => {
   router.get("/:user_id", (req, res) => {
     // checl login
 
-    const user = req.session.user;
+    let user = req.cookies["user"];
+    if (user) {
+      user = JSON.parse(user);
+    }
     const user_id = user.id;
 
     db.query(pendingquery, [user_id])
@@ -94,9 +87,11 @@ module.exports = (router, db) => {
 
 
 
-
+return router;
 
 }
+
+
 const createtempVars = function (result) {
   let status ="Pending"
   let ordersArray = [];
