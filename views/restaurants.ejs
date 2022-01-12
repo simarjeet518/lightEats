@@ -44,7 +44,7 @@
                         <button type="button" class="btn" class="dec">-</button>
                         <input type="text" id="qty-box" name ="qty" value=2>
 
-                        <button type="button" class="btn" class="inc">+</button>
+                        <button type"button"  class="btn" class="inc">+</button>
 
                         <button type="submit"  class="button-set-order-time"> Accept </button>
                         </form>
@@ -59,7 +59,7 @@
                         <% if(item.status === "Ready to pick up" ) {%>
                           <form  id="waiting-to-pick-up" action="/restaurants/new/update_status3" method="post">
                           <input type="text" id="order-id" name ="order_id" value="<%=item.id %>">
-                          <button type="submit"class="customer-order-status">Waiting to pick up</button>
+                          <button type="submit" class="customer-order-status">Waiting to pick up</button>
                         </form>
                           <%} else  %>
                           <% if(item.status === "Delivered" ) {%>
