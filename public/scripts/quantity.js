@@ -15,14 +15,8 @@ $(document).ready(()=> {
       iPrice.text((unitPrice * currentQuantity).toFixed(2));
     }
     updateSubTotal();
-    //update hidden fields for submit
 
   });
-
-  //insert variables
-
-  $('#button-set-order-time').on('click', submitOrder);
-
 });
 
 const updateSubTotal = ()=>{
@@ -32,17 +26,4 @@ const updateSubTotal = ()=>{
   });
 
   $("#subtotal").text(subTotal.toFixed(2));
-};
-
-const submitOrder = () => {
-
-  const subtotal = $("#subtotal").text() * 100;
-  console.log(subtotal);
-
-  $('.cart-box-item').each(() => {
-    const itemQnt = $(this).closest('.cart-box-item').find('.qty-box');
-    console.log(itemQnt.val());
-  });
-
-
 };

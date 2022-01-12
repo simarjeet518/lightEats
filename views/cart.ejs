@@ -22,7 +22,7 @@
       <div id = "cart-box">
       <h2>Shopping cart: </h2>
 
-          <% cart.items.forEach((item, i) => { %>
+        <% cart.items.forEach((item, i) => { %>
 
         <div class = "cart-box-item">
           <img src = <%= item.img %> alt="img" >
@@ -30,19 +30,19 @@
           <div id = "name-and-ppi">
             <p class = "p-desc cart-item"><%= item.name %></p>
             <div class="dollar-price-each">
-              <p class = "small-text">$</p>
-              <p class = "ppi cart-price"> <%= (item.price / 100).toFixed(2) %></p>
-              <p class = "small-text">&nbsp; each</p>
+            <p class = "small-text">$</p>
+            <p class = "ppi cart-price"> <%= (item.price / 100).toFixed(2) %></p>
+            <p class = "small-text">&nbsp; each</p>
             </div>
           </div>
 
           <div class = "cart-quantity-box">
             <input class ="item-id" name = "id-<%= i %>" value = "<%=item.id %>" type="hidden">
-              <button type="button" class="opt-btn" data-type="minus"> -</button>
-              &nbsp;
-              <input name = "number-<%= i %>" type="text" class="qty-box" value=<%= item.number %> >
-              &nbsp;
-              <button type="button" class="opt-btn" data-type="plus">+</button>
+            <button type="button" class="opt-btn" data-type="minus"> -</button>
+            &nbsp;
+            <input name = "number-<%= i %>" type="text" class="qty-box" value=<%= item.number %> >
+            &nbsp;
+            <button type="button" class="opt-btn" data-type="plus">+</button>
           </div>
           <div class = "price" >
             <p class = "p-desc">$</p>
@@ -69,4 +69,3 @@
 </body>
 
 </html>
-

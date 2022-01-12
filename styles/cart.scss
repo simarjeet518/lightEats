@@ -43,7 +43,7 @@ body {
   margin: 5px;
 }
 
-#cart-quantity-box {
+.cart-quantity-box {
   display: flex;
   align-items: center;
 }
@@ -99,7 +99,7 @@ hr {
   margin-right: 10px;
 }
 
-#price {
+.price {
   display: flex;
   justify-content: end;
   width: 70px;
