@@ -1,17 +1,22 @@
-$('.dec').on('click',()=>{
-  let value = $('#qty-box').val();
+$(document).ready(function() {
+
+
+  $('.dec').on('click',function(e){
+  e.preventDefault();
+  let value = $(this).parent('form').find('.qty-box').val();
   if(value >= 1){
   value--;
   }
-  $('#qty-box').val(value);
+  console.log("value:",value);
+  $(this).parent('form').find('.qty-box').val(value);
 });
 
 //set time increment
-$('.inc').on('click',()=>{
-  console.log(Date.now());
-  let value = $('#qty-box').val();
+$('.inc').on('click',function(e){
+  e.preventDefault();
+  let value = $('.qty-box').val();
   value++;
-  $('#qty-box').val(value);
+  $('.qty-box').val(value);
 });
 
 
@@ -30,16 +35,14 @@ $.ajax({
   url: "/restaurants/previous"
 });
 });
-$(form).on('submit',function(e){
-  e.preventDefault();
-})
 
-$('.button-set-order-time').click(function(e) {
+
+$('#button-set-order-time').on('submit',function(e) {
   e.preventDefault();
   const formData = $(this).serialize();
   $.ajax({
     type: "POST",
-    url: "/restaurants/new/update_status1"
+    url: "/restaurants/new/accepted"
 
   });
 });
@@ -50,7 +53,7 @@ $('#preparing').on('submit',function(e) {
   console.log(formData);
   $.ajax({
     type: "POST",
-    url: "/restaurants/new/update_status2"
+    url: "/restaurants/new/ready"
   });
 });
 
@@ -59,6 +62,7 @@ $('#waiting-to-pick-up').on('submit',function(e) {
   const formData = $(this).serialize();
   $.ajax({
     type: "POST",
-    url: "/restaurants/new/update_status3"
+    url: "/restaurants/new/delivered"
   });
+});
 });

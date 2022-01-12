@@ -1,6 +1,12 @@
 // to load current orders  and past orders
 $(document).ready(function() {
-//set-time decrement
+
+
+
+// setTimeout(function(){
+//   window.location.reload(1);
+// }, 1000);
+
 
 $('#current').click(function(e) {
     $.ajax({

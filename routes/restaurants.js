@@ -5,7 +5,7 @@ JOIN customers ON customer_id= customers.id
 JOIN menu_items ON menu_items.id = orders_items.menu_item_id
 WHERE  `;
 const pendingquery = `${queryString}  picked_at IS  NULL ORDER BY orders.id ;`;
-const previousquery =`${queryString}  picked_at IS NOT NULL ORDER BY orders.id ;`;
+const previousquery = `${queryString}  picked_at IS NOT NULL ORDER BY orders.id ;`;
 
 module.exports = (router, db) => {
 
@@ -23,9 +23,10 @@ module.exports = (router, db) => {
     db.query(pendingquery)
       .then(data => {
         const result = data.rows;
-
+        console.log("result", result);
         if (result.length !== 0) {
           const tempVars = createtempVars(result);
+          console.log(tempVars);
           res.render('restaurants', { result: tempVars, user: templatevars });
         } else {
           res.render('restaurants', { result: null, user: templatevars });
@@ -88,57 +89,89 @@ module.exports = (router, db) => {
       .catch(err => res.json(err.message));
   });
 
-  router.post("/new/update_status1", (req, res) => {
+
+  router.post("/new/accepted", (req, res) => {
     console.log(req.body);
     const order_id = Number(req.body.order_id);
-   console.log(typeof(order_id));
+    console.log(typeof (order_id));
     const set_time = req.body.qty;
     const queryString = `UPDATE  orders SET accepted_at=$1, set_time=$2  WHERE id =$3;`;
-    db.query(queryString,[new Date(),set_time,order_id])
-    .then(()=>{
-      res.redirect("/restaurants/new");
-    })
-    .catch(err => res.json(err.message));
+    db.query(queryString, [new Date(), set_time, order_id])
+      .then(() => {
+        res.redirect("/restaurants/new");
+      })
+      .catch(err => res.json(err.message));
   });
 
-  router.post("/new/update_status2", (req, res) => {
+
+  router.post("/new/ready", (req, res) => {
     console.log(req.body);
     const order_id = Number(req.body.order_id);
-   
+
     const set_time = req.body.qty;
     const queryString = `UPDATE  orders SET prepared_at=$1 WHERE id =$2;`;
-    db.query(queryString,[new Date(),order_id])
-    .then(()=>{
-      res.redirect("/restaurants/new");
-    })
-    .catch(err => res.json(err.message));
+    db.query(queryString, [new Date(), order_id])
+      .then(() => {
+        res.redirect("/restaurants/new");
+      })
+      .catch(err => res.json(err.message));
   });
 
-  router.post("/new/update_status3", (req, res) => {
+
+  router.post("/new/delivered", (req, res) => {
     console.log(req.body);
     const order_id = Number(req.body.order_id);
 
     const set_time = req.body.qty;
     const queryString = `UPDATE  orders SET picked_at=$1 WHERE id =$2;`;
-    db.query(queryString,[new Date(),order_id])
-    .then(()=>{
-      res.redirect("/restaurants/new");
-    })
-    .catch(err => res.json(err.message));
+    db.query(queryString, [new Date(), order_id])
+      .then(() => {
+        res.redirect("/restaurants/new");
+      })
+      .catch(err => res.json(err.message));
   });
 
   return router;
 };
 
+// const parsedata = function (result) {
+//   let orders = {};
+
+//   for (let i = 0; i < result.length; i++) {
+//     let orderId = result[i].id;    //1
+//     if (!orders[orderId]) {
+//       orders[orderId] = {
+//         id: orderId,
+//         phone: result[i].phone,
+//         customer_name: result[i].customer_name,
+//         order_total: (result[i].order_total / 100).toFixed(2),
+//         quantity: 0,
+//         items: [],
+
+//       }
+//     }
+//     orders[orderId].items.push({name:result[i].name,quantity:result[i].quantity})
+//     orders[orderId].qunatity += result[i].quantity;
+
+
+//   }
+//   return orders;
+// }
+
+
+
+
+
+
 const createtempVars = function (result) {
   let status = "Pending"
   let ordersArray = [];
-  let a = result[0].id;
+  let a = result[0].id;         //7
   let newObj = {}
   let orderAlreadyinResult = "new"
   for (let i = 0; i < result.length; i++) {
 
-    if (a === result[i].id) {
+    if (a === result[i].id) {    //prevois a=1
 
       if (orderAlreadyinResult === "new") {
         newObj.id = result[i].id;
@@ -164,7 +197,7 @@ const createtempVars = function (result) {
           }
         }
         newObj.status = status;
-        newObj.set_time =result[i].set_time;
+        newObj.set_time = result[i].set_time;
       }
 
       let b = {
@@ -180,9 +213,9 @@ const createtempVars = function (result) {
     }
     else {
 
-      ordersArray.push(newObj)
+      ordersArray.push(newObj)   //temvars {ohasname,phoen, { coffw:1 }}
       newObj = {};
-      a = result[i].id;
+      a = result[i].id;     //8
       orderAlreadyinResult = "new";
       i--;
     }
