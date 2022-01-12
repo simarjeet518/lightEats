@@ -14,28 +14,35 @@ $.ajax({
   url: "/restaurants/previous"
 });
 });
+$(form).on('submit',function(e){
+  e.preventDefault();
+})
 
-$('#button-set-order-time').click(function(e) {
-  e.preventDefault()
+$('.button-set-order-time').click(function(e) {
+  e.preventDefault();
+  const formData = $(this).serialize();
   $.ajax({
     type: "POST",
-    url: "/restaurants/new"
+    url: "/restaurants/new/update_status1"
 
   });
 });
 
-$('#preparing').click(function(e) {
-  e.preventDefault()
+$('#preparing').on('submit',function(e) {
+  e.preventDefault();
+  const formData = $(this).serialize();
+  console.log(formData);
   $.ajax({
     type: "POST",
-    url: "/restaurants/new"
+    url: "/restaurants/new/update_status2"
   });
 });
 
-$('#waiting-to-pick-up').click(function(e) {
-  e.preventDefault()
+$('#waiting-to-pick-up').on('submit',function(e) {
+  e.preventDefault();
+  const formData = $(this).serialize();
   $.ajax({
     type: "POST",
-    url: "/restaurants/new"
+    url: "/restaurants/new/update_status3"
   });
 });

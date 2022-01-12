@@ -38,30 +38,30 @@
                   <div id="orders">
                     <% if(item.status==="Pending" ) {%>
                       <p id="set-time">
-                        <form action="/restaurants/new" method="post">
+                        <form  action="/restaurants/new/update_status1" method="post">
                         <span id="a">Set Time</span>
-                        <input type="text" id="order-id" name ="order-id" value="<%=item.id %>">
-                        <button id="btn" class="dec">-</button>
+                        <input type="text" id="order-id" name ="order_id" value="<%=item.id %>">
+                        <button type="button" class="btn" class="dec">-</button>
                         <input type="text" id="qty-box" name ="qty" value=2>
 
-                        <button id="btn" class="inc">+</button>
+                        <button type="button" class="btn" class="inc">+</button>
 
-                        <button id="button-set-order-time"> Accept </button>
+                        <button type="submit"  class="button-set-order-time"> Accept </button>
                         </form>
                       </p>
                       <%} %>
                         <% if(item.status === `Ready in ${item.set_time} minutes` ) {%>
-                          <form action="/restaurants/new" method="post">
-                          <input type="text" id="order-id" name ="order-id" value="<%=item.id %>">
-                          <button id="preparing" class="customer-order-status">Preparing</button>
+                          <form  id="preparing" action="/restaurants/new/update_status2" method="post">
+                          <input type="text" id="order-id" name ="order_id" value="<%=item.id %>">
+                          <button type="submit" class="customer-order-status">Preparing</button>
                           </form>
-                        <%} %>
+                        <%} else %>
                         <% if(item.status === "Ready to pick up" ) {%>
-                          <form action="/restaurants/new" method="post">
-                          <input type="text" id="order-id" name ="order-id" value="<%=item.id %>">
-                          <button id="waiting-to-pick-up" class="customer-order-status">Waiting to pick up</button>
+                          <form  id="waiting-to-pick-up" action="/restaurants/new/update_status3" method="post">
+                          <input type="text" id="order-id" name ="order_id" value="<%=item.id %>">
+                          <button type="submit"class="customer-order-status">Waiting to pick up</button>
                         </form>
-                          <%} %>
+                          <%} else  %>
                           <% if(item.status === "Delivered" ) {%>
                             <label id="customer-order-status-label"><%=item.status %></label>
                             <%} %>

@@ -88,10 +88,48 @@ module.exports = (router, db) => {
       .catch(err => res.json(err.message));
   });
 
+  router.post("/new/update_status1", (req, res) => {
+    console.log(req.body);
+    const order_id = Number(req.body.order_id);
+   console.log(typeof(order_id));
+    const set_time = req.body.qty;
+    const queryString = `UPDATE  orders SET accepted_at=$1, set_time=$2  WHERE id =$3;`;
+    db.query(queryString,[new Date(),set_time,order_id])
+    .then(()=>{
+      res.redirect("/restaurants/new");
+    })
+    .catch(err => res.json(err.message));
+  });
 
+  router.post("/new/update_status2", (req, res) => {
+    console.log(req.body);
+    const order_id = Number(req.body.order_id);
+   
+    const set_time = req.body.qty;
+    const queryString = `UPDATE  orders SET prepared_at=$1 WHERE id =$2;`;
+    db.query(queryString,[new Date(),order_id])
+    .then(()=>{
+      res.redirect("/restaurants/new");
+    })
+    .catch(err => res.json(err.message));
+  });
+
+  router.post("/new/update_status3", (req, res) => {
+    console.log(req.body);
+    const order_id = Number(req.body.order_id);
+
+    const set_time = req.body.qty;
+    const queryString = `UPDATE  orders SET picked_at=$1 WHERE id =$2;`;
+    db.query(queryString,[new Date(),order_id])
+    .then(()=>{
+      res.redirect("/restaurants/new");
+    })
+    .catch(err => res.json(err.message));
+  });
 
   return router;
 };
+
 const createtempVars = function (result) {
   let status = "Pending"
   let ordersArray = [];

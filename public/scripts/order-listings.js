@@ -11,7 +11,7 @@ $(document).ready(function() {
 
 //set time increment
   $('.inc').click(()=>{
-
+    console.log(Date.now());
     let value = $('#qty-box').val();
     value++;
     $('#qty-box').val(value);
