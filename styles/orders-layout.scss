@@ -34,8 +34,9 @@ flex-direction: column;
  }
 
  #order-boxes {
-   display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
+    display:grid;
+    grid-gap:23px;
+    grid-template-columns: repeat(auto-fill,minmax(340px,1fr));
    margin-top: 10px;
  }
  #single-order-desc {

@@ -7,7 +7,7 @@ $(document).ready(function() {
   if(value >= 1){
   value--;
   }
-  console.log("value:",value);
+
   $(this).parent('form').find('.qty-box').val(value);
 });
 
@@ -37,8 +37,8 @@ $.ajax({
 });
 
 
-$('#button-set-order-time').on('submit',function(e) {
-  e.preventDefault();
+$('.button-set-order-time').on('submit',function(e) {
+
   const formData = $(this).serialize();
   $.ajax({
     type: "POST",
@@ -47,18 +47,19 @@ $('#button-set-order-time').on('submit',function(e) {
   });
 });
 
-$('#preparing').on('submit',function(e) {
-  e.preventDefault();
+$('.preparing').on('submit',function(e) {
+
+
   const formData = $(this).serialize();
-  console.log(formData);
+
   $.ajax({
     type: "POST",
     url: "/restaurants/new/ready"
   });
 });
 
-$('#waiting-to-pick-up').on('submit',function(e) {
-  e.preventDefault();
+$('.waiting-to-pick-up').on('submit',function(e) {
+  
   const formData = $(this).serialize();
   $.ajax({
     type: "POST",

@@ -33,24 +33,24 @@
       <article id="customer-orders">
       <div id ="order-boxes">
         <%if(result){ %>
-          <% for(let item of result) {%>
+          <% for(let key in result) {%>
             <div id = "single-order-desc">
               <div>
-              <label id="customer-order-status"><%=item.status %></label>
-              <p class = "b-desc">Time:<%=item.created_at%></p>
-              <p class = "b-desc">Order Number:<%=` ${item.id}` %></p>
-              <p class = "b-desc">Name : <%=item.customer_name %></p>
-              <p class = "b-desc">Total items :<%=` ${item.quantity}`%></p><br />
+              <label id="customer-order-status"><%=result[key].status %></label>
+              <p class = "b-desc">Time:<%=result[key].created_at%></p>
+              <p class = "b-desc">Order Number:<%=` ${result[key].id}` %></p>
+              <p class = "b-desc">Name : <%=result[key].customer_name %></p>
+              <p class = "b-desc">Total items :<%=` ${result[key].quantity}`%></p><br />
               <div>
 
-                <%for(let value of item.items){ %>
+                <%for(let value of result[key].items){ %>
                   <p class = "b-desc"><%=value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%=value.price%></span></p>
               <%} %>
             </div>
               </div>
 
               <span id="order-total">
-              <p class = "b-desc" id="very-last-item">Order Total: $<%=item.order_total %></p>
+              <p class = "b-desc" id="very-last-item">Sub Total: $<%=result[key].order_total %></p>
               </span>
             </div>
          <%}%>

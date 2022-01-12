@@ -26,7 +26,7 @@ module.exports = (router, db) => {
         console.log(result);
 
         if (result.length !== 0) {
-          const tempVars = createtempVars(result);
+          const tempVars = parsedata(result);
           res.render('orders', { user: user, result: tempVars });
         }
         else {
@@ -52,7 +52,7 @@ module.exports = (router, db) => {
         if (user_id !== result.customer_id) {
 
           if (result.length !== 0) {
-            const tempVars = createtempVars(result);
+            const tempVars = parsedata(result);
             res.render('orders', { user: user, result: tempVars });
           }
           else {
@@ -85,7 +85,7 @@ module.exports = (router, db) => {
         const result = data.rows;
 
         if (result.length !== 0) {
-        const tempVars = createtempVars(result);
+        const tempVars = parsedata(result);
          res.render('orders', { user: user, result: tempVars });
         }
         else
@@ -102,62 +102,45 @@ module.exports = (router, db) => {
 
 }
 
-
-const createtempVars = function (result) {
-  let status = "Pending"
-  let ordersArray = [];
-  let a = result[0].id;
-  let newObj = {}
-  let orderAlreadyinResult = "new"
+const parsedata = function (result) {
+  let orders = {};
+  let status ="Pending";
+  let date =null;
   for (let i = 0; i < result.length; i++) {
+    let orderId = result[i].id;
+    if (result[i].accepted_at) {
+      status = `Ready in ${result[i].set_time} minutes`;
+    }
+    if (result[i].prepared_at) {
+      status = `Ready to pick up`;
+    }
+   if (result[i].picked_at) {
+          status = "Delivered";
+   }
+    if (result[i].picked_at) {
+      date = result[i].picked_at.toString().substring(0, 21);
+   }
 
-    if (a === result[i].id) {
+    if (!orders[orderId]) {
+        orders[orderId] = {
+        id: orderId,
+        phone: result[i].phone,
+        customer_name: result[i].customer_name,
+        order_total: (result[i].order_total / 100).toFixed(2),
+        quantity: 0,
+        items: [],
+        status:status,
+        created_at:result[i].created_at.toString().substring(0, 21),
+        picked_at: date,
+        set_time: result[i].set_time
 
-      if (orderAlreadyinResult === "new") {
-        newObj.id = result[i].id;
-        newObj.created_at = result[i].created_at.toString().substring(0, 21);
-        newObj.customer_name = result[i].customer_name;
-        newObj.order_total = (result[i].order_total / 100).toFixed(2);
-        newObj.quantity = 0;
-        newObj.phone = result[i].phone;
-        orderAlreadyinResult = "old";
-        newObj.items = [];
-        if (result[i].accepted_at) {
-          status = `Ready in ${result[i].set_time} minutes`;
-
-          if (result[i].prepared_at) {
-            status = `Ready to pick up`;
-
-            if (result[i].picked_at) {
-              status = "Delivered";
-            }
-          }
-        }
-        newObj.status = status;
       }
 
-      let b = {
-        item_name: result[i].name,
-        quantity: result[i].quantity,
-        price: (result[i].price / 100).toFixed(2)
-      }
-      newObj.items.push(b);
-
-      newObj.quantity += result[i].quantity;
-
-
     }
-    else {
+    orders[orderId].items.push({item_name:result[i].name,quantity:result[i].quantity,price:result[i].price})
+    orders[orderId].quantity += result[i].quantity;
 
-      ordersArray.push(newObj)
-      newObj = {};
-      a = result[i].id;
-      orderAlreadyinResult = "new";
-      i--;
-    }
-    if (i === result.length - 1) {
-      ordersArray.push(newObj);
-    }
   }
-  return ordersArray;
+
+  return orders;
 }

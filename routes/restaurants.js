@@ -13,10 +13,7 @@ module.exports = (router, db) => {
   router.get("/new", (req, res) => {
 
     let rest_id = req.cookies["rest_id"];
-    // if (user) {
-    //   user = JSON.parse(user);
-    // }
-    const templatevars = {
+     const templatevars = {
       rest_id,
       name: null
     }
@@ -24,10 +21,8 @@ module.exports = (router, db) => {
     db.query(pendingquery)
       .then(data => {
         const result = data.rows;
-        console.log("result", result);
-        if (result.length !== 0) {
+         if (result.length !== 0) {
           const tempVars = parsedata(result);
-          console.log(tempVars);
           res.render('restaurants', { result: tempVars, user: templatevars });
         } else {
           res.render('restaurants', { result: null, user: templatevars });
@@ -53,7 +48,7 @@ module.exports = (router, db) => {
         const result = data.rows;
 
         if (result.length !== 0) {
-          const tempVars = createtempVars(result);
+          const tempVars = parsedata(result);
           res.render('restaurants', { result: tempVars, user: templatevars });
         } else {
           res.render('restaurants', { result: null, user: templatevars });
@@ -79,7 +74,7 @@ module.exports = (router, db) => {
         const result = data.rows;
 
         if (result.length !== 0) {
-          const tempVars = createtempVars(result);
+          const tempVars = parsedata(result);
           res.render('restaurants', { result: tempVars, user: templatevars });
         }
         else {
@@ -93,7 +88,6 @@ module.exports = (router, db) => {
   router.post("/new/accepted", (req, res) => {
 
     const order_id = Number(req.body.order_id);
-    console.log(typeof (order_id));
     const set_time = req.body.qty;
     const queryString = `UPDATE  orders SET accepted_at=$1, set_time=$2  WHERE id =$3;`;
     db.query(queryString, [new Date(), set_time, order_id])
@@ -108,8 +102,7 @@ module.exports = (router, db) => {
     console.log(req.body);
     const order_id = Number(req.body.order_id);
 
-    const set_time = req.body.qty;
-    const queryString = `UPDATE  orders SET prepared_at=$1 WHERE id =$2;`;
+    const queryString = `UPDATE  orders SET prepared_at=$1 WHERE id =$2 ;`;
     db.query(queryString, [new Date(), order_id])
       .then(() => {
         res.redirect("/restaurants/new");
@@ -121,8 +114,6 @@ module.exports = (router, db) => {
   router.post("/new/delivered", (req, res) => {
     console.log(req.body);
     const order_id = Number(req.body.order_id);
-
-    const set_time = req.body.qty;
     const queryString = `UPDATE  orders SET picked_at=$1 WHERE id =$2;`;
     db.query(queryString, [new Date(), order_id])
       .then(() => {
@@ -136,7 +127,7 @@ module.exports = (router, db) => {
 
 const parsedata = function (result) {
   let orders = {};
-  let status ="pending";
+  let status ="Pending";
   let date =null;
   for (let i = 0; i < result.length; i++) {
     let orderId = result[i].id;
@@ -172,7 +163,6 @@ const parsedata = function (result) {
     orders[orderId].items.push({item_name:result[i].name,quantity:result[i].quantity,price:result[i].price})
     orders[orderId].quantity += result[i].quantity;
 
-
   }
 
   return orders;
@@ -183,64 +173,4 @@ const parsedata = function (result) {
 
 
 
-const createtempVars = function (result) {
-  let status = "Pending"
-  let ordersArray = [];
-  let a = result[0].id;
-  let newObj = {}
-  let orderAlreadyinResult = "new"
-  for (let i = 0; i < result.length; i++) {
 
-    if (a === result[i].id) {    //prevois a=1
-
-      if (orderAlreadyinResult === "new") {
-        newObj.id = result[i].id;
-        newObj.created_at = result[i].created_at.toString().substring(0, 21);
-        if (result[i].picked_at) {
-          newObj.picked_at = result[i].picked_at.toString().substring(0, 21);
-        }
-        newObj.phone = result[i].phone;
-        newObj.customer_name = result[i].customer_name;
-        newObj.order_total = (result[i].order_total / 100).toFixed(2);
-        newObj.quantity = 0;
-        orderAlreadyinResult = "old";
-        newObj.items = [];
-        if (result[i].accepted_at) {
-          status = `Ready in ${result[i].set_time} minutes`;
-
-          if (result[i].prepared_at) {
-            status = `Ready to pick up`;
-
-            if (result[i].picked_at) {
-              status = "Delivered";
-            }
-          }
-        }
-        newObj.status = status;
-        newObj.set_time = result[i].set_time;
-      }
-
-      let b = {
-        item_name: result[i].name,
-        quantity: result[i].quantity,
-        price: (result[i].price / 100).toFixed(2)
-      }
-      newObj.items.push(b);
-
-      newObj.quantity += result[i].quantity;
-
-
-    }
-    else {
-      ordersArray.push(newObj);
-      newObj = {};
-      a = result[i].id;
-      orderAlreadyinResult = "new";
-      i--;
-    }
-    if (i === result.length - 1 ) {
-      ordersArray.push(newObj);
-    }
-  }
-  return ordersArray;
-}
