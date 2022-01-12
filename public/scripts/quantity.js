@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 
 $(document).ready(()=> {
+  updateSubTotal();
 
   $('.opt-btn').on('click', function () {
     const type = $(this).attr('data-type');
@@ -14,14 +15,10 @@ $(document).ready(()=> {
       quantityBox.val(currentQuantity);
       iPrice.text((unitPrice * currentQuantity).toFixed(2));
     }
-
     updateSubTotal();
-
   });
 
-  updateSubTotal();
 });
-
 
 const updateSubTotal = ()=>{
   let subTotal = 0;
@@ -32,7 +29,6 @@ const updateSubTotal = ()=>{
   $("#subtotal").text(subTotal.toFixed(2));
 };
 
-const quantity = () => {
+const submitOrder = () => {
 
-
-}
+};

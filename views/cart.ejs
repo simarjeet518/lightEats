@@ -21,8 +21,7 @@
 
     <div id = "cart-box">
       <h2>Shopping cart: </h2>
-
-       <% cart.items.forEach((item, i) => { %>
+        <% for (let item of cart.items) { %>
 
         <div class = "cart-box-item">
           <img src = <%= item.img %> alt="img" >
@@ -48,7 +47,7 @@
             <p class = "iprice p-desc" ><%= (item.number  * item.price / 100).toFixed(2) %></p>
           </div>
         </div>
-      <% }) %>
+      <% } %>
 
       <hr>
       <div id = "cart-order-total">
