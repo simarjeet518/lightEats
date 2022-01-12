@@ -68,7 +68,7 @@ app.get("/", (req, res) => {
     user = JSON.parse(user);
   }
   db.query(`
-  SELECT restaurants.*, menu_items.name AS item_name, price, image_url
+  SELECT restaurants.*, menu_items.name AS item_name, price, image_url, menu_items.id AS item_id
   FROM menu_items
   JOIN restaurants ON
   restaurants.id = restaurant_id`)

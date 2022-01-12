@@ -47,7 +47,9 @@
         <form action="/" method="get">
           <button id = "button-set-add-more"> Add more </button>
         </form>
-        <button id = "button-set-order-time" onclick="location.href='http://localhost:8080/orders/1'" type="button"> Order </button>
+        <form action="/restaurants/orders/1" method="POST">
+          <button class = "button-set-order-time" type="submit"> Order </button>
+        </form>
       </div>
     </div>
   </div>
