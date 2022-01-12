@@ -4,19 +4,20 @@ JOIN orders_items ON orders.id = orders_items.order_id
 JOIN customers ON customer_id= customers.id
 JOIN menu_items ON menu_items.id = orders_items.menu_item_id
 WHERE customer_id = $1`;
- const pendingquery = `${queryString} AND picked_at IS  NULL ORDER BY orders.id ;`;
- const completedquery = `${queryString} AND picked_at IS NOT NULL ORDER BY orders.id ;`;
+const pendingquery = `${queryString} AND picked_at IS  NULL ORDER BY orders.id ;`;
+const completedquery = `${queryString} AND picked_at IS NOT NULL ORDER BY orders.id ;`;
 
 module.exports = (router, db) => {
 
-    router.get("/current", (req, res) => {
-      let user = req.cookies["user"];
-      if (user) {
-        user = JSON.parse(user);
-      }
-      if(!user){
-        res.redirect("/");
-      }
+  router.get("/current", (req, res) => {
+    let user = req.cookies["user"];
+    if (user) {
+      user = JSON.parse(user);
+    }
+    if (!user) {
+      res.redirect("/");
+    }
+
     const user_id = user.id
     console.log(user);
     db.query(pendingquery, [user_id])
@@ -26,10 +27,10 @@ module.exports = (router, db) => {
 
         if (result.length !== 0) {
           const tempVars = createtempVars(result);
-          res.render('orders', { user:user, result: tempVars });
+          res.render('orders', { user: user, result: tempVars });
         }
         else {
-          res.render('orders', { user:user, result: null });
+          res.render('orders', { user: user, result: null });
         }
       })
       .catch(err => res.json(err.message));
@@ -41,25 +42,25 @@ module.exports = (router, db) => {
     if (user) {
       user = JSON.parse(user);
     }
-    if(!user){
+    if (!user) {
       res.redirect("/");
     }
     const user_id = user.id
     db.query(completedquery, [user_id])
       .then(data => {
         const result = data.rows;
-      if(user_id !== result.customer_id) {
+        if (user_id !== result.customer_id) {
 
-        if (result.length !== 0) {
-          const tempVars = createtempVars(result);
-          res.render('orders', { user:user, result: tempVars});
+          if (result.length !== 0) {
+            const tempVars = createtempVars(result);
+            res.render('orders', { user: user, result: tempVars });
+          }
+          else {
+            res.render('orders', { user: user, result: null });
+          }
+        } else {
+          res.redirect("/");
         }
-        else {
-          res.render('orders', {user:user, result: null});
-        }
-      } else {
-        res.redirect("/");
-      }
       })
       .catch(err => res.json(err.message));
   });
@@ -68,27 +69,28 @@ module.exports = (router, db) => {
 
 
   router.get("/:user_id", (req, res) => {
-    // checl login
 
     let user = req.cookies["user"];
     if (user) {
       user = JSON.parse(user);
-
     }
-    if(!user){
+
+    if (!user) {
       res.redirect("/");
     }
 
+    const user_id = user.id;
     db.query(pendingquery, [user_id])
       .then(data => {
         const result = data.rows;
 
-          if (result.length !== 0) {
-            const tempVars = createtempVars(result);
-
-          res.render('orders', { user:user, result: tempVars });
-        } else {
-          res.render('orders', { user: user, result: null});
+        if (result.length !== 0) {
+        const tempVars = createtempVars(result);
+         res.render('orders', { user: user, result: tempVars });
+        }
+        else
+        {
+          res.render('orders', { user: user, result: null });
         }
       })
       .catch(err => res.json(err.message));
@@ -96,13 +98,13 @@ module.exports = (router, db) => {
 
 
 
-return router;
+  return router;
 
 }
 
 
 const createtempVars = function (result) {
-  let status ="Pending"
+  let status = "Pending"
   let ordersArray = [];
   let a = result[0].id;
   let newObj = {}
@@ -120,14 +122,14 @@ const createtempVars = function (result) {
         newObj.phone = result[i].phone;
         orderAlreadyinResult = "old";
         newObj.items = [];
-        if(result[i].accepted_at) {
-          status =`Ready in ${result[i].set_time} minutes`;
+        if (result[i].accepted_at) {
+          status = `Ready in ${result[i].set_time} minutes`;
 
-          if(result[i].prepared_at) {
-            status =`Ready to pick up`;
+          if (result[i].prepared_at) {
+            status = `Ready to pick up`;
 
-            if( result[i].picked_at ) {
-              status ="Delivered";
+            if (result[i].picked_at) {
+              status = "Delivered";
             }
           }
         }

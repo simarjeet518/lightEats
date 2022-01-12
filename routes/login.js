@@ -27,6 +27,6 @@ module.exports = (db) => {
     res.cookie("rest_id", rest_id);
     res.redirect(`/restaurants/${rest_id}`);
   });
-  
+
   return router;
 }

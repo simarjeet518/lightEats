@@ -8,15 +8,15 @@
       <% if (user) { %>
         <p>Welcome <%= user.name %></p>
         <div class="logout-button">
-          <form action="/logout/users" method="POST">
-            <button type="submit">Logout</button>
+          <form action="/logout/" method="GET">
+            <button type="submit" class="logout-btn">Logout</button>
           </form>
         </div>
       <% } else if (rest_id) { %>
         <p>Welcome lightEats</p>
         <div class="logout-button">
-          <form action="/logout/restaurants" method="POST">
-            <button type="submit">Logout</button>
+          <form action="/logout/" method="GET">
+            <button type="submit" class="logout-btn">Logout</button>
           </form>
         </div>
       <% }  else { %>

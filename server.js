@@ -1,6 +1,7 @@
 // load .env data into process.env
 require("dotenv").config();
 
+
 // Web server config
 const PORT = process.env.PORT || 8080; //anyway I still prefer 8080
 const sassMiddleware = require("./lib/sass-middleware");
@@ -60,7 +61,7 @@ app.use('/restaurants/',restaurantOrderRouter);
 
 app.use("/carts/", cartsRoutes(db));
 app.use("/login/", loginRoutes(db));
-app.use("/logout/", logoutRoutes());
+app.use("/logout/", logoutRoutes(db));
 
 // Note: mount other resources here, using the same pattern above
 
