@@ -28,11 +28,15 @@ $blue5: #f0ebd8;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 ul {
   width: 200px;
   align-self: self-end;
+  margin-right: 10px;
+  margin-bottom: 35px;
 }
 
 
@@ -59,6 +63,8 @@ body {
   padding: 5px;
   background: white;
   border-radius: 25px;
+  box-shadow: 0px 5px 25px #3e5c76;
+  margin-bottom: 70px;
 }
 
 .item-and-price {
@@ -77,7 +83,7 @@ body {
 .items {
   display: flex;
   clear: left;
-  height: 170px;
+  height: 160px;
   border-radius: 10px;
   position: relative;
   justify-content: space-around;
@@ -95,9 +101,6 @@ body {
   justify-content: space-between;
 }
 
-.items-name {
-  padding-top: 5vh;
-}
 .items-add {
   display: flex;
   flex-direction: column;
@@ -117,9 +120,13 @@ body {
 
 #orders {
   border: 1px solid $blue3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
   border-radius: 1rem;
-  padding: 1rem;
-  border-radius: 1rem;
+  background-color: $blue4;
+  width: 30%;
 }
 
 #cart-summary p {
@@ -130,9 +137,11 @@ body {
 #orders-btn-container {
   display: flex;
   justify-content: center;
-  background-color: $blue4;
   margin-left: 25%;
   width: 600px;
+  position: fixed;
+  bottom: 0;
+  height: 60px;
 }
 
 @media all and (max-width: 900px){
