@@ -6,13 +6,12 @@ JOIN menu_items ON menu_items.id = orders_items.menu_item_id
 WHERE  `;
 
 const pendingquery = `${queryString}  picked_at IS  NULL ORDER BY orders.id ;`;
-const previousquery = `${queryString}  picked_at IS NOT NULL ORDER BY orders.id ;`;
+const previousquery = `${queryString}  picked_at IS NOT NULL ORDER BY orders.picked_at DESC ;`;
 
 module.exports = (router, db) => {
 
   router.get("/new", (req, res) => {
-
-    let rest_id = req.cookies["rest_id"];
+     let rest_id = req.cookies["rest_id"];
      const templatevars = {
       rest_id,
       name: null
@@ -33,7 +32,6 @@ module.exports = (router, db) => {
 
 
   router.get("/previous", (req, res) => {
-
     let rest_id = req.cookies["rest_id"];
     if (!rest_id) {
       return res.redirect("/");
@@ -42,11 +40,9 @@ module.exports = (router, db) => {
       rest_id,
       name: null
     }
-
     db.query(previousquery)
       .then(data => {
         const result = data.rows;
-
         if (result.length !== 0) {
           const tempVars = parsedata(result);
           res.render('restaurants', { result: tempVars, user: templatevars });
@@ -72,7 +68,6 @@ module.exports = (router, db) => {
     db.query(pendingquery)
       .then(data => {
         const result = data.rows;
-
         if (result.length !== 0) {
           const tempVars = parsedata(result);
           res.render('restaurants', { result: tempVars, user: templatevars });
@@ -99,9 +94,7 @@ module.exports = (router, db) => {
 
 
   router.post("/new/ready", (req, res) => {
-    console.log(req.body);
     const order_id = Number(req.body.order_id);
-
     const queryString = `UPDATE  orders SET prepared_at=$1 WHERE id =$2 ;`;
     db.query(queryString, [new Date(), order_id])
       .then(() => {
@@ -112,7 +105,6 @@ module.exports = (router, db) => {
 
 
   router.post("/new/delivered", (req, res) => {
-    console.log(req.body);
     const order_id = Number(req.body.order_id);
     const queryString = `UPDATE  orders SET picked_at=$1 WHERE id =$2;`;
     db.query(queryString, [new Date(), order_id])
@@ -127,9 +119,9 @@ module.exports = (router, db) => {
 
 const parsedata = function (result) {
   let orders = {};
-  let status ="Pending";
   let date =null;
   for (let i = 0; i < result.length; i++) {
+    let status ="Pending";
     let orderId = result[i].id;
     if (result[i].accepted_at) {
       status = `Ready in ${result[i].set_time} minutes`;
@@ -160,6 +152,7 @@ const parsedata = function (result) {
       }
 
     }
+
     orders[orderId].items.push({item_name:result[i].name,quantity:result[i].quantity,price:result[i].price})
     orders[orderId].quantity += result[i].quantity;
 

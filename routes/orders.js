@@ -4,8 +4,8 @@ JOIN orders_items ON orders.id = orders_items.order_id
 JOIN customers ON customer_id= customers.id
 JOIN menu_items ON menu_items.id = orders_items.menu_item_id
 WHERE customer_id = $1`;
-const pendingquery = `${queryString} AND picked_at IS  NULL ORDER BY orders.id ;`;
-const completedquery = `${queryString} AND picked_at IS NOT NULL ORDER BY orders.id ;`;
+const pendingquery = `${queryString} AND picked_at IS  NULL ORDER BY orders.id desc;`;
+const completedquery = `${queryString} AND picked_at IS NOT NULL ORDER BY orders.picked_at desc;`;
 
 module.exports = (router, db) => {
 
@@ -19,12 +19,9 @@ module.exports = (router, db) => {
     }
 
     const user_id = user.id
-    console.log(user);
     db.query(pendingquery, [user_id])
       .then(data => {
         const result = data.rows;
-        console.log(result);
-
         if (result.length !== 0) {
           const tempVars = parsedata(result);
           res.render('orders', { user: user, result: tempVars });
@@ -50,7 +47,6 @@ module.exports = (router, db) => {
       .then(data => {
         const result = data.rows;
         if (user_id !== result.customer_id) {
-
           if (result.length !== 0) {
             const tempVars = parsedata(result);
             res.render('orders', { user: user, result: tempVars });
@@ -74,7 +70,6 @@ module.exports = (router, db) => {
     if (user) {
       user = JSON.parse(user);
     }
-
     if (!user) {
       res.redirect("/");
     }
@@ -104,10 +99,12 @@ module.exports = (router, db) => {
 
 const parsedata = function (result) {
   let orders = {};
-  let status ="Pending";
+
   let date =null;
   for (let i = 0; i < result.length; i++) {
     let orderId = result[i].id;
+    let status ="Pending";
+
     if (result[i].accepted_at) {
       status = `Ready in ${result[i].set_time} minutes`;
     }
