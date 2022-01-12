@@ -14,6 +14,9 @@ module.exports = (router, db) => {
       if (user) {
         user = JSON.parse(user);
       }
+      if(!user){
+        res.redirect("/");
+      }
     const user_id = user.id
     console.log(user);
     db.query(pendingquery, [user_id])
@@ -37,6 +40,9 @@ module.exports = (router, db) => {
     let user = req.cookies["user"];
     if (user) {
       user = JSON.parse(user);
+    }
+    if(!user){
+      res.redirect("/");
     }
     const user_id = user.id
     db.query(completedquery, [user_id])
@@ -67,8 +73,11 @@ module.exports = (router, db) => {
     let user = req.cookies["user"];
     if (user) {
       user = JSON.parse(user);
+
     }
-    const user_id = user.id;
+    if(!user){
+      res.redirect("/");
+    }
 
     db.query(pendingquery, [user_id])
       .then(data => {
