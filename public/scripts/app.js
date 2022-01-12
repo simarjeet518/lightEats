@@ -40,10 +40,11 @@ $(() => {
       const itemPrice = Number(price);
       cart.total += itemPrice;
       cart.quantity += 1;
+      Cookies.set("user", JSON.stringify(cart));
     });
   }
-  $("#cart-summary button").on("click", () => {
-    Cookies.set("user", JSON.stringify(cart));
-  });
+  // $("#cart-summary button").on("click", () => {
+  //   Cookies.set("user", JSON.stringify(cart));
+  // });
 });
 
