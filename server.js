@@ -1,10 +1,20 @@
 // load .env data into process.env
 require("dotenv").config();
+// const accoutSid = process.env.TWILIO_ACCOUNT_SID;
+// const authToken = process.env.TWILIO_AUTH_TOEKN;
+// const client = require("twilio")(accoutSid, authToken);
+// client.messages.create({
+//   to: "7782516942",
+//   from: "(778) 601-9055",
+//   body: "your order has been sent to rest!"
+// })
+// .then((message) => {
+//   console.log(message.sid);
+// });
 
 // Web server config
-const PORT = process.env.PORT || 8080; //anyway I still prefer 8080
+const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
-// const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const app = express();
@@ -30,11 +40,6 @@ app.use(
   })
 );
 app.use(express.static("public"));
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: ["lightEasts", "allenKevinSimar"],
-//   httpOnly: false
-// }));
 app.use(cookieParser());
 
 // Separated Routes for each Resource
