@@ -26,7 +26,7 @@ body {
   margin-top: 100px;
 }
 
-#cart-box-item {
+.cart-box-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,12 +39,12 @@ body {
   flex-direction: column;
 }
 
-#cart-quantity-box {
+.cart-quantity-box {
   display: flex;
   align-items: center;
 }
 
-#btn {
+.btn {
   border-radius: 50%;
   width: 30px;
   height: 30px;
