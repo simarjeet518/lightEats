@@ -16,7 +16,7 @@ module.exports = (db) => {
     SELECT * FROM customers
     WHERE id = $1`, [user_id])
     .then(data => {
-      req.session.user = data.rows[0];
+      res.cookie("user", JSON.stringify(data.rows[0]));
       res.redirect("/");
       }
     )
@@ -24,8 +24,9 @@ module.exports = (db) => {
 
   router.post("/restaurants", (req, res) => {
     const rest_id = 1;
-    req.session.rest_id = rest_id;
+    res.cookie("rest_id", rest_id);
     res.redirect(`/restaurants/${rest_id}`);
   });
+  
   return router;
 }

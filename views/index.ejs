@@ -7,8 +7,9 @@
   <link rel="stylesheet" href="/midtermProject/lightEats/styles/header.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
+
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
@@ -30,15 +31,27 @@
         <img class="items-img" src=<%= menuItem.image_url %> alt=<%=`items-img-${menuItem.name}`%> />
         <p class="items-name"><%= menuItem.item_name %></p>
         <p class="items-price">CA$<%= (menuItem.price / 100).toFixed(2) %></p>
-        <div class="items-add"><button><i class="fa-solid fa-plus"></i></button></div>
+        <% if (user) { %>
+          <div class="items-add"><button><i class="fa-solid fa-plus"></i></button></div>
+        <% } %>
       </div>
     <% } %>
     
-    <div id="cart-summary">
-      <i class="fa-solid fa-cart-plus"></i>
-      <p>VIEW ORDERS</p>
-      <P >$14</P>
-    </div>
+    <% if (user) { %>
+      <section id="orders-btn-container">
+        <div id="cart-summary">
+          <i class="fa-solid fa-cart-plus"></i>
+          <form action=<%=`/carts/${user.id}`%> method="GET">
+            <button type="submit">VIEW ORDERS</button>
+          </form>
+          <P >$14</P>
+        </div>
+        <div id="orders">
+          <form action=<%=`/orders/${user.id}`%> method="GET">
+          <button type="submit">Orders</button></form>
+        </div>
+      </section>
+    <% } %>
   </main>
 
 </body>

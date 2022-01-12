@@ -15,9 +15,12 @@ module.exports = (db) => {
 
   router.get("/:user_id", (req, res) => {
     //checl login
-    const user = req.session.user;
+    let user = req.cookies["user"];
+    if (user) {
+      user = JSON.parse(user);
+    }
     const user_id = req.params.user_id;
-    if ( user.id != user_id) {
+    if ( !user || user.id != user_id) {
       return res.redirect("/");
     }
     db.query(queryString, [user_id])

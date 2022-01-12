@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/:restaurant_id", (req, res) => {
-    const rest_id = req.session.rest_id;
+    const rest_id = req.cookies["rest_id"];
     if (!rest_id) {
       return res.redirect("/");
     }
