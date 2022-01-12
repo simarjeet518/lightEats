@@ -68,7 +68,7 @@
                         <input type="text" class="qty-box" name="qty" value=2>
 
                         <button type="button" class="btn inc">+</button>
-
+                        <input type="text" class="order-id" name="phone" value="<%=result[key].phone %>">
                         <button type="submit" class="button-set-order-time"> Accept </button>
                       </form>
                       </p>
@@ -77,12 +77,14 @@
                       <% if(result[key].status===`Ready in ${result[key].set_time} minutes` ) {%>
                         <form class="preparing" action="/restaurants/new/ready" method="post">
                           <input type="text" class="order-id" name="order_id" value="<%=result[key].id %>">
+                          <input type="text" class="order-id" name="phone" value="<%=result[key].phone %>">
                           <button type="submit" class="customer-order-status"><%=result[key].status%></button>
                         </form>
                         <%} else %>
                           <% if(result[key].status==="Ready to pick up" ) {%>
                             <form class="waiting-to-pick-up" action="/restaurants/new/delivered" method="post">
                               <input type="text" class="order-id" name="order_id" value="<%=result[key].id %>">
+                              <input type="text" class="order-id" name="phone" value="<%=result[key].phone %>">
                               <button type="submit" class="customer-order-status"><%=result[key].status%></button>
                             </form>
                             <%} else %>

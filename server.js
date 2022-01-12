@@ -2,7 +2,7 @@
 require("dotenv").config();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-// const client = require('twilio')(accountSid, authToken);
+const client = require('twilio')(accountSid, authToken);
 
 
 // Web server config
@@ -66,11 +66,10 @@ app.use("/carts/", cartsRoutes(db));
 app.use("/login/", loginRoutes(db));
 app.use("/logout/", logoutRoutes(db));
 
-// Note: mount other resources here, using the same pattern above
+
 
 // Home page
 app.get("/", (req, res) => {
-  //const user = req.session.user;
   let user = req.cookies["user"];
   const rest_id = req.cookies["rest_id"];
   //if owner, go to rest page

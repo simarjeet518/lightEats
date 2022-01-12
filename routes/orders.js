@@ -1,11 +1,11 @@
-const queryString = ` SELECT  orders.created_at ,orders.accepted_at,orders.prepared_at, orders.picked_at,orders.set_time, orders.id,customers.name as customer_name ,customers.id as customer_id,orders.order_total,menu_items.name,menu_items.price,orders_items.quantity,customers.phone
+const queryString = ` SELECT  orders.* ,customers.name as customer_name ,customers.id as customer_id,menu_items.name,menu_items.price,orders_items.quantity,customers.phone
 FROM orders
 JOIN orders_items ON orders.id = orders_items.order_id
 JOIN customers ON customer_id= customers.id
 JOIN menu_items ON menu_items.id = orders_items.menu_item_id
 WHERE customer_id = $1`;
 const pendingquery = `${queryString} AND picked_at IS  NULL ORDER BY orders.id desc;`;
-const completedquery = `${queryString} AND picked_at IS NOT NULL ORDER BY orders.picked_at desc;`;
+const completedquery = `${queryString} AND picked_at IS NOT NULL ORDER BY orders.id desc;`;
 
 module.exports = (router, db) => {
 
