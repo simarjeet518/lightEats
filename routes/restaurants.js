@@ -11,10 +11,10 @@ module.exports = (router, db) => {
 
   router.get("/new", (req, res) => {
 
-    const rest_id = req.session.rest_id;
-    if (!rest_id) {
-      return res.redirect("/");
-    }
+    let rest_id = req.cookies["rest_id"];
+    // if (user) {
+    //   user = JSON.parse(user);
+    // }
     const templatevars = {
       rest_id,
       name: null
@@ -38,7 +38,7 @@ module.exports = (router, db) => {
 
   router.get("/previous", (req, res) => {
 
-    const rest_id = req.session.rest_id;
+    let rest_id = req.cookies["rest_id"];
     if (!rest_id) {
       return res.redirect("/");
     }
@@ -65,7 +65,7 @@ module.exports = (router, db) => {
 
 
   router.get("/:restaurant_id", (req, res) => {
-    const rest_id = req.cookies["rest_id"];
+    let rest_id = req.cookies["rest_id"];
     if (!rest_id) {
       return res.redirect("/");
     }
