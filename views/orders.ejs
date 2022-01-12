@@ -36,7 +36,7 @@
           <% for(let key in result) {%>
             <div id = "single-order-desc">
               <div>
-              <label id="customer-order-status"><%=result[key].status %></label>
+
               <p class = "b-desc">Time:<%=result[key].created_at%></p>
               <p class = "b-desc">Order Number:<%=` ${result[key].id}` %></p>
               <p class = "b-desc">Name : <%=result[key].customer_name %></p>
@@ -52,7 +52,9 @@
               <span id="order-total">
               <p class = "b-desc" id="very-last-item">Sub Total: $<%=result[key].order_total %></p>
               </span>
+              <label id="customer-order-status"><%=result[key].status %></label>
             </div>
+
          <%}%>
         <%} %>
         </div>
