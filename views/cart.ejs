@@ -22,41 +22,30 @@
     <div id = "cart-box">
       <h2>Shopping cart: </h2>
 
-      <!-- <div id = "cart-box-item">
-        <img src ="https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png" alt="img" >
-        <p class = "b-desc">Coffee</p>
-        <div id = "cart-quantity-box">
-            <button id = "btn" class="dec">-</button>
-            &nbsp;
-            <input type="text" id="qty-box" value=1 >
-            &nbsp;
-            <button id = "btn" class = "inc">+</button>
-        </div>
-        <div id = "price" >
-          <p id = "val1" class = "p-desc">245</p>
-        </div>
-      </div> -->
        <% cart.items.forEach((item, i) => { %>
 
-        <div id = "cart-box-item">
+        <div class = "cart-box-item">
           <img src = <%= item.img %> alt="img" >
 
           <div id = "name-and-ppi">
-            <p id = "item-name<%= i %>"class = "b-desc"><%= item.name %></p>
-            <p id = "ppi<%= i %>" class = "ppi"> <%= item.price %></p>
+            <p  class = "p-desc cart-item"><%= item.name %></p>
+            <div class="dollar-price-each">
+              <p class = "small-text">$</p>
+              <p class = "ppi cart-price"> <%= (item.price / 100).toFixed(2) %></p>
+              <p class = "small-text">&nbsp; each</p>
+            </div>
           </div>
 
           <div id = "cart-quantity-box">
-              <button id = "btn" class="dec<%= i %>">-</button>
+              <button class="opt-btn" data-type="minus"> -</button>
               &nbsp;
-              <input type="text" id="qty-box<%= i %>" value=<%= item.number %> >
+              <input type="text" class="qty-box" value=<%= item.number %> >
               &nbsp;
-              <button id = "btn" class = "inc<%= i %>">+</button>
+              <button class="opt-btn" data-type="plus">+</button>
           </div>
           <div id = "price" >
             <p class = "p-desc">$</p>
-            <p id = "val<%= i %>" class = "p-desc" ><%= item.price %></p>
-
+            <p class = "iprice p-desc" ><%= (item.number  * item.price / 100).toFixed(2) %></p>
           </div>
         </div>
       <% }) %>
@@ -78,3 +67,4 @@
 </body>
 
 </html>
+

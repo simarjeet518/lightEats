@@ -26,7 +26,7 @@ body {
   margin-top: 100px;
 }
 
-#cart-box-item {
+.cart-box-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,6 +39,10 @@ body {
   flex-direction: column;
 }
 
+.cart-item {
+  margin: 5px;
+}
+
 #cart-quantity-box {
   display: flex;
   align-items: center;
@@ -48,7 +52,7 @@ body {
   margin: 0;
 }
 
-#btn {
+.opt-btn {
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -72,6 +76,15 @@ input{
 .p-desc {
   font-weight: bold;
   font-size: 22px;
+}
+
+.dollar-price-each {
+  display: flex;
+  align-items: center;
+}
+
+.small-text {
+  margin: 0;
 }
 
 hr {
