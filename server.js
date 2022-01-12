@@ -17,6 +17,9 @@ db.connect(() => {
   console.log("database connected!");
 });
 
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.set("view engine", "ejs");
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));//based on body-parser

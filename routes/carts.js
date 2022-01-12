@@ -19,12 +19,15 @@ module.exports = (db) => {
         items: [
           {
             name: 'Coffee',
+            id: 1,
+            //please put item id
             img: 'https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png',
             price: '245',
-            number: 2
+            number: 3
           },
           {
             name: 'Cookie',
+            id: 2,
             img: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg',
             price: '150',
             number: 1

@@ -18,16 +18,17 @@
 <body>
   <%- include('partials/_header') %>
   <div id = "between-head-foot" >
-
-    <div id = "cart-box">
+    <form method="POST" action ="/orders" >
+      <div id = "cart-box">
       <h2>Shopping cart: </h2>
-        <% for (let item of cart.items) { %>
+
+          <% cart.items.forEach((item, i) => { %>
 
         <div class = "cart-box-item">
           <img src = <%= item.img %> alt="img" >
 
           <div id = "name-and-ppi">
-            <p  class = "p-desc cart-item"><%= item.name %></p>
+            <p class = "p-desc cart-item"><%= item.name %></p>
             <div class="dollar-price-each">
               <p class = "small-text">$</p>
               <p class = "ppi cart-price"> <%= (item.price / 100).toFixed(2) %></p>
@@ -35,19 +36,20 @@
             </div>
           </div>
 
-          <div id = "cart-quantity-box">
-              <button class="opt-btn" data-type="minus"> -</button>
+          <div class = "cart-quantity-box">
+            <input class ="item-id" name = "id-<%= i %>" value = "<%=item.id %>" type="hidden">
+              <button type="button" class="opt-btn" data-type="minus"> -</button>
               &nbsp;
-              <input type="text" class="qty-box" value=<%= item.number %> >
+              <input name = "number-<%= i %>" type="text" class="qty-box" value=<%= item.number %> >
               &nbsp;
-              <button class="opt-btn" data-type="plus">+</button>
+              <button type="button" class="opt-btn" data-type="plus">+</button>
           </div>
-          <div id = "price" >
+          <div class = "price" >
             <p class = "p-desc">$</p>
             <p class = "iprice p-desc" ><%= (item.number  * item.price / 100).toFixed(2) %></p>
           </div>
         </div>
-      <% } %>
+      <% }) %>
 
       <hr>
       <div id = "cart-order-total">
@@ -56,10 +58,11 @@
         <p id ="subtotal" class = "b-desc"> 10</p>
       </div>
       <div id = "cart-box-footer">
-        <button id = "button-set-add-more"> Add more </button>
-        <button id = "button-set-order-time" type="button"> Order </button>
+        <button id = "button-set-add-more" type="button"> Add more </button>
+        <button id = "button-set-order-time" type="submit"> Order </button>
       </div>
-    </div>
+      </div>
+    </form>
   </div>
 
   <!-- <%- include('partials/_footer') %> -->

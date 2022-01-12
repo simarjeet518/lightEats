@@ -32,6 +32,21 @@ module.exports = (db) => {
     })
     .catch(err => res.json(err.message));
   });
+
+  router.post("/", (req, res) => {
+
+    console.log(req.body);
+    //make fxn into array of objects
+    //create array
+    //for key in res.body
+    // create empty object
+    //
+    res.redirect("/");
+
+  });
+
+
+
   return router;
 };
 
@@ -81,3 +96,13 @@ const createtempVars= function(result) {
    }
    return ordersArray;
  }
+
+//start with this
+// const body = { 'id-0': '1', 'number-0': '10', 'id-1': '2', 'number-1': '5' }
+//end up with data like this
+//  const postArray = [
+
+//   { id:1, number:10},
+//   { id:2, number:5 }
+
+//  ];
