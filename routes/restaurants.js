@@ -11,7 +11,7 @@ module.exports = (router, db) => {
 
   router.get("/new", (req, res) => {
 
-    const rest_id = req.session.rest_id;
+    const rest_id = req.cookies["rest_id"];
     if (!rest_id) {
       return res.redirect("/");
     }
@@ -38,7 +38,7 @@ module.exports = (router, db) => {
 
   router.get("/previous", (req, res) => {
 
-    const rest_id = req.session.rest_id;
+    const rest_id = req.cookies["rest_id"];
     if (!rest_id) {
       return res.redirect("/");
     }
