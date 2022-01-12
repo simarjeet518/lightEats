@@ -2,95 +2,101 @@
 <html lang="en">
 
 <head>
-  <title>Restaurant Page</title>
+  <title>Home Page</title>
+  <%- include('partials/_scripts') %>
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/restaurant.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
+    <link rel="stylesheet" href="/styles/restaurant.css" type="text/css" />
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+
+    <script type="text/javascript" src="/scripts/allOrders.js"></script>
+    <script type="text/javascript" src="/scripts/order-listings.js"></script>
+
 </head>
 
 <body>
-  <%- include('partials/_header') %>
-  <div id = "between-head-foot" >
 
-    <h1>Current Orders: </h1>
+  <main>
+    <%- include('partials/_header') %>
+      <div id="orders-body-container">
+        <section id="order-status-buttons">
+          <form action="/restaurants/new"  method="get">
+          <button id="new"> New</button>
+          </form>
+          <form action="/restaurants/previous" method="get">
+          <button id="previous">Previous</button>
+          </form>
+        </section>
+        <article id="customer-orders">
+          <div id="order-boxes">
+            <%if(result){ %>
+              <% for(let item of result) {%>
+                <div id="single-order-desc">
+                  <div id="orders">
+                    <% if(item.status==="Pending" ) {%>
+                      <p id="set-time">
+                        <form  id ="button-set-order-time" action="/restaurants/new/accepted" method="post">
+                        <span id="a">Set Time</span>
+                        <input type="text" id="order-id" name ="order_id" value="<%=item.id %>">
+                        <button type="button" class="btn dec">-</button>
+                        <input type="text" class="qty-box" name ="qty" value=2>
 
-    <div id = "restaurant-orders-box">
-      <div id = "restaurant-order">
-        <div id = "restaurant-tabs">
-          <button>New Orders</button>
-          <button>Waiting to be picked up</button>
-          <button>Order History</button>
-        </div>
-        <div id = "restaurant-single-order-box">
-          <div id = "restaurant-order-box-description">
-            <p class = "b-desc">Timestamp: Orders.date</p>
-            <p class = "b-desc">Order Number: Order-id</p>
-            <p class = "b-desc">Customer Name </p>
-            <p class = "b-desc">Customer's Phone#</p>
-            <div class = "restaurant-item-slots">
-              <p class = "b-desc">name</p>
-              <p class = "b-desc">Item name: Quantity</p>
-              <p class = "b-desc">Item name: Quantity</p>
-            </div>
-            <p class = "b-desc">Order Total: $</p>
-            <div id = "restaurant-order-box-footer">
-              <div id = "restaurant-footer-new-order">
-                <p id ="set-time"> Set time:&nbsp;&nbsp;
-                  <button id = "btn" class="dec">-</button>
-                  &nbsp;
-                  <input type="text" id="qty-box" value=1 >
-                  &nbsp;
-                  <button id = "btn" class = "inc">+</button>
-                  </p>
-                <button id = "button-set-order-time"> Accept </button>
-              </div>
-              <div id = "restaurant-order-finished-early">
-                <button id = "button-set-time-done">Ready for Pickup</button>
-              </div>
-            </div>
+                        <button type="button"  class="btn inc">+</button>
+
+                        <button type="submit"  class="button-set-order-time"> Accept </button>
+                        </form>
+                      </p>
+                      <%} %>
+                        <% if(item.status === `Ready in ${item.set_time} minutes` ) {%>
+                          <form  id="preparing" action="/restaurants/new/ready" method="post">
+                          <input type="text" id="order-id" name ="order_id" value="<%=item.id %>">
+                          <button type="submit" class="customer-order-status">Preparing</button>
+                          </form>
+                        <%} else %>
+                        <% if(item.status === "Ready to pick up" ) {%>
+                          <form  id="waiting-to-pick-up" action="/restaurants/new/delivered" method="post">
+                          <input type="text" id="order-id" name ="order_id" value="<%=item.id %>">
+                          <button type="submit" class="customer-order-status">Waiting to pick up</button>
+                          </form>
+                          <%} else  %>
+                          <% if(item.status === "Delivered" ) {%>
+                            <label id="customer-order-status-label"><%=item.status %></label>
+                            <%} %>
+                            <p class="b-desc">Time:<%=item.created_at%>
+                            </p>
+                            <%if(item.picked_at){ %>
+                              <p class="b-desc">Delieverd:<%=item.picked_at%></p>
+                            <% }%>
+                                <p class="b-desc">Order Number:<%=` ${item.id}` %></p>
+                                <p class="b-desc">Name : <%=item.customer_name %></p>
+                                <p class="b-desc">Total items :<%=` ${item.quantity}`%></p><br />
+                                <div>
+
+                                  <%for(let value of item.items){ %>
+                                    <p class="b-desc">
+                                      <%=value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%=value.price%></span>
+                                    </p>
+                                    <%} %>
+                                </div>
+                                </div>
+
+                  <span id="order-total">
+                    <span></span>
+                    <p class="b-desc" id="very-last-item">Sub Total: $<%=item.order_total %>&nbsp;&nbsp;</p>
+                  </span>
+                </div>
+                <%}%>
+             <%} %>
           </div>
-        </div>
+        </article>
       </div>
 
 
-      <% for (let i = 0; i < 1; i++) { %>
-        <div id = "restaurant-order">
-          <div id = "restaurant-tabs">
-            <button>New Orders</button>
-            <button>Waiting to be picked up</button>
-            <button>Order History</button>
-          </div>
-          <div id = "restaurant-single-order-box">
-            <div id = "restaurant-order-box-description">
-              <p class = "b-desc">Timestamp: Orders.date</p>
-              <p class = "b-desc">Order Number: Order-id</p>
-              <p class = "b-desc">Customer Name</p>
-              <p class = "b-desc">Customer's Phone#</p>
-              <div class = "restaurant-item-slots">
-                <p class = "b-desc">Item name: Quantity</p>
-                <p class = "b-desc">Item name: Quantity</p>
-                <p class = "b-desc">Item name: Quantity</p>
-              </div>
-              <p class = "b-desc">Order Total: $10</p>
-              <div id = "restaurant-order-box-footer">
-                <div id = "restaurant-order-finished-early-on">
-                  <button id = "button-set-time-done">Ready for Pickup</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% } %>
+  </main>
 
-
-    </div>
-  </div>
 </body>
 
 </html>

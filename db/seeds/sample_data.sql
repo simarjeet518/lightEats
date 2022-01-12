@@ -1,6 +1,6 @@
 INSERT INTO customers (name, email , phone)
-VALUES ('john' , 'johnabc@gmail.com','7788334525'),
-('shaun' , 'shaunabc@gmail.com','7788334525'),
+VALUES ('Kevin' , 'johnabc@gmail.com','6725151337'),
+('Allen' , 'shaunabc@gmail.com','7782516942'),
 ('harsh' , 'harsh@email.com','7788334525');
 
 INSERT INTO restaurants (name, phone, street, city, province, country, post_code)
@@ -15,7 +15,13 @@ VALUES(1,now() + interval '20 seconds', now() + interval '2 minutes 20 seconds',
 (1,now() + interval '2 day 20 seconds', now() + interval '2 day 2 minutes 20 seconds',now() + interval '2 day 3 minutes ' ,1225, 2),
 (1,now() + interval ' 1 day 40 seconds', now() + interval '1 day 5 minutes 40 seconds',now() + interval ' 1 day 6 minutes ' ,1190, 5);
 
+INSERT INTO orders (customer_id,order_total)
+VALUES (1 ,400) ,(2,400);
 
+INSERT INTO orders (customer_id,order_total , accepted_at)
+VALUES (1 ,400 ,now()) ;
+INSERT INTO orders (customer_id,order_total , accepted_at,prepared_at)
+VALUES (1 ,400 ,now(),now()) ;
 
 INSERT INTO menu_items (name,price,image_url)
 VALUES('Coffee',245,'https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png'),
@@ -31,6 +37,8 @@ VALUES (1,1,1),(1,2,1),(1,3,1),
 (3,1,1),(3,4,2),(3,5,1),
 (4,1,1),(4,3,10),
 (5,1,5),
-(6,4,2),(6,1,2);
+(6,4,2),(6,1,2),
+(7,1,2),(8,1,2),
+(9,1,2),(9,1,2);
 
 --UPDATE orders SET STATUS ='Delivered' where id <=6;

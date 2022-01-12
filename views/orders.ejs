@@ -8,7 +8,7 @@
  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/orders-layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
 
   <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
 
@@ -24,29 +24,34 @@
     <%- include('partials/_header') %>
     <div id="orders-body-container">
       <section id="order-status-buttons">
-        <button id="current"> current</button>
+        <form action="/orders/current" method="get">
+        <button id="current"> current</button></form>
+        <form action="/orders/past" method="get">
         <button id="past">past</button>
+      </form>
       </section>
       <article id="customer-orders">
-      <div id = "order-boxes">
+      <div id ="order-boxes">
         <%if(result){ %>
           <% for(let item of result) {%>
             <div id = "single-order-desc">
-              <label id="customer-order-status">Pending</label>
+              <div>
+              <label id="customer-order-status"><%=item.status %></label>
               <p class = "b-desc">Time:<%=item.created_at%></p>
               <p class = "b-desc">Order Number:<%=` ${item.id}` %></p>
               <p class = "b-desc">Name : <%=item.customer_name %></p>
-              <div><br />
+              <p class = "b-desc">Total items :<%=` ${item.quantity}`%></p><br />
+              <div>
+
                 <%for(let value of item.items){ %>
-              <p class = "b-desc"><%=value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%=value.price%></span></p>
-
-                <%} %>
-
+                  <p class = "b-desc"><%=value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%=value.price%></span></p>
+              <%} %>
+            </div>
               </div>
 
-              <p class = "b-desc">Total items :<%=` ${item.quantity}`%></p><br />
+              <span id="order-total">
               <p class = "b-desc" id="very-last-item">Order Total: $<%=item.order_total %></p>
-
+              </span>
             </div>
          <%}%>
         <%} %>

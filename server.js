@@ -37,19 +37,28 @@ app.use(express.static("public"));
 // }));
 app.use(cookieParser());
 
+
+
+
 // Separated Routes for each Resource
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
 const ordersRoutes = require("./routes/orders");
 const cartsRoutes = require("./routes/carts");
 const restaurantsRoutes = require("./routes/restaurants");
-const orderStatus = require("./routes/current");//check this
+
+
+const cutomerOrderRouter = express.Router();
+ordersRoutes(cutomerOrderRouter, db);
+app.use('/orders/',cutomerOrderRouter);
+
+const restaurantOrderRouter = express.Router();
+restaurantsRoutes(restaurantOrderRouter,db);
+app.use('/restaurants/',restaurantOrderRouter);
 
 // Mount all resource routes
-app.use("/orders/", ordersRoutes(db));
+
 app.use("/carts/", cartsRoutes(db));
-app.use("/restaurants/", restaurantsRoutes(db));
-app.use("/current/",orderStatus(db));
 app.use("/login/", loginRoutes(db));
 app.use("/logout/", logoutRoutes());
 
