@@ -1,13 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const cookieSession = require("cookie-session");
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieSession({
-  name: 'session',
-  keys: ["lightEasts", "allenKevinSimar"]
-}));
+
 
 module.exports = (db) => {
   router.post("/users", (req, res) => {

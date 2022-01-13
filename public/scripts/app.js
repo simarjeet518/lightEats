@@ -30,20 +30,22 @@ $(() => {
       if (!exit) {
         const index = cart.items.length;
         const imgUrl= $(item).find(".items-img").attr("src");
+        const id= $(item).find(".items-id span").text();
+
         cart.items.push({});
         cart.items[index].name = itemName;
         cart.items[index].img = imgUrl;
         cart.items[index].price = price;
         cart.items[index].number = 1;
+        cart.items[index].item_id = id;
       }
       
       const itemPrice = Number(price);
       cart.total += itemPrice;
+      cart.total = Number(cart.total.toFixed(2));
       cart.quantity += 1;
+      Cookies.set("user", JSON.stringify(cart));
     });
   }
-  $("#cart-summary button").on("click", () => {
-    Cookies.set("user", JSON.stringify(cart));
-  });
 });
 
