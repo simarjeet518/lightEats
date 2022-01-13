@@ -35,11 +35,12 @@
             <p class="items-price">CA$<%= (menuItem.price / 100).toFixed(2) %></p>
 
             <p class="items-id">item-id: <span><%= menuItem.item_id %></span></p>
+          </div>
 
-            <% if (user) { %>
-              <div class="items-add"><button><i class="fa-solid fa-plus"></i></button></div>
-            <% } %>
-            </div>
+          <% if (user) { %>
+            <div class="items-add"><button><i class="fa-solid fa-plus"></i></button></div>
+          <% } %>
+
           </div>
         </div>
     <% } %>
@@ -52,8 +53,13 @@
         <form action=<%=`/carts/${user.id}`%> method="GET">
           <button type="submit">REVIEW YOUR CART</button>
         </form>
-        <i class="fa-solid fa-cart-plus"></i>
+        <% if (user.total > 0) { %>
+          <p id="total-price-index">$<%= user.total.toFixed(2) %></p>
+        <% } else { %>
+          <p id="total-price-index"></p>
+        <% } %>
       </div>
+
       <div id="orders">
         <form action=<%=`/orders/${user.id}`%> method="GET">
           <button type="submit"> History</button>

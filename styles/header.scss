@@ -17,18 +17,28 @@ nav {
   left: 0px;
   z-index: 2;
   height: 100px;
+  padding: 0 0.5rem;
 }
 
 header button {
   margin-right: 10px;
-  width:100px;
-  height:30px;
+  width:150px;
+  height:60px;
   border:none;
   border-radius: 8px;
+  font-size: 1.5rem;
 }
 
 #login-buttons-container {
   display: flex;
+  width: 20vw;
+  align-items: center;
+  justify-content: right;
+}
+#login-buttons-container > p{
+  color: $blue5;
+  font-size: 1.5rem;
+  margin-right: 5px;
 }
 
 a {
@@ -42,10 +52,15 @@ a {
 
 #logo-light {
   color: $blue5;
+  padding-right: 0.5rem;
+  font-weight: light;
+  margin: 0;
 }
 
 #logo-eats {
-  color: $blue1;
+  color: $blue4;
+  font-weight: bolder;
+  margin: 0;
 }
 
 #login-types {
@@ -78,5 +93,5 @@ a {
 }
 
 header button:hover {
-  background-color: $blue5;
+  background-color: $blue4;
 }

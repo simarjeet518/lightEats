@@ -35,10 +35,10 @@
             <div id = "single-order-desc">
               <div>
 
-              <p class = "b-desc">Time:<%=result[key].created_at%></p>
-              <p class = "b-desc">Order Number:<%=` ${result[key].id}` %></p>
-              <p class = "b-desc">Name : <%=result[key].customer_name %></p>
-              <p class = "b-desc">Total items :<%=` ${result[key].quantity}`%></p><br />
+              <p class = "b-desc">Time: <%=result[key].created_at%></p>
+              <p class = "b-desc">Order Number: <%=` ${result[key].id}` %></p>
+              <p class = "b-desc">Name: <%=result[key].customer_name %></p>
+              <p class = "b-desc">Total items:<%=` ${result[key].quantity}`%></p><br />
               <div>
 
                 <%for(let value of result[key].items){ %>

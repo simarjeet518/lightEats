@@ -72,12 +72,12 @@ app.get("/", (req, res) => {
   restaurants.id = restaurant_id`)
   .then(data => {
     const menuItems = data.rows;
-    const templatevars = {
-      user,
-      rest_id,
+    const templateVars = {
+      user, //obj
+      rest_id, //null
       menuItems
     };
-    res.render("index", templatevars);
+    res.render("index", templateVars);
   })
 });
 

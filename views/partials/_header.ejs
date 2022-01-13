@@ -1,12 +1,17 @@
 <header>
   <nav>
     <div id="logo">
-      <a href="/">lightEats</a>
+      <a href="/">
+        <h1 id = "logo-light-eats">
+          <p id = "logo-light">Light</p>
+          <p id = "logo-eats">Eats</p>
+        </h1>
+      </a>
     </div>
 
     <div id="login-buttons-container">
       <% if (user) { %>
-        <p>Welcome <%= user.name %></p>
+        <button><%= (user.name) ? user.name : "Owner" %></button>
         <div class="logout-button">
           <form action="/logout/" method="GET">
             <button type="submit" class="logout-btn">Logout</button>
@@ -22,12 +27,12 @@
       <% }  else { %>
       <div class="login-buttons">
         <form action="/login/users" method="POST">
-          <button type="submit">Client</button>
+          <button type="submit">As Client</button>
         </form>
       </div>
       <div class="login-buttons">
         <form action="/login/restaurants" method="POST">
-          <button type="submit">Owner</button>
+          <button type="submit">As Owner</button>
         </form>
       </div>
       <% } %>
