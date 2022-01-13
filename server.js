@@ -1,8 +1,6 @@
 // load .env data into process.env
 require("dotenv").config();
 
-
-
 // Web server config
 const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
@@ -10,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const express = require("express");
 const app = express();
 // const morgan = require("morgan");
+// app.use(morgan("dev"));
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -20,8 +19,7 @@ db.connect(() => {
 });
 
 app.set("view engine", "ejs");
-// app.use(morgan("dev"));
-app.use(express.urlencoded({ extended: true }));//based on body-parser
+app.use(express.urlencoded({ extended: true }));
 app.use(
   "/styles",
   sassMiddleware({
@@ -33,16 +31,12 @@ app.use(
 app.use(express.static("public"));
 app.use(cookieParser());
 
-
-
-
 // Separated Routes for each Resource
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
 const ordersRoutes = require("./routes/orders");
 const cartsRoutes = require("./routes/carts");
 const restaurantsRoutes = require("./routes/restaurants");
-
 
 const cutomerOrderRouter = express.Router();
 ordersRoutes(cutomerOrderRouter, db);
