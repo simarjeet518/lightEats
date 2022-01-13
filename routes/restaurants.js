@@ -146,6 +146,10 @@ module.exports = (router, db) => {
       }
     })
     .then(() => {
+      delete orderInfo.quantity;
+      delete orderInfo.items;
+      delete orderInfo.total;
+      res.cookie("user", JSON.stringify(orderInfo));
       res.redirect(`/orders/${orderInfo.id}`);
       //need to redirect after sql insert completely!!!!!
     })
