@@ -23,9 +23,9 @@
     <div id="orders-body-container">
       <section id="order-status-buttons">
         <form action="/orders/current" method="get">
-        <button id="current"> current</button></form>
+        <button id="current">Your Order</button></form>
         <form action="/orders/past" method="get">
-        <button id="past">past</button>
+        <button id="past">History</button>
       </form>
       </section>
       <article id="customer-orders">
@@ -35,20 +35,23 @@
             <div id = "single-order-desc">
               <div>
 
-              <p class = "b-desc">Time:<%=result[key].created_at%></p>
-              <p class = "b-desc">Order Number:<%=` ${result[key].id}` %></p>
+              <p class = "b-desc">Time : <%=result[key].created_at%></p>
+              <%if(result[key].picked_at){ %>
+                <p class="b-desc">Delieverd : <%=result[key].picked_at%> </p>
+                <% }%>
+              <p class = "b-desc">Order Number : <%=` ${result[key].id}` %></p>
               <p class = "b-desc">Name : <%=result[key].customer_name %></p>
-              <p class = "b-desc">Total items :<%=` ${result[key].quantity}`%></p><br />
+              <p class = "b-desc">Total items : <%=` ${result[key].quantity}`%></p><br />
               <div>
 
                 <%for(let value of result[key].items){ %>
-                  <p class = "b-desc"><%= value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%= (value.price / 100).toFixed(2) %></span></p>
+                  <p class = "b-desc"><%= value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%= (value.price * value.quantity / 100).toFixed(2) %></span></p>
               <%} %>
             </div>
               </div>
 
               <span id="order-total">
-              <p class = "b-desc" id="very-last-item">Sub Total: $<%=result[key].order_total %></p>
+              <p class = "b-desc" id="very-last-item">Sub Total : $<%=result[key].order_total %></p>
               </span>
               <label id="customer-order-status"><%=result[key].status %></label>
             </div>
@@ -61,7 +64,7 @@
 
 
   </main>
-
+ <!-- <%- include('partials/_footer') %> -->
 </body>
 
 </html>

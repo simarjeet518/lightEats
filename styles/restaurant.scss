@@ -15,31 +15,43 @@ body {
   }
 
   .orders-body-container {
+    margin-top:140px;
     margin-left:50px;
     margin-right:20px;
     display:grid;
-    grid-template-columns: 1/3fr ,1fr;
+
   }
 
   .order-status-buttons {
     display:flex;
     justify-content:flex-start;
+    margin-bottom: 20px;
   }
 
    .order-status-buttons {
-     button {
-      margin-right: 50px;
-      width:100px;
-      height:30px;
-      border:none;
-      border-radius: 8px;
-     }
-   }
+    button {
+     margin-right: 50px;
+     font-size:  24px; ;
+     width: 250px;
+     background-color: transparent;
+     height:35px;
+     border: none;
 
+     border-bottom: 2px solid $blue1;
+    }
+
+  }
+  .order-status-buttons button:hover{
+    border-bottom: 3px solid $blue1;
+  }
+  .item-desc {
+    border-bottom: 1px solid $blue1;
+    border-top: 1px solid $blue1;
+  }
    .order-boxes {
      display:grid;
      grid-gap: 80px;
-      grid-template-columns: repeat(auto-fill,minmax(340px,1fr));
+      grid-template-columns: repeat(auto-fill,minmax(370px,1fr));
      margin-top: 10px;
    }
    .single-order-desc {
@@ -63,15 +75,16 @@ body {
    }
 
     .customer-order-status{
-      background-color: whitesmoke;
+      background-color: $blue4;
       text-align: center;
       width:300px;
-      font-size :1.5em;
-      margin-left:50px;
-      margin-right: 50px;
+      font-size : 22px;
       border-radius: 2px;
       margin-bottom: 15px;
       margin-top: 1px;
+   }
+   .abc {
+     margin-top: 10px;
    }
 
    .left-place {
@@ -92,13 +105,12 @@ body {
 
    .customer-order-status-label{
 
-    background-color: white;
+    background-color: $blue5;
+    color: $blue4;
     display:block;
     text-align: center;
     font-size:1.5em;
     height:30px;
-    margin-left:15px;
-    margin-right: 30px;
     border-radius: 3px;
     margin-bottom: 15px;
     margin-top: 1px;
