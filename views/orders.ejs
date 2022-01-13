@@ -45,7 +45,7 @@
               </div>
 
               <span id="order-total">
-              <p class = "b-desc" id="very-last-item">Sub Total : $<%=result[key].order_total %></p>
+              <p class = "b-desc" id="very-last-item">Sub Total : $<%=result[key].order_total.toFixed(2) %></p>
               </span>
               <label id="customer-order-status"><%=result[key].status %></label>
             </div>

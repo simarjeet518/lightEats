@@ -10,10 +10,10 @@ JOIN menu_items ON menu_items.id = orders_items.menu_item_id
 WHERE  orders_items.quantity > 0 AND`;
 
 const pendingquery = `${queryString} picked_at IS  NULL ORDER BY orders.id;`;
-const previousquery = `${queryString} picked_at IS NOT NULL ORDER BY orders.id DESC;`;   // delivered
+const previousquery = `${queryString} picked_at IS NOT NULL ORDER BY orders.id  DESC;`;   // delivered
 
 module.exports = (router, db) => {
-  
+
   router.get("/new", (req, res) => {
     let rest_id = req.cookies["rest_id"];
     if (!rest_id) {
@@ -28,8 +28,10 @@ module.exports = (router, db) => {
     db.query(pendingquery)
     .then(data => {
       const result = data.rows;
+
       if (result.length !== 0) {
         const tempVars = parsedata(result);
+
         templateVars["result"] = tempVars;
         res.render('restaurants', templateVars);
       } else {
@@ -55,6 +57,7 @@ module.exports = (router, db) => {
       const result = data.rows;
       if (result.length !== 0) {
         const tempVars = parsedata(result);
+
         templateVars["result"] = tempVars;
         res.render('restaurants', templateVars);
       } else {
@@ -133,7 +136,7 @@ module.exports = (router, db) => {
       return res.redirect("/");
     }
     let total = Number(orderInfo.total.toFixed(2));
-    const queryString = `INSERT INTO orders (customer_id, order_total) 
+    const queryString = `INSERT INTO orders (customer_id, order_total)
     VALUES ($1,$2) RETURNING *;`;
 
     db.query(queryString, [orderInfo.id, total * 100])
@@ -195,6 +198,7 @@ const parsedata = function (result) {
   let orders = {};
   let date = null;
   for (let i = 0; i < result.length; i++) {
+
     let status = "Pending";
     let orderId = result[i].id;
     if (result[i].accepted_at) {
@@ -208,8 +212,9 @@ const parsedata = function (result) {
       date = result[i].picked_at.toString().substring(0, 21);
     }
 
-    if (!orders[orderId]) {
-        orders[orderId] = {
+    if (!orders[' '+orderId]) {
+        orders[' '+orderId] = {
+
           id: orderId,
           phone: result[i].phone,
           customer_name: result[i].customer_name,
@@ -222,15 +227,17 @@ const parsedata = function (result) {
           set_time: result[i].set_time
         }
     }
-    orders[orderId].items.push({
+    orders[' '+orderId].items.push({
       item_name: result[i].name,
       quantity: result[i].quantity,
       price: result[i].price
     });
-    orders[orderId].quantity += result[i].quantity;
+    orders[' '+orderId].quantity += result[i].quantity;
   }
   return orders;
 }
+
+
 
 
 

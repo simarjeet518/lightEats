@@ -58,7 +58,7 @@
 
                   <span class="order-total">
                     <span></span>
-                    <p class="b-desc" class="very-last-item">Sub Total : $<%=result[key].order_total %>&nbsp;&nbsp;</p>
+                    <p class="b-desc" class="very-last-item">Sub Total : $<%=result[key].order_total.toFixed(2) %>&nbsp;&nbsp;</p>
                   </span>
                   <% if(result[key].status==="Pending" ) {%>
                     <div class="abc">
