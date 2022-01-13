@@ -90,6 +90,16 @@ body {
   align-items: center;
 }
 
+.hide {
+  display: none;
+}
+
+
+.btn-add:hover {
+  background-color: $blue4;
+}
+
+
 .items-img {
   width: 150px;
   height: -webkit-fill-available;
