@@ -90,7 +90,7 @@ module.exports = (router, db) => {
     const queryString = `UPDATE  orders SET accepted_at=$1, set_time=$2  WHERE id =$3;`;
     db.query(queryString, [new Date(), set_time, order_id])
       .then(() => {
-        sendTextMessages(`Your order will be ready in ${set_time} minutes `, phone);
+       sendTextMessages(`Your order will be ready in ${set_time} minutes `, phone);
         res.redirect("/restaurants/new");
       })
       .catch(err => res.json(err.message));
@@ -103,7 +103,7 @@ module.exports = (router, db) => {
     const queryString = `UPDATE  orders SET prepared_at=$1 WHERE id =$2 ;`;
     db.query(queryString, [new Date(), order_id])
       .then(() => {
-        sendTextMessages(`Your order is ready to pick up`, phone);
+       sendTextMessages(`Your order is ready to pick up`, phone);
         res.redirect("/restaurants/new");
       })
       .catch(err => res.json(err.message));
@@ -116,7 +116,7 @@ module.exports = (router, db) => {
     const queryString = `UPDATE  orders SET picked_at=$1 WHERE id =$2;`;
     db.query(queryString, [new Date(), order_id])
       .then(() => {
-        sendTextMessages(`Thanks from ordering Light Eats`, phone);
+       sendTextMessages(`Thanks from ordering Light Eats`, phone);
         res.redirect("/restaurants/new");
       })
       .catch(err => res.json(err.message));
