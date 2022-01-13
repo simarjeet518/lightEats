@@ -16,50 +16,44 @@
 <body>
   <%- include("./partials/_header") %>
   <div id="hero-img">
-    <div id="rest-info">
-      <h2><%= menuItems[0].name %></h2>
-      <ul>
-        <li><%= `${menuItems[0].street}, ${menuItems[0].city}, ${menuItems[0].province}, ${menuItems[0].country}  ${menuItems[0].post_code}` %></li>
-        <li><%= menuItems[0].phone %></li>
-      </ul>
-    </div>
+    <img src="https://www.kitsilano.ca/wp-content/uploads/2018/06/belcafe1.jpg" width = 700px alt="hero-image">
+  </div>
+  <div id="rest-info">
+    <h2><%= menuItems[0].name %></h2>
+    <ul>
+      <li><%= `${menuItems[0].street}, ${menuItems[0].city}, ${menuItems[0].province}, ${menuItems[0].country}  ${menuItems[0].post_code}` %></li>
+      <li><%= menuItems[0].phone %></li>
+    </ul>
   </div>
   <main id="menu-list">
     <% for (let menuItem of menuItems) { %>
       <div class="items">
         <img class="items-img" src=<%= menuItem.image_url %> alt=<%=`items-img-${menuItem.name}`%> />
-        <div class = "price-plus">
-
-          <div class ="item-and-price">
-            <p class="b-desc items-name"><%= menuItem.item_name %></p>
-            <p class="items-price">CA$<%= (menuItem.price / 100).toFixed(2) %></p>
-          </div>
-
-          <% if (user) { %>
-            <div class="items-add"><button><i class="fa-solid fa-plus"></i></button></div>
-            <% } %>
-          </div>
-        </div>
+        <p class="items-name"><%= menuItem.item_name %></p>
+        <p class="items-price">CA$<%= (menuItem.price / 100).toFixed(2) %></p>
+        <p class="items-id">item-id: <span><%= menuItem.item_id %></span></p>
+        <% if (user) { %>
+          <div class="items-add"><button><i class="fa-solid fa-plus"></i></button></div>
+        <% } %>
+      </div>
     <% } %>
-  </main>
-
+    
     <% if (user) { %>
       <section id="orders-btn-container">
         <div id="cart-summary">
           <i class="fa-solid fa-cart-plus"></i>
           <form action=<%=`/carts/${user.id}`%> method="GET">
-            <button type="submit">REVIEW YOUR CART</button>
+            <button type="submit">VIEW ORDERS</button>
           </form>
-          <i class="fa-solid fa-cart-plus"></i>
+          <P >$14</P>
         </div>
         <div id="orders">
           <form action=<%=`/orders/${user.id}`%> method="GET">
-            <button type="submit"> History</button>
-          </form>
+          <button type="submit">Orders</button></form>
         </div>
       </section>
     <% } %>
-
+  </main>
 
 </body>
 

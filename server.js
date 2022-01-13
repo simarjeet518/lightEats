@@ -1,16 +1,5 @@
 // load .env data into process.env
 require("dotenv").config();
-// const accoutSid = process.env.TWILIO_ACCOUNT_SID;
-// const authToken = process.env.TWILIO_AUTH_TOEKN;
-// const client = require("twilio")(accoutSid, authToken);
-// client.messages.create({
-//   to: "7782516942",
-//   from: "(778) 601-9055",
-//   body: "your order has been sent to rest!"
-// })
-// .then((message) => {
-//   console.log(message.sid);
-// });
 
 // Web server config
 const PORT = process.env.PORT || 8080;
