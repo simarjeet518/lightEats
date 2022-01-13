@@ -3,7 +3,7 @@ FROM orders
 JOIN orders_items ON orders.id = orders_items.order_id
 JOIN customers ON customer_id= customers.id
 JOIN menu_items ON menu_items.id = orders_items.menu_item_id
-WHERE customer_id = $1`;
+WHERE customer_id = $1 AND orders_items.quantity > 0 `;
 const pendingquery = `${queryString} AND picked_at IS  NULL ORDER BY orders.id desc;`;
 const completedquery = `${queryString} AND picked_at IS NOT NULL ORDER BY orders.id desc;`;
 
