@@ -22,7 +22,7 @@ $blue5: #f0ebd8;
 
 #rest-info h2 {
   background-color: #FFFFFFB0;
-  width: 150px;
+  width: 220px;
   height: 50px;
   margin: 0;
   display: flex;
@@ -89,6 +89,16 @@ body {
   justify-content: space-around;
   align-items: center;
 }
+
+.hide {
+  display: none;
+}
+
+
+.btn-add:hover {
+  background-color: $blue4;
+}
+
 
 .items-img {
   width: 150px;
