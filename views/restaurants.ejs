@@ -63,14 +63,16 @@
                   <% if(result[key].status==="Pending" ) {%>
                     <div class="abc">
                       <p class="set-time">
-                      <form class="button-set-order-time" action="/restaurants/new/accepted" method="post">
-                        <span class="a">Set Time :</span>
-                        <input type="text" class="order-id" name="order_id" value="<%=result[key].id %>">
-                        <input type="text" class="order-id" name="phone" value="<%=result[key].phone %>">
-                        <button type="submit" class="customer-order-status">
-                          <%=result[key].status%>
-                        </button>
-                      </form>
+                        <form class="button-set-order-time" action="/restaurants/new/accepted" method="post">
+                          <span class="a">Set Time :</span>
+                          <input type="text" class="order-id" name="order_id" value="<%=result[key].id %>">
+                          <button type="button" class="btn dec">-</button>
+                          <input type="text" class="qty-box" name="qty" value=2>
+
+                          <button type="button" class="btn inc">+</button>
+                          <input type="text" class="order-id" name="phone" value="<%=result[key].phone %>">
+                          <button type="submit" class="button-set-order-time"> Accept </button>
+                        </form>
                       </p>
                     </div>
                     <%} else %>
