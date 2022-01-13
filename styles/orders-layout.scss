@@ -31,19 +31,22 @@ flex-direction: column;
     margin-right: 50px;
     font-size:  24px; ;
     width: 250px;
-    height:30px;
-    border:none;
+    height:35px;
+    border: none;
+
+    border-bottom: 2px solid $blue1;
     background-color: transparent;
    }
 
  }
  #order-status-buttons button:hover{
-   border-bottom: 2px solid $blue1;
+
+   border-bottom: 3px solid $blue1;
  }
  #order-boxes {
     display:grid;
     grid-gap:23px;
-    grid-template-columns: repeat(auto-fill,minmax(340px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(370px,1fr));
    margin-top: 10px;
  }
  #single-order-desc {
@@ -84,6 +87,7 @@ flex-direction: column;
 
  }
  #order-total {
+  margin-right: 8px;
    justify-self: flex-end;
    display:flex;
    justify-content: flex-end;

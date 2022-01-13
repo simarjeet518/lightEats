@@ -45,7 +45,7 @@
                         </p>
                         <p class="b-desc">Total items : <%=` ${result[key].quantity}`%>
                         </p><br />
-                        <div>
+                        <div class ="items-desc">
 
                           <%for(let value of result[key].items){ %>
                             <p class="b-desc">
@@ -60,7 +60,7 @@
                     <p class="b-desc" class="very-last-item">Sub Total : $<%=result[key].order_total %>&nbsp;&nbsp;</p>
                   </span>
                   <% if(result[key].status==="Pending") {%>
-                    <div>
+                    <div class="abc">
                       <p class="set-time">
                        <form class="button-set-order-time" action="/restaurants/new/accepted" method="post">
                         <span class="a">Set Time :</span>

@@ -33,20 +33,25 @@ body {
      margin-right: 50px;
      font-size:  24px; ;
      width: 250px;
-     height:30px;
-     border:none;
      background-color: transparent;
+     height:35px;
+     border: none;
+
+     border-bottom: 2px solid $blue1;
     }
 
   }
   .order-status-buttons button:hover{
-    border-bottom: 2px solid $blue1;
+    border-bottom: 3px solid $blue1;
   }
-
+  .item-desc {
+    border-bottom: 1px solid $blue1;
+    border-top: 1px solid $blue1;
+  }
    .order-boxes {
      display:grid;
      grid-gap: 80px;
-      grid-template-columns: repeat(auto-fill,minmax(340px,1fr));
+      grid-template-columns: repeat(auto-fill,minmax(370px,1fr));
      margin-top: 10px;
    }
    .single-order-desc {
@@ -77,6 +82,9 @@ body {
       border-radius: 2px;
       margin-bottom: 15px;
       margin-top: 1px;
+   }
+   .abc {
+     margin-top: 10px;
    }
 
    .left-place {
