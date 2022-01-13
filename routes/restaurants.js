@@ -10,8 +10,8 @@ JOIN customers ON customer_id= customers.id
 JOIN menu_items ON menu_items.id = orders_items.menu_item_id
 WHERE  `;
 
-const pendingquery = `${queryString}  picked_at IS  NULL ORDER BY id;`;
-const previousquery = `${queryString}  picked_at IS NOT NULL ORDER BY id DESC;`;
+const pendingquery = `${queryString}  picked_at IS  NULL ORDER BY orders.id;`;
+const previousquery = `${queryString}  picked_at IS NOT NULL ORDER BY orders.id DESC;`;   // delivered
 
 module.exports = (router, db) => {
 
@@ -89,7 +89,7 @@ module.exports = (router, db) => {
 
     const order_id = Number(req.body.order_id);
     const set_time = req.body.qty;
-    const phone = 7788141260;
+    const phone = `+1${req.body.phone}`;
     const queryString = `UPDATE  orders SET accepted_at=$1, set_time=$2  WHERE id =$3;`;
     db.query(queryString, [new Date(), set_time, order_id])
       .then(() => {
@@ -102,7 +102,7 @@ module.exports = (router, db) => {
 
   router.post("/new/ready", (req, res) => {
     const order_id = Number(req.body.order_id);
-    const phone = req.body.phone;
+    const phone = `+1${req.body.phone}`;
     const queryString = `UPDATE  orders SET prepared_at=$1 WHERE id =$2 ;`;
     db.query(queryString, [new Date(), order_id])
       .then(() => {
@@ -115,11 +115,11 @@ module.exports = (router, db) => {
 
   router.post("/new/delivered", (req, res) => {
     const order_id = Number(req.body.order_id);
-    const phone = req.body.phone;
+    const phone = `+1${req.body.phone}`;
     const queryString = `UPDATE  orders SET picked_at=$1 WHERE id =$2;`;
     db.query(queryString, [new Date(), order_id])
       .then(() => {
-        sendTextMessages(`Thanks from ordering Light Eats`,'7788334525');
+        sendTextMessages(`Thanks from ordering Light Eats`,phone);
         res.redirect("/restaurants/new");
       })
       .catch(err => res.json(err.message));
@@ -128,12 +128,12 @@ module.exports = (router, db) => {
   return router;
 };
 
-const sendTextMessages = function(msg,customer_phone){
+const sendTextMessages = function(messages,customer_phone){
 
   client.messages.create({
-    body:msg,
+    body:messages,
     to:customer_phone,
-    from:'+17788334525'
+    from:'+14387963567'
   })
   .then(messages => console.log(message))
   .catch(error => console.log(error))

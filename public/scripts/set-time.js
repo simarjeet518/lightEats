@@ -1,6 +1,8 @@
 $(document).ready(function() {
 
 
+  //set time
+
   $('.dec').on('click',function(e){
   e.preventDefault();
   let value = $(this).parent('form').find('.qty-box').val();
