@@ -42,7 +42,7 @@
               <div>
 
                 <%for(let value of result[key].items){ %>
-                  <p class = "b-desc"><%=value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%=value.price%></span></p>
+                  <p class = "b-desc"><%= value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%= (value.price / 100).toFixed(2) %></span></p>
               <%} %>
             </div>
               </div>

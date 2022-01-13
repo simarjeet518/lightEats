@@ -58,9 +58,6 @@ module.exports = (router, db) => {
       .catch(err => res.json(err.message));
   });
 
-
-
-
   router.get("/:restaurant_id", (req, res) => {
     let rest_id = req.cookies["rest_id"];
     if (!rest_id) {
@@ -123,6 +120,25 @@ module.exports = (router, db) => {
         res.redirect("/restaurants/new");
       })
       .catch(err => res.json(err.message));
+  });
+
+  router.post("/orders/:restaurant_id", (req, res) => {
+    const orderInfo = JSON.parse(req.cookies["user"]);
+    let total = Number(orderInfo.total.toFixed(2));
+    const queryString = `INSERT INTO orders (customer_id, order_total) VALUES ($1,$2) RETURNING *;`;
+
+    db.query(queryString, [orderInfo.id, total * 100])
+    .then((data) => {
+      const order_id = data.rows[0].id;
+      for(let itemObj of orderInfo.items) {
+        db.query(`INSERT INTO orders_items (order_id, menu_item_id, quantity) VALUES ($1, $2, $3)`,
+        [order_id, itemObj.item_id, itemObj.number]);
+      }
+    })
+    .then(() => {
+      res.redirect(`/orders/${orderInfo.id}`);
+      //need to redirect after sql insert completely!!!!!
+    })
   });
 
   return router;

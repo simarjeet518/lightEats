@@ -4,9 +4,8 @@ require("dotenv").config();
 
 
 // Web server config
-const PORT = process.env.PORT || 8080; //anyway I still prefer 8080
+const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
-// const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const app = express();
@@ -32,11 +31,6 @@ app.use(
   })
 );
 app.use(express.static("public"));
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: ["lightEasts", "allenKevinSimar"],
-//   httpOnly: false
-// }));
 app.use(cookieParser());
 
 
@@ -78,7 +72,7 @@ app.get("/", (req, res) => {
     user = JSON.parse(user);
   }
   db.query(`
-  SELECT restaurants.*, menu_items.name AS item_name, price, image_url
+  SELECT restaurants.*, menu_items.name AS item_name, price, image_url, menu_items.id AS item_id
   FROM menu_items
   JOIN restaurants ON
   restaurants.id = restaurant_id`)
