@@ -1,6 +1,8 @@
 // load .env data into process.env
 require("dotenv").config();
 
+
+
 // Web server config
 const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
@@ -31,27 +33,35 @@ app.use(
 app.use(express.static("public"));
 app.use(cookieParser());
 
+
+
+
 // Separated Routes for each Resource
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
 const ordersRoutes = require("./routes/orders");
 const cartsRoutes = require("./routes/carts");
 const restaurantsRoutes = require("./routes/restaurants");
-const orderStatus = require("./routes/current");//check this
+
+
+const cutomerOrderRouter = express.Router();
+ordersRoutes(cutomerOrderRouter, db);
+app.use('/orders/',cutomerOrderRouter);
+
+const restaurantOrderRouter = express.Router();
+restaurantsRoutes(restaurantOrderRouter,db);
+app.use('/restaurants/',restaurantOrderRouter);
 
 // Mount all resource routes
-app.use("/orders/", ordersRoutes(db));
+
 app.use("/carts/", cartsRoutes(db));
-app.use("/restaurants/", restaurantsRoutes(db));
-app.use("/current/",orderStatus(db));
 app.use("/login/", loginRoutes(db));
 app.use("/logout/", logoutRoutes());
 
-// Note: mount other resources here, using the same pattern above
+
 
 // Home page
 app.get("/", (req, res) => {
-  //const user = req.session.user;
   let user = req.cookies["user"];
   const rest_id = req.cookies["rest_id"];
   //if owner, go to rest page

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+  <%- include('partials/_scripts') %>
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/orders-layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+
+
+</head>
+
+<body>
+
+  <main>
+    <%- include('partials/_header') %>
+    <div id="orders-body-container">
+      <section id="order-status-buttons">
+        <form action="/orders/current" method="get">
+        <button id="current"> current</button></form>
+        <form action="/orders/past" method="get">
+        <button id="past">past</button>
+      </form>
+      </section>
+      <article id="customer-orders">
+      <div id ="order-boxes">
+        <%if(result){ %>
+          <% for(let key in result) {%>
+            <div id = "single-order-desc">
+              <div>
+
+              <p class = "b-desc">Time:<%=result[key].created_at%></p>
+              <p class = "b-desc">Order Number:<%=` ${result[key].id}` %></p>
+              <p class = "b-desc">Name : <%=result[key].customer_name %></p>
+              <p class = "b-desc">Total items :<%=` ${result[key].quantity}`%></p><br />
+              <div>
+
+                <%for(let value of result[key].items){ %>
+                  <p class = "b-desc"><%= value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%= (value.price / 100).toFixed(2) %></span></p>
+              <%} %>
+            </div>
+              </div>
+
+              <span id="order-total">
+              <p class = "b-desc" id="very-last-item">Sub Total: $<%=result[key].order_total %></p>
+              </span>
+              <label id="customer-order-status"><%=result[key].status %></label>
+            </div>
+
+         <%}%>
+        <%} %>
+        </div>
+      </article>
+    </div>
+
+
+  </main>
+
+</body>
+
+</html>

@@ -33,6 +33,7 @@
           <div class ="item-and-price">
             <p class="b-desc items-name"><%= menuItem.item_name %></p>
             <p class="items-price">CA$<%= (menuItem.price / 100).toFixed(2) %></p>
+            <p class="items-id">item-id: <span><%= menuItem.item_id %></span></p>
           </div>
 
           <% if (user) { %>

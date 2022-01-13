@@ -42,6 +42,7 @@ $(() => {
       
       const itemPrice = Number(price);
       cart.total += itemPrice;
+      cart.total = Number(cart.total.toFixed(2));
       cart.quantity += 1;
       Cookies.set("user", JSON.stringify(cart));
     });

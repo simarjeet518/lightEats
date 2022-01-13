@@ -13,6 +13,7 @@ $(() => {
       const currentObj = findItem(itemName, cart);
       currentObj.number--;
       cart.total -= Number(currentObj.price);
+      cart.total = Number(cart.total.toFixed(2));
       cart.quantity--;
 
       $itemNumber.text(currentObj.number);
@@ -26,7 +27,7 @@ $(() => {
       const currentObj = findItem(itemName, cart);
       currentObj.number++;
       cart.total += Number(currentObj.price);
-      cart.quantity++;
+      cart.total = Number(cart.total.toFixed(2));
 
       $itemNumber.text(currentObj.number);
       $itemTotalCost.text("$" + (currentObj.number * currentObj.price).toFixed(2));
