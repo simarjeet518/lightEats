@@ -73,7 +73,10 @@ body {
 }
 
 .subttl {
-  width: 230px;
+  width: 245px;
+  display: flex;
+  justify-content: end;
+  margin-right: 10px;
 }
 
 .p-desc {
