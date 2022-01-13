@@ -19,27 +19,26 @@
 
     <div id = "cart-box">
       <h2>Shopping cart: </h2>
-
-      <% for (let item of user.items) { %>
-      <div class = "cart-box-item">
-        <img src = <%= item.img %> alt="img" >
-        <p class = "b-desc"><%= item.name %></p>
-        <div class = "cart-quantity-box">
-            <button class= "btn minus">-</button>
-            &nbsp;
-             <p> <%= item.number %> </p>
-             &nbsp;
-            <button class = "btn plus">+</button>
+      <% if (user.items.length > 0) { %>
+        <% for (let item of user.items) { %>
+        <div class = "cart-box-item">
+          <img src = <%= item.img %> alt="img" >
+          <p class = "b-desc"><%= item.name %></p>
+          <div class = "cart-quantity-box">
+              <button class= "btn minus">-</button>
+              &nbsp; <p> <%= item.number %> </p> &nbsp; 
+              <button class = "btn plus">+</button>
+          </div>
+          <div id = "price">
+            <p class = "p-desc">$<%= (item.price * item.number).toFixed(2) %></p>
+          </div>
         </div>
-        <div id = "price">
-          <p class = "p-desc">$<%= (item.price * item.number).toFixed(2) %></p>
-        </div>
-      </div>
+        <% } %>
       <% } %>
 
       <hr>
       <div id = "cart-order-total">
-        <p class = "subttl b-desc">Sub-Total: $ <%= user.total %></p>
+        <p class = "subttl b-desc">Sub-Total: $<%= (user.total).toFixed(2) %></p>
       </div>
       <div id = "cart-box-footer">
         <form action="/" method="get">
@@ -51,8 +50,6 @@
       </div>
     </div>
   </div>
-
-  <!-- <%- include('partials/_footer') %> -->
 </body>
 
 </html>

@@ -4,16 +4,14 @@
 <head>
   <title>Restaurant Page</title>
   <%- include('partials/_scripts') %>
-  <%- include("./partials/_head") %>
-
-    <link rel="stylesheet" href="/styles/restaurant.css" type="text/css" />
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/set-time.js"></script>
-
+    <%- include("./partials/_head") %>
+      <link rel="stylesheet" href="/styles/restaurant.css" type="text/css" />
+      <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+      <script type="text/javascript" src="/scripts/set-time.js"></script>
 </head>
 
-<body>
 
+<body>
   <main>
     <%- include('partials/_header') %>
       <div class="orders-body-container">
@@ -31,25 +29,30 @@
               <% for(let key in result) {%>
                 <div class="single-order-desc">
                   <div class="orders">
-                    <h3 class="b-desc">Order Number : <%=` ${result[key].id}` %> </h3>
+                    <h3 class="b-desc">Order Number : <%=` ${result[key].id}` %>
+                    </h3>
 
-                    <p class="b-desc">Time : <%=result[key].created_at%> </p>
+                    <p class="b-desc">Time : <%=result[key].created_at%>
+                    </p>
                     <%if(result[key].picked_at){ %>
-                      <p class="b-desc">Delieverd : <%=result[key].picked_at%> </p>
+                      <p class="b-desc">Delieverd : <%=result[key].picked_at%>
+                      </p>
                       <% }%>
-                    <p class="b-desc">Phone : <%=result[key].phone%></p>
+                        <p class="b-desc">Phone : <%=result[key].phone%>
+                        </p>
 
                         <p class="b-desc">Name : <%=result[key].customer_name %>
                         </p>
                         <p class="b-desc">Total items : <%=` ${result[key].quantity}`%>
                         </p><br />
-                        <div class ="items-desc">
+                        <div class="items-desc">
 
                           <%for(let value of result[key].items){ %>
                             <p class="b-desc">
-                              <%=value.quantity %>&#215; <%=value.item_name %><span class="left-place">$<%=(value.price * value.quantity / 100).toFixed(2)%></span>
+                              <%=value.quantity %>&#215; <%=value.item_name %><span class="left-place">$<%=(value.price
+                                      * value.quantity / 100).toFixed(2)%></span>
                             </p>
-                          <%} %>
+                            <%} %>
                         </div>
                   </div>
 
@@ -57,18 +60,16 @@
                     <span></span>
                     <p class="b-desc" class="very-last-item">Sub Total : $<%=result[key].order_total %>&nbsp;&nbsp;</p>
                   </span>
-                  <% if(result[key].status==="Pending") {%>
+                  <% if(result[key].status==="Pending" ) {%>
                     <div class="abc">
                       <p class="set-time">
-                       <form class="button-set-order-time" action="/restaurants/new/accepted" method="post">
+                      <form class="button-set-order-time" action="/restaurants/new/accepted" method="post">
                         <span class="a">Set Time :</span>
                         <input type="text" class="order-id" name="order_id" value="<%=result[key].id %>">
-                        <button type="button" class="btn dec">-</button>
-                        <input type="text" class="qty-box" name="qty" value=2>
-
-                        <button type="button" class="btn inc">+</button>
                         <input type="text" class="order-id" name="phone" value="<%=result[key].phone %>">
-                        <button type="submit" class="button-set-order-time"> Accept </button>
+                        <button type="submit" class="customer-order-status">
+                          <%=result[key].status%>
+                        </button>
                       </form>
                       </p>
                     </div>
@@ -77,7 +78,9 @@
                         <form class="preparing" action="/restaurants/new/ready" method="post">
                           <input type="text" class="order-id" name="order_id" value="<%=result[key].id %>">
                           <input type="text" class="order-id" name="phone" value="<%=result[key].phone %>">
-                          <button type="submit" class="customer-order-status"><%=result[key].status%></button>
+                          <button type="submit" class="customer-order-status">
+                            <%=result[key].status%>
+                          </button>
                         </form>
                         <%} else %>
                           <% if(result[key].status==="Ready to pick up" ) {%>
@@ -98,10 +101,7 @@
           </div>
         </article>
       </div>
-
-
   </main>
-
-</body>
+  </body>
 
 </html>

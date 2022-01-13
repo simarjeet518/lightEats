@@ -1,4 +1,8 @@
-const queryString = ` SELECT  orders.* ,customers.name as customer_name ,customers.id as customer_id,menu_items.name,menu_items.price,orders_items.quantity,customers.phone
+const queryString = `
+SELECT orders.*,
+customers.name AS customer_name, customers.id AS customer_id, 
+menu_items.name, menu_items.price,
+orders_items.quantity, customers.phone
 FROM orders
 JOIN orders_items ON orders.id = orders_items.order_id
 JOIN customers ON customer_id= customers.id
@@ -8,136 +12,135 @@ const pendingquery = `${queryString} AND picked_at IS  NULL ORDER BY orders.id d
 const completedquery = `${queryString} AND picked_at IS NOT NULL ORDER BY orders.id desc;`;
 
 module.exports = (router, db) => {
-
   router.get("/current", (req, res) => {
     let user = req.cookies["user"];
-    if (user) {
-      user = JSON.parse(user);
-    }
     if (!user) {
       res.redirect("/");
     }
-
+    if (user) {
+      user = JSON.parse(user);
+    }
+    const templateVars = {
+      user,
+      result: null
+    }
     const user_id = user.id
     db.query(pendingquery, [user_id])
-      .then(data => {
-        const result = data.rows;
-        if (result.length !== 0) {
-          const tempVars = parsedata(result);
-          res.render('orders', { user: user, result: tempVars });
-        }
-        else {
-          res.render('orders', { user: user, result: null });
-        }
-      })
-      .catch(err => res.json(err.message));
+    .then(data => {
+      const result = data.rows;
+      if (result.length !== 0) {
+        const tempVars = parsedata(result);
+        templateVars["result"] = tempVars;
+        res.render('orders', templateVars);
+      }
+      else {
+        res.render('orders', templateVars);
+      }
+    })
+    .catch(err => res.json(err.message));
   });
-
 
   router.get("/past", (req, res) => {
     let user = req.cookies["user"];
+    if (!user) {
+      res.redirect("/");
+    }
     if (user) {
       user = JSON.parse(user);
     }
-    if (!user) {
-      res.redirect("/");
+    const templateVars = {
+      user,
+      result: null
     }
     const user_id = user.id
     db.query(completedquery, [user_id])
-      .then(data => {
-        const result = data.rows;
-        if (user_id !== result.customer_id) {
-          if (result.length !== 0) {
-            const tempVars = parsedata(result);
-            res.render('orders', { user: user, result: tempVars });
-          }
-          else {
-            res.render('orders', { user: user, result: null });
-          }
-        } else {
-          res.redirect("/");
+    .then(data => {
+      const result = data.rows;
+      if (user_id !== result.customer_id) {
+        if (result.length !== 0) {
+          const tempVars = parsedata(result);
+          templateVars["result"] = tempVars;
+          res.render('orders', templateVars);
         }
-      })
-      .catch(err => res.json(err.message));
+        else {
+          res.render('orders', templateVars);
+        }
+      } else {
+        res.redirect("/");
+      }
+    })
+    .catch(err => res.json(err.message));
   });
 
-
-
-
   router.get("/:user_id", (req, res) => {
-
     let user = req.cookies["user"];
-    if (user) {
-      user = JSON.parse(user);
-    }
     if (!user) {
       res.redirect("/");
     }
-
+    if (user) {
+      user = JSON.parse(user);
+    }
+    const templateVars = {
+      user,
+      result: null
+    }
     const user_id = user.id;
     db.query(pendingquery, [user_id])
-      .then(data => {
-        const result = data.rows;
+    .then(data => {
+      const result = data.rows;
 
-        if (result.length !== 0) {
+      if (result.length !== 0) {
         const tempVars = parsedata(result);
-         res.render('orders', { user: user, result: tempVars });
-        }
-        else
-        {
-          res.render('orders', { user: user, result: null });
-        }
-      })
-      .catch(err => res.json(err.message));
+        templateVars["result"] = tempVars;
+        res.render('orders', templateVars);
+      }
+      else {
+        res.render('orders', templateVars);
+      }
+    })
+    .catch(err => res.json(err.message));
   });
-
-
-
   return router;
-
 }
 
 const parsedata = function (result) {
   let orders = {};
-
-  let date =null;
+  let date = null;
   for (let i = 0; i < result.length; i++) {
     let orderId = result[i].id;
     let status ="Pending";
-
     if (result[i].accepted_at) {
       status = `Ready in ${result[i].set_time} minutes`;
     }
     if (result[i].prepared_at) {
       status = `Ready to pick up`;
     }
-   if (result[i].picked_at) {
-          status = "Delivered";
-   }
+    if (result[i].picked_at) {
+      status = "Delivered";
+    }
     if (result[i].picked_at) {
       date = result[i].picked_at.toString().substring(0, 21);
-   }
-
+    }
     if (!orders[orderId]) {
         orders[orderId] = {
-        id: orderId,
-        phone: result[i].phone,
-        customer_name: result[i].customer_name,
-        order_total: (result[i].order_total / 100).toFixed(2),
-        quantity: 0,
-        items: [],
-        status:status,
-        created_at:result[i].created_at.toString().substring(0, 21),
-        picked_at: date,
-        set_time: result[i].set_time
-
+          id: orderId,
+          phone: result[i].phone,
+          customer_name: result[i].customer_name,
+          order_total: Number((result[i].order_total / 100).toFixed(2)),
+          quantity: 0,
+          items: [],
+          status:status,
+          created_at: result[i].created_at.toString().substring(0, 21),
+          picked_at: date,
+          set_time: result[i].set_time
       }
-
     }
-    orders[orderId].items.push({item_name:result[i].name,quantity:result[i].quantity,price:result[i].price})
+    orders[orderId].items.push({
+      item_name: result[i].name,
+      quantity: result[i].quantity,
+      price: result[i].price
+    })
     orders[orderId].quantity += result[i].quantity;
-
   }
-
   return orders;
 }

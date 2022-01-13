@@ -12,7 +12,10 @@ $(() => {
     cart.total = 0;
   }
 
+  Cookies.set("user", JSON.stringify(cart));
+
   const $items = $(".items");
+  const $indexPrice = $("#total-price-index");
 
   for (let item of $items) {
 
@@ -43,6 +46,7 @@ $(() => {
       const itemPrice = Number(price);
       cart.total += itemPrice;
       cart.total = Number(cart.total.toFixed(2));
+      $indexPrice.text("$" + cart.total.toFixed(2));
       cart.quantity += 1;
       Cookies.set("user", JSON.stringify(cart));
     });
