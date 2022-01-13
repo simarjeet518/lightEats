@@ -4,7 +4,7 @@ VALUES ('Kevin' , 'kevin@gmail.com','6725151337'),
 ('harsh' , 'harsh@email.com','7788334525');
 
 INSERT INTO restaurants (name, phone, street, city, province, country, post_code)
-VALUES ('LightEats', '7788334525','7237 137 St', 'Surrey', 'BC', 'Canada', 'V3H 29T');
+VALUES ('West 12 Cafe', '7788334525','7237 137 St', 'Surrey', 'BC', 'Canada', 'V3H 29T');
 
 -- INSERT INTO orders (customer_id,accepted_at,prepared_at,picked_at,order_total, set_time)
 -- VALUES(1,now() + interval '20 seconds', now() + interval '2 minutes 20 seconds',now() + interval '3 minutes ' ,595, 2),
@@ -23,7 +23,7 @@ VALUES ('LightEats', '7788334525','7237 137 St', 'Surrey', 'BC', 'Canada', 'V3H 
 -- VALUES (1 ,400 ,now(),now()) ;
 
 INSERT INTO menu_items (name,price,image_url)
-VALUES('Coffee',245,'https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png'),
+VALUES('Coffee',250,'https://www.sevensummitscoffee.com/uploads/1/3/1/2/131291290/s598870640510727702_p68_i1_w308.png'),
 ('Tea',200,'https://i0.wp.com/pickuplineninja.com/wp-content/uploads/2020/05/tea-Pick-Up-Lines.jpeg?fit=500%2C344&ssl=1'),
 ('Cookie',150,'https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg'),
 ('Sandwich',350,'https://static.toiimg.com/thumb/83740315.cms?width=1200&height=900'),
