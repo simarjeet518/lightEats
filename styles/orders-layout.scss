@@ -16,6 +16,7 @@ flex-direction: column;
 }
 
 #orders-body-container {
+  margin-right:20px;
   margin-left:50px;
 }
 #order-status-buttons {
@@ -34,8 +35,9 @@ flex-direction: column;
  }
 
  #order-boxes {
-   display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
+    display:grid;
+    grid-gap:23px;
+    grid-template-columns: repeat(auto-fill,minmax(340px,1fr));
    margin-top: 10px;
  }
  #single-order-desc {
@@ -50,8 +52,8 @@ flex-direction: column;
   padding-left:10px;
   padding-bottom: 5px;
   background-color: $blue5;
-  max-width:300px;
-  height:340px;
+  max-width:340px;
+  height:370px;
  }
  .b-desc {
    margin: 5px;
@@ -82,12 +84,7 @@ flex-direction: column;
    display:flex;
    justify-content: flex-end;
  }
- #very-last-item {
-  font-size: 1.2em;
-  font-weight: bold;
 
-
- }
 
 
 

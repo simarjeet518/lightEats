@@ -16,7 +16,7 @@ VALUES(1,now() + interval '20 seconds', now() + interval '2 minutes 20 seconds',
 (1,now() + interval ' 1 day 40 seconds', now() + interval '1 day 5 minutes 40 seconds',now() + interval ' 1 day 6 minutes ' ,1190, 5);
 
 INSERT INTO orders (customer_id,order_total)
-VALUES (1 ,400) ,(2,400);
+VALUES (1 ,400) ,(2,400),(2,400);
 
 INSERT INTO orders (customer_id,order_total , accepted_at)
 VALUES (1 ,400 ,now()) ;
@@ -39,6 +39,7 @@ VALUES (1,1,1),(1,2,1),(1,3,1),
 (5,1,5),
 (6,4,2),(6,1,2),
 (7,1,2),(8,1,2),
-(9,1,2),(9,1,2);
+(9,1,2),(10,1,2),
+(11,1,2);
 
 --UPDATE orders SET STATUS ='Delivered' where id <=6;

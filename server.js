@@ -1,6 +1,8 @@
 // load .env data into process.env
 require("dotenv").config();
 
+
+
 // Web server config
 const PORT = process.env.PORT || 8080; //anyway I still prefer 8080
 const sassMiddleware = require("./lib/sass-middleware");
@@ -62,11 +64,10 @@ app.use("/carts/", cartsRoutes(db));
 app.use("/login/", loginRoutes(db));
 app.use("/logout/", logoutRoutes());
 
-// Note: mount other resources here, using the same pattern above
+
 
 // Home page
 app.get("/", (req, res) => {
-  //const user = req.session.user;
   let user = req.cookies["user"];
   const rest_id = req.cookies["rest_id"];
   //if owner, go to rest page
