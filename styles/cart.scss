@@ -5,9 +5,10 @@ $blue4: #748cab;
 $blue5: #f0ebd8;
 
 body {
-  background-color: $blue5;
-  color: $blue1;
   padding: 10px;
+  background: $blue5;
+  background-image: url(/images/junk.png);
+  background-size: 100%
 }
 
 #cart-box {
