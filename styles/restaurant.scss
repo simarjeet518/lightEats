@@ -94,16 +94,17 @@ button:hover {
   font-weight: bold;
 }
 
-.customer-order-status-label{
-  background-color: $blue5;
-  color: $blue4;
+#customer-order-status-label{
+  color: $blue1;
+  background-color: lightgrey;
   display:block;
   text-align: center;
-  font-size:1.5em;
+  font-size:22px;
   height:30px;
   border-radius: 3px;
   margin-bottom: 15px;
   margin-top: 1px;
+  width: 95%;
 }
 
 .btn {

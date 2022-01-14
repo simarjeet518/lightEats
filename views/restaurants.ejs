@@ -94,9 +94,7 @@
                             <%} else %>
                               <% if(result[key].status==="Delivered" ) {%>
                                 <div class="btn-status">
-                                  <button class="customer-order-status">
-                                    <%=result[key].status %>
-                                  </button>
+                                  <label id="customer-order-status-label"><%=result[key].status %></label>
                                 </div>
                                 <%} %>
                 </div>
