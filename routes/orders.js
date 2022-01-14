@@ -126,8 +126,8 @@ const parsedata = function (result) {
       date = result[i].picked_at.toString().substring(0, 21);
     }
 
-    if (!orders['' + orderId]) {
-        orders['' + orderId] = {
+    if (!orders[' ' + orderId]) {
+        orders[' ' + orderId] = {
           id: orderId,
           phone: result[i].phone,
           customer_name: result[i].customer_name,
@@ -140,12 +140,12 @@ const parsedata = function (result) {
           set_time: result[i].set_time
         }
     }
-    orders['' + orderId].items.push({
+    orders[' ' + orderId].items.push({
       item_name: result[i].name,
       quantity: result[i].quantity,
       price: result[i].price
     });
-    orders['' + orderId].quantity += result[i].quantity;
+    orders[' ' + orderId].quantity += result[i].quantity;
   }
   return orders;
 }
