@@ -39,7 +39,6 @@ ul {
   margin-bottom: 35px;
 }
 
-
 #rest-info ul {
   list-style-type: none;
   padding: 0 0 5px 0;
@@ -161,6 +160,7 @@ hr {
   position: fixed;
   bottom: 0;
   height: 60px;
+  width: 600px;
 }
 
 .foot-btn {
@@ -172,16 +172,13 @@ hr {
   width: 50px;
 }
 
-@media all and (max-width: 900px){
-
+@media all and (max-width: 850px){
   #menu-list {
     width: 400px;
-
   }
 
   #orders-btn-container {
     width: 400px;
-
   }
 
   .b-desc {
@@ -190,5 +187,4 @@ hr {
     margin-top: 5px;
     margin-bottom: 5px;
   }
-
 }

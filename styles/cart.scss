@@ -18,7 +18,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  margin-left: 10%;
+  margin-left: 13vw;
   width: 550px;
   justify-content: space-between;
 }
@@ -133,7 +133,7 @@ img {
 @media all and (max-width: 700px){
 
   #cart-box {
-    margin: 10px;
+    margin: 70px;
     width: 400px;
   }
 
