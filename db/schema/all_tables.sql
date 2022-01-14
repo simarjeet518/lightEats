@@ -48,7 +48,6 @@ CREATE TABLE orders_items (
  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
  menu_item_id INTEGER REFERENCES menu_items(id) ON DELETE CASCADE,
  quantity SMALLINT NOT NULL CONSTRAINT positive_quantity CHECK (quantity >= 0)
-
 );
 
 

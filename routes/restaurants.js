@@ -2,6 +2,8 @@ require("dotenv").config();
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
+const axios = require("axios").default;
+
 const queryString = `SELECT  orders.*,customers.name as customer_name ,customers.id as customer_id,menu_items.name,menu_items.price,orders_items.quantity,customers.phone as phone
 FROM orders
 JOIN orders_items ON orders.id = orders_items.order_id
@@ -145,7 +147,7 @@ module.exports = (router, db) => {
     .then((data) => {
       const order_id = data.rows[0].id;
       let arrayOfItems = orderInfo.items;
-      let queryString = ` INSERT INTO orders_items (order_id, menu_item_id, quantity) VALUES `;
+      let queryString = `INSERT INTO orders_items (order_id, menu_item_id, quantity) VALUES `;
       let values = [];
       let inc = 1;
       for (let i = 0; i < arrayOfItems.length; i++) {
@@ -153,7 +155,7 @@ module.exports = (router, db) => {
         // inc++;
         let secondItem = i + inc++;
         // inc++;
-        let thirdItem = i + inc++;
+        let thirdItem = i + inc;
         //building query
         queryString = `${queryString}($${firstItem}, $${secondItem}, $${thirdItem}),`;
         if (i >= arrayOfItems.length - 1) {
@@ -162,7 +164,7 @@ module.exports = (router, db) => {
         }
         //building insert variables
         values.push(order_id);
-        values.push(arrayOfItems[i].item_id);
+        values.push(Number(arrayOfItems[i].item_id)); //item_id is Integer in db
         values.push(arrayOfItems[i].number);
       }
       db.query(queryString, values)
@@ -173,6 +175,7 @@ module.exports = (router, db) => {
         delete orderInfo.total;
         res.cookie("user", JSON.stringify(orderInfo));
         res.redirect("/orders/order_id");
+        res.redirect("restaurants/new");
       })
       .catch(err => res.json(err.message));
     })
@@ -189,7 +192,6 @@ const sendTextMessages = function(messages,customer_phone){
   })
   .then(message => console.log(message))
   .catch(error => console.log(error))
-
 }
 
 const parsedata = function (result) {

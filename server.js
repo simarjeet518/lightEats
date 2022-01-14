@@ -44,15 +44,11 @@ app.use('/orders/',cutomerOrderRouter);
 
 const restaurantOrderRouter = express.Router();
 restaurantsRoutes(restaurantOrderRouter,db);
+
 app.use('/restaurants/',restaurantOrderRouter);
-
-// Mount all resource routes
-
 app.use("/carts/", cartsRoutes(db));
 app.use("/login/", loginRoutes(db));
 app.use("/logout/", logoutRoutes());
-
-
 
 // Home page
 app.get("/", (req, res) => {

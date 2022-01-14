@@ -56,6 +56,6 @@ const updateCart = (item, cart, isAdd, $itemNumber, $itemTotalCost, $totalPrice)
   }
   $itemNumber.text(currentObj.number);
   $itemTotalCost.text("$" + (currentObj.number * currentObj.price).toFixed(2));
-  $totalPrice.text("Sub-total: $" + cart.total);
+  $totalPrice.text("Sub-total: $" + cart.total.toFixed(2));
   Cookies.set("user", JSON.stringify(cart));
 };
