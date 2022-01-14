@@ -44,6 +44,7 @@
           <% } %>
           </div>
         </div>
+        <hr>
     <% } %>
   </main>
 
@@ -52,18 +53,18 @@
       <div id="cart-summary">
         <i class="fa-solid fa-cart-plus"></i>
         <form action=<%=`/carts/${user.id}`%> method="GET">
-          <button type="submit">REVIEW YOUR CART</button>
+          <button class="foot-btn" type="submit">Review your cart</button>
         </form>
         <% if (user.total > 0) { %>
           <p id="total-price-index">$<%= user.total.toFixed(2) %></p>
         <% } else { %>
-          <p id="total-price-index"></p>
+          <p id="total-price-index">empty</p>
         <% } %>
       </div>
 
       <div id="orders">
         <form action=<%=`/orders/${user.id}`%> method="GET">
-          <button type="submit"> History</button>
+          <button class="foot-btn" type="submit"> History</button>
         </form>
       </div>
     </section>

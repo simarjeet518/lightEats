@@ -5,12 +5,16 @@ $blue4: #748cab;
 $blue5: #f0ebd8;
 
 body {
-background-color: $blue4;
+  background: $blue5;
+  background-image: url(/images/junk.png);
+  background-size: 100%
 }
+
 main {
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
+
 #orders-body-container{
   margin-top:100px;
 }
@@ -20,90 +24,81 @@ flex-direction: column;
   margin-right:20px;
   margin-left:50px;
 }
+
 #order-status-buttons {
   display:flex;
   justify-content:flex-start;
   margin-bottom: 25px;
 }
 
- #order-status-buttons {
-   button {
-    margin-right: 50px;
-    font-size:  24px; ;
-    width: 250px;
-    height:35px;
-    border: none;
+#order-status-buttons button {
+  margin-right: 45px;
+  margin-left: 5px;
+  font-size: 24px;
+  width: 250px;
+  background-color: white;
+  box-shadow: 0px 3px 10px $blue4;
+}
 
-    border-bottom: 2px solid $blue1;
-    background-color: transparent;
-   }
+#order-status-buttons button:hover{
+  background-color: lightgrey;
+}
 
- }
- #order-status-buttons button:hover{
+#order-boxes {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(297px, 1px));
+  margin-top: 10px;
+}
 
-   border-bottom: 3px solid $blue1;
- }
- #order-boxes {
-    display:grid;
-    grid-gap:23px;
-    grid-template-columns: repeat(auto-fill,minmax(370px,1fr));
-   margin-top: 10px;
- }
- #single-order-desc {
-   display: flex;
-   flex-direction: column;
+#single-order-desc {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   padding-top:15px ;
   overflow: auto;
-  margin-right:30px;
   margin-top:15px;
-  border:solid 4px $blue1;
-  padding-left:10px;
-  padding-bottom: 5px;
-  background-color: $blue5;
-  max-width:340px;
-  height:370px;
- }
- .b-desc {
-   margin: 5px;
-   display:flex;
-   justify-content: space-between;
- }
+  padding: 10px;
+  max-width:270px;
+  height:400px;
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0px 5px 25px #3e5c76;
+}
 
-  #customer-order-status{
-    color: $blue3;
-    background-color:$blue5;
-    display:block;
-    text-align: center;
-    font-size:22px;
-    height:30px;
-    border-radius: 3px;
-    margin-bottom: 15px;
-    margin-top: 1px;
- }
+.b-desc {
+  margin: 0px;
+  display:flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
 
- #left-place {
+#customer-order-status{
+  color: $blue1;
+  background-color: lightgrey;
+  display:block;
+  text-align: center;
+  font-size:22px;
+  height:30px;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  margin-top: 1px;
+}
+
+#left-place {
   margin-right: 15px;
+}
 
- }
- #order-total {
+#order-total {
   margin-right: 8px;
-   justify-self: flex-end;
-   display:flex;
-   justify-content: flex-end;
- }
-
-
-
-
+  justify-self: flex-end;
+  display:flex;
+  justify-content: flex-end;
+}
 
 @media screen and (max-width: 700px){
-
   #order-status-buttons {
-
     justify-content:flex-start;
   }
-
 }
 
 
