@@ -130,56 +130,54 @@ module.exports = (router, db) => {
     .catch(err => res.json(err.message));
   });
 
+  //when customer makes order
   router.post("/orders/:restaurant_id", (req, res) => {
     const orderInfo = JSON.parse(req.cookies["user"]);
     if (orderInfo.items.length === 0) {
       return res.redirect("/");
     }
-    let total = Number(orderInfo.total.toFixed(2));
-    const queryString = `INSERT INTO orders (customer_id, order_total)
-    VALUES ($1,$2) RETURNING *;`;
+    let total = Number(orderInfo.total.toFixed(2)); //make sure no long floating points
+    const queryString = `
+    INSERT INTO orders (customer_id, order_total)
+    VALUES ($1, $2) RETURNING *;`;
 
     db.query(queryString, [orderInfo.id, total * 100])
-      .then((data) => {
-        const order_id = data.rows[0].id;
-        let ArrayOfItems = orderInfo.items;
-
-        let queryString = ` INSERT INTO orders_items (order_id, menu_item_id, quantity) VALUES `;
-        let values = [];
-        let inc = 1;    //
-        for (let i = 0; i < ArrayOfItems.length; i++) {
-
-          let firstItem = i + inc;             // ($1,$2,$3),($4,$5,$6)          //$1  ,second iteration inc value is 3 it become $4 (as i = 1+ inc (which is 4))
-          inc++;
-          let secondItem = i + inc;   //$2
-          inc++;
-          let thirdItem = i + inc;    //$3
-          if (i < ArrayOfItems.length - 1) {
-            queryString = `${queryString}($${firstItem}, $${secondItem}, $${thirdItem}),`;
-          }
-          else {
-            queryString = `${queryString}($${firstItem}, $${secondItem}, $${thirdItem});`;
-          }                                                                 //($1,$2,$3) ,($3,$4,$6)......
-          values.push(order_id);
-          values.push(ArrayOfItems[i].item_id);
-          values.push(ArrayOfItems[i].number);
-
+    .then((data) => {
+      const order_id = data.rows[0].id;
+      let arrayOfItems = orderInfo.items;
+      let queryString = ` INSERT INTO orders_items (order_id, menu_item_id, quantity) VALUES `;
+      let values = [];
+      let inc = 1;
+      for (let i = 0; i < arrayOfItems.length; i++) {
+        let firstItem = i + inc++;
+        // inc++;
+        let secondItem = i + inc++;
+        // inc++;
+        let thirdItem = i + inc++;
+        //building query
+        queryString = `${queryString}($${firstItem}, $${secondItem}, $${thirdItem}),`;
+        if (i >= arrayOfItems.length - 1) {
+          queryString = queryString.slice(0, queryString.length - 1);
+          queryString += ";";
         }
-        db.query(queryString, values)
-          .then(() => {
-            sendTextMessages(`You have 1 new order`, '+17788334525');
-            delete orderInfo.quantity;
-            delete orderInfo.items;
-            delete orderInfo.total;
-            res.cookie("user", JSON.stringify(orderInfo));
-            res.redirect("/orders/order_id");
-          })
-          .catch(err => res.json(err.message));
-
+        //building insert variables
+        values.push(order_id);
+        values.push(arrayOfItems[i].item_id);
+        values.push(arrayOfItems[i].number);
+      }
+      db.query(queryString, values)
+      .then(() => {
+        sendTextMessages(`You have 1 new order!`, '+17788334525');
+        delete orderInfo.quantity;
+        delete orderInfo.items;
+        delete orderInfo.total;
+        res.cookie("user", JSON.stringify(orderInfo));
+        res.redirect("/orders/order_id");
       })
       .catch(err => res.json(err.message));
+    })
+    .catch(err => res.json(err.message));
   });
-
   return router;
 };
 
@@ -212,9 +210,8 @@ const parsedata = function (result) {
       date = result[i].picked_at.toString().substring(0, 21);
     }
 
-    if (!orders[' '+orderId]) {
-        orders[' '+orderId] = {
-
+    if (!orders['' + orderId]) {
+        orders['' + orderId] = {
           id: orderId,
           phone: result[i].phone,
           customer_name: result[i].customer_name,
@@ -227,12 +224,12 @@ const parsedata = function (result) {
           set_time: result[i].set_time
         }
     }
-    orders[' '+orderId].items.push({
+    orders['' + orderId].items.push({
       item_name: result[i].name,
       quantity: result[i].quantity,
       price: result[i].price
     });
-    orders[' '+orderId].quantity += result[i].quantity;
+    orders['' + orderId].quantity += result[i].quantity;
   }
   return orders;
 }
