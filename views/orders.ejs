@@ -29,24 +29,25 @@
             <div id = "single-order-desc">
               <div>
 
-              <p class = "b-desc">Time : <%=result[key].created_at%></p>
+              <p class = "b-desc">Time: <%=result[key].created_at%></p>
               <%if(result[key].picked_at){ %>
-                <p class="b-desc">Delieverd : <%=result[key].picked_at%> </p>
+                <p class="b-desc">Delievered: <%=result[key].picked_at%> </p>
                 <% }%>
-              <p class = "b-desc">Order Number : <%=` ${result[key].id}` %></p>
+              <p class = "b-desc">Order Number: <%=` ${result[key].id}` %></p>
               <p class = "b-desc">Name : <%=result[key].customer_name %></p>
-              <p class = "b-desc">Total items : <%=` ${result[key].quantity}`%></p><br />
+              <p class = "b-desc">Total items: <%=` ${result[key].quantity}`%></p>
               <div>
-
+                <hr>
                 <%for(let value of result[key].items){ %>
                   <p class = "b-desc"><%= value.quantity %>&#215; <%=value.item_name %><span id="left-place">$<%= (value.price * value.quantity / 100).toFixed(2) %></span></p>
               <%} %>
+                <hr>
             </div>
               </div>
 
               <span id="order-total">
-              <p class = "b-desc" id="very-last-item">Sub Total : $<%=result[key].order_total.toFixed(2) %></p>
-              </span>
+              <p class = "b-desc" id="very-last-item">Sub Total: $<%=result[key].order_total.toFixed(2) %></p>
+            </span>
               <label id="customer-order-status"><%=result[key].status %></label>
             </div>
 

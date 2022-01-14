@@ -12,14 +12,14 @@
 
     <div id="login-buttons-container">
       <% if (user) { %>
-        <button><%= (user.name) ? user.name : "Owner" %></button>
+        <p class = "welcome-name"> Welcome, <%= user.name %>&nbsp;&nbsp;</p>
         <div class="logout-button">
           <form action="/logout/" method="GET">
             <button type="submit" class="logout-btn">Logout</button>
           </form>
         </div>
       <% } else if (rest_id) { %>
-        <p>Welcome lightEats</p>
+        <p>West 12 Eats Owner&nbsp;&nbsp;</p>
         <div class="logout-button">
           <form action="/logout/" method="GET">
             <button type="submit" class="logout-btn">Logout</button>
@@ -28,12 +28,12 @@
       <% }  else { %>
       <div class="login-buttons">
         <form action="/login/users" method="POST">
-          <button type="submit">As Client</button>
+          <button type="submit"> Client</button>
         </form>
       </div>
       <div class="login-buttons">
         <form action="/login/restaurants" method="POST">
-          <button type="submit">As Owner</button>
+          <button type="submit"> Owner</button>
         </form>
       </div>
       <% } %>

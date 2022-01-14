@@ -52,7 +52,9 @@ ul {
 }
 
 body {
-  background: $blue4;
+  background: $blue5;
+  background-image: url(/images/junk.png);
+  background-size: 100%
 }
 
 #menu-list {
@@ -61,6 +63,7 @@ body {
   width: 600px;
   margin-left: 25%;
   padding: 5px;
+  padding-bottom: 0;
   background: white;
   border-radius: 25px;
   box-shadow: 0px 5px 25px #3e5c76;
@@ -83,7 +86,7 @@ body {
 .items {
   display: flex;
   clear: left;
-  height: 160px;
+  height: 125px;
   border-radius: 10px;
   position: relative;
   justify-content: space-around;
@@ -94,6 +97,13 @@ body {
   display: none;
 }
 
+hr {
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.1);
+  width: 75%;
+  margin: 0;
+  align-self: center;
+}
 
 .btn-add:hover {
   background-color: $blue4;
@@ -118,25 +128,25 @@ body {
 }
 
 #cart-summary {
+  background-color: $blue5;
   border: 1px solid $blue3;
-  background-color: $blue4;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
   border-radius: 1rem;
-  width: 70%;
+  width: 68%;
 }
 
 #orders {
+  background-color: $blue5;
   border: 1px solid $blue3;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 3px;
   border-radius: 1rem;
-  background-color: $blue4;
-  width: 30%;
+  width: 28%;
 }
 
 #cart-summary p {
@@ -146,12 +156,16 @@ body {
 
 #orders-btn-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin-left: 25%;
-  width: 600px;
   position: fixed;
   bottom: 0;
   height: 60px;
+}
+
+.foot-btn {
+  border: 0;
+  background: transparent;
 }
 
 #total-price-index {

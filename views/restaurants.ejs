@@ -29,36 +29,37 @@
               <% for(let key in result) {%>
                 <div class="single-order-desc">
                   <div class="orders">
-                    <h3 class="b-desc">Order Number : <%=` ${result[key].id}` %>
+                    <h3 >Order Number: <%=` ${result[key].id}` %>
                     </h3>
 
-                    <p class="b-desc">Time : <%=result[key].created_at%>
+                    <p class="b-desc">Time: <%=result[key].created_at%>
                     </p>
                     <%if(result[key].picked_at){ %>
-                      <p class="b-desc">Delieverd : <%=result[key].picked_at%>
+                      <p class="b-desc">Delieverd: <%=result[key].picked_at%>
                       </p>
                       <% }%>
-                        <p class="b-desc">Phone : <%=result[key].phone%>
+                        <p class="b-desc">Phone: <%=result[key].phone%>
                         </p>
 
-                        <p class="b-desc">Name : <%=result[key].customer_name %>
+                        <p class="b-desc">Name: <%=result[key].customer_name %>
                         </p>
-                        <p class="b-desc">Total items : <%=` ${result[key].quantity}`%>
-                        </p><br />
+                        <p class="b-desc">Total items: <%=` ${result[key].quantity}`%>
+                        </p>
                         <div class="items-desc">
-
+                          <hr>
                           <%for(let value of result[key].items){ %>
                             <p class="b-desc">
                               <%=value.quantity %>&#215; <%=value.item_name %><span class="left-place">$<%=(value.price
                                       * value.quantity / 100).toFixed(2)%></span>
                             </p>
                             <%} %>
+                            <hr>
                         </div>
                   </div>
 
                   <span class="order-total">
                     <span></span>
-                    <p class="b-desc" class="very-last-item">Sub Total : $<%=result[key].order_total.toFixed(2) %>&nbsp;&nbsp;</p>
+                    <p class="b-desc" class="very-last-item">Sub-Total : $<%=result[key].order_total.toFixed(2) %>&nbsp;&nbsp;</p>
                   </span>
                   <% if(result[key].status==="Pending" ) {%>
                     <div class="abc">
@@ -89,13 +90,15 @@
                             <form class="waiting-to-pick-up" action="/restaurants/new/delivered" method="post">
                               <input type="text" class="order-id" name="order_id" value="<%=result[key].id %>">
                               <input type="text" class="order-id" name="phone" value="<%=result[key].phone %>">
-                              <button type="submit" class="customer-order-status">Delieverd</button>
+                              <button type="submit" class="customer-order-status">Delievered</button>
                             </form>
                             <%} else %>
                               <% if(result[key].status==="Delivered" ) {%>
-                                <label class="customer-order-status-label">
-                                  <%=result[key].status %>
-                                </label>
+                                <div class="btn-status">
+                                  <button class="customer-order-status">
+                                    <%=result[key].status %>
+                                  </button>
+                                </div>
                                 <%} %>
                 </div>
                 <%}%>
