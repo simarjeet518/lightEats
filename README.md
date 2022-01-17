@@ -1,7 +1,15 @@
 
-# Food Pickup App 
+# Food Pick-up Ordering App
 
-A full-stack food-ordering pick-up application with notification features on app and via SMS  as fulfillment of Lighthouse Lab's midterm group project.
+A full-stack food-ordering pick-up application with notification features on app and through SMS.
+
+## Features
+- Hungry clients of the  restaurant can visit its website, select one or more dishes and place an order for pick-up
+- When an order is placed the restaurant receives the order notification via SMS 
+- The restaurant can then specify how long it will take to fulfill it.
+- Once they provide this information, the website updates for the client and also notifies them via SMS.
+- When the order is prepared  restaurant notifies client again with message as "your order is ready to pick up".
+
 
 ## Final Product
 
@@ -11,13 +19,23 @@ A full-stack food-ordering pick-up application with notification features on app
 ### Cart page
 !["cart page"](https://github.com/simarjeet518/lightEats/blob/master/docs/cart.png?raw=true)
 
+
 ### Restaurant home page
 !["restaurant page"](https://github.com/simarjeet518/lightEats/blob/master/docs/restaurent.png?raw=true)
 
-### Customer order page
+
+### Client order page
 !["order-page](https://github.com/simarjeet518/lightEats/blob/master/docs/orderStatus.png?raw=true)
 
+
 !["ready to pick up status"](https://github.com/simarjeet518/lightEats/blob/master/docs/readytopickup.png?raw=true)
+
+
+
+### SMS Notifications
+!["SMS!"](https://github.com/simarjeet518/lightEats/blob/master/docs/SMS1.png?raw=true)
+
+!["SMS2](https://github.com/simarjeet518/lightEats/blob/master/docs/SMS2.png?raw=true)
 
 
 ## Dependencies
