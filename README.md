@@ -1,7 +1,7 @@
 
 # Food Pick-up Ordering App
 
-A full-stack food-ordering pick-up application with notification features on app and through SMS.
+A full-stack food-ordering pick-up application with notifications features on app and through SMS as a fulfillment of Lighthouse Lab's midterm  group project.
 
 ## Features
 - Hungry clients of the  restaurant can visit its website, select one or more dishes and place an order for pick-up
